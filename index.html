@@ -127,6 +127,48 @@
     .mission-hero{padding:60px 20px 40px;} .founder-wrap{padding:60px 20px;}
     .founder-values{grid-template-columns:1fr;} .fp-feats{grid-template-columns:1fr;} .fp-top{flex-direction:column;}
   }
+ 
+  /* Robot Marsi */
+  .marsi-robot-box { background:var(--surface); border:1px solid rgba(232,255,71,0.2); border-radius:20px; padding:28px; margin-bottom:24px; display:flex; align-items:center; gap:28px; position:relative; overflow:hidden; }
+  .marsi-robot-box::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--y1); }
+  .robot-scene { flex-shrink:0; display:flex; flex-direction:column; align-items:center; position:relative; }
+  .r-bubble { background:#1a1a00; border:1px solid var(--y1); border-radius:10px; border-bottom-left-radius:3px; padding:5px 10px; font-size:9px; color:var(--y1); font-family:'DM Mono',monospace; margin-bottom:8px; white-space:nowrap; animation:rbubble 4s ease-in-out infinite; }
+  @keyframes rbubble { 0%,30%{opacity:1;transform:translateY(0)} 35%,65%{opacity:0;transform:translateY(-4px)} 70%,100%{opacity:1;transform:translateY(0)} }
+  .r-body { animation:rFloat 2.5s ease-in-out infinite; display:flex; flex-direction:column; align-items:center; }
+  @keyframes rFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+  .r-ant { width:2px; height:10px; background:var(--y1); margin:0 auto; position:relative; }
+  .r-ant::after { content:''; position:absolute; top:-4px; left:-3px; width:8px; height:8px; background:var(--y1); border-radius:50%; animation:antP 1.5s ease-in-out infinite; }
+  @keyframes antP { 0%,100%{opacity:1} 50%{opacity:0.2} }
+  .r-head { width:42px; height:34px; background:#0d0d14; border:1.5px solid var(--y1); border-radius:8px; display:flex; align-items:center; justify-content:center; position:relative; margin-top:2px; animation:hGlow 2s ease-in-out infinite; }
+  @keyframes hGlowP { 0%,100%{box-shadow:0 0 0 0 rgba(192,132,252,0)} 50%{box-shadow:0 0 12px 3px rgba(192,132,252,0.2)} }
+  @keyframes hGlow { 0%,100%{box-shadow:0 0 0 0 rgba(232,255,71,0)} 50%{box-shadow:0 0 12px 3px rgba(232,255,71,0.15)} }
+  .r-ear { position:absolute; top:8px; width:5px; height:9px; background:var(--y1); border-radius:1px; }
+  .r-ear.l { left:-7px; } .r-ear.r { right:-7px; }
+  .r-eyes { display:flex; gap:8px; }
+  .r-eye { width:8px; height:8px; background:var(--y1); border-radius:50%; animation:eBlink 4s ease-in-out infinite; }
+  .r-eye:last-child { animation-delay:0.1s; }
+  @keyframes eBlink { 0%,88%,100%{transform:scaleY(1)} 93%{transform:scaleY(0.1)} }
+  .r-torso-wrap { display:flex; align-items:flex-start; gap:3px; margin-top:2px; }
+  .r-arm { width:7px; height:24px; background:#0d0d14; border:1.5px solid #3a3a3c; border-radius:4px; margin-top:3px; transform-origin:top center; }
+  .r-arm.l { animation:aWave 0.6s ease-in-out 0.5s 5; }
+  .r-arm.r { animation:aIdle 3s ease-in-out infinite; }
+  @keyframes aWave { 0%,100%{transform:rotate(-5deg)} 50%{transform:rotate(-50deg)} }
+  @keyframes aIdle { 0%,100%{transform:rotate(5deg)} 50%{transform:rotate(-5deg)} }
+  .r-torso { width:48px; height:36px; background:#0d0d14; border:1.5px solid #3a3a3c; border-radius:6px; display:flex; align-items:center; justify-content:center; }
+  .r-chest { width:26px; height:10px; background:#111; border:1px solid var(--y1); border-radius:3px; display:flex; align-items:center; justify-content:center; gap:4px; }
+  .r-dot { width:3px; height:3px; border-radius:50%; background:var(--y1); animation:dPulse 1.2s ease-in-out infinite; }
+  .r-dot:nth-child(2){animation-delay:0.2s} .r-dot:nth-child(3){animation-delay:0.4s}
+  @keyframes dPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+  .r-legs { display:flex; gap:5px; margin-top:2px; }
+  .r-leg { width:12px; height:14px; background:#0d0d14; border:1.5px solid #3a3a3c; border-radius:0 0 3px 3px; }
+  .robot-info { flex:1; }
+  .robot-info-name { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:var(--text); margin-bottom:4px; }
+  .robot-info-name span { color:var(--y1); }
+  .robot-info-tag { font-size:9px; color:var(--muted); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:12px; }
+  .robot-info-desc { font-size:13px; color:var(--muted); line-height:1.75; margin-bottom:16px; }
+  .robot-info-btn { background:var(--y1); color:#000; border:none; border-radius:10px; padding:11px 24px; font-size:13px; font-weight:700; cursor:pointer; font-family:'Inter',sans-serif; text-decoration:none; display:inline-block; transition:all 0.2s; }
+  .robot-info-btn:hover { opacity:0.85; transform:translateY(-1px); }
+ 
 </style>
 </head>
 <body>
@@ -202,10 +244,35 @@
       <div class="fp-bar fpb-y"></div>
       <div class="fp-top">
         <div class="fp-left">
-          <div class="fp-icon" style="background:rgba(232,255,71,0.08);border:1px solid rgba(232,255,71,0.2);">🤖</div>
+          <div class="fp-icon" style="background:transparent;border:none;overflow:visible;position:relative;">
+            <div style="display:flex;flex-direction:column;align-items:center;animation:rFloat 2.5s ease-in-out infinite;">
+              <div style="width:2px;height:7px;background:#e8ff47;margin:0 auto;position:relative;">
+                <div style="position:absolute;top:-4px;left:-3px;width:8px;height:8px;background:#e8ff47;border-radius:50%;animation:antP 1.5s ease-in-out infinite;"></div>
+              </div>
+              <div style="width:32px;height:26px;background:#0d0d14;border:1.5px solid #e8ff47;border-radius:6px;display:flex;align-items:center;justify-content:center;position:relative;animation:hGlow 2s ease-in-out infinite;">
+                <div style="position:absolute;top:6px;left:-5px;width:4px;height:7px;background:#e8ff47;border-radius:1px;"></div>
+                <div style="position:absolute;top:6px;right:-5px;width:4px;height:7px;background:#e8ff47;border-radius:1px;"></div>
+                <div style="display:flex;gap:6px;">
+                  <div style="width:6px;height:6px;background:#e8ff47;border-radius:50%;animation:eBlink 4s ease-in-out infinite;"></div>
+                  <div style="width:6px;height:6px;background:#e8ff47;border-radius:50%;animation:eBlink 4s ease-in-out 0.1s infinite;"></div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:2px;margin-top:1px;">
+                <div style="width:5px;height:16px;background:#0d0d14;border:1.5px solid #3a3a3c;border-radius:3px;margin-top:2px;transform-origin:top center;animation:aWave 0.6s ease-in-out 0.5s 5;"></div>
+                <div style="width:34px;height:26px;background:#0d0d14;border:1.5px solid #3a3a3c;border-radius:5px;display:flex;align-items:center;justify-content:center;">
+                  <div style="width:18px;height:7px;background:#111;border:1px solid #e8ff47;border-radius:2px;display:flex;align-items:center;justify-content:center;gap:3px;">
+                    <div style="width:3px;height:3px;border-radius:50%;background:#e8ff47;animation:dPulse 1.2s ease-in-out infinite;"></div>
+                    <div style="width:3px;height:3px;border-radius:50%;background:#e8ff47;animation:dPulse 1.2s ease-in-out 0.2s infinite;"></div>
+                    <div style="width:3px;height:3px;border-radius:50%;background:#e8ff47;animation:dPulse 1.2s ease-in-out 0.4s infinite;"></div>
+                  </div>
+                </div>
+                <div style="width:5px;height:16px;background:#0d0d14;border:1.5px solid #3a3a3c;border-radius:3px;margin-top:2px;transform-origin:top center;animation:aIdle 3s ease-in-out infinite;"></div>
+              </div>
+            </div>
+          </div>
           <div>
             <div class="fp-name">Marsi</div>
-            <div class="fp-tag fpt-live" id="t-marsiTag">● Live — Beta</div>
+            <div style="height:0;overflow:hidden;"></div>
           </div>
         </div>
         <div class="fp-price-box">
@@ -233,7 +300,38 @@
       <div class="fp-bar fpb-p"></div>
       <div class="fp-top">
         <div class="fp-left">
-          <div class="fp-icon" style="background:rgba(192,132,252,0.08);border:1px solid rgba(192,132,252,0.2);">🎬</div>
+          <div class="fp-icon" style="background:transparent;border:none;overflow:visible;position:relative;">
+            <div style="display:flex;flex-direction:column;align-items:center;animation:rFloat 2.5s ease-in-out infinite;">
+              <div style="width:2px;height:7px;background:#c084fc;margin:0 auto;position:relative;">
+                <div style="position:absolute;top:-4px;left:-3px;width:8px;height:8px;background:#c084fc;border-radius:50%;animation:antP 1.5s ease-in-out infinite;"></div>
+              </div>
+              <!-- Kamera zamiast glowy -->
+              <div style="width:38px;height:26px;background:#1a0a2e;border:1.5px solid #c084fc;border-radius:5px;display:flex;align-items:center;justify-content:center;position:relative;margin-top:2px;animation:hGlowP 2s ease-in-out infinite;">
+                <div style="position:absolute;top:6px;left:-5px;width:4px;height:7px;background:#6a5a9a;border-radius:1px;"></div>
+                <div style="position:absolute;top:6px;right:-5px;width:4px;height:7px;background:#6a5a9a;border-radius:1px;"></div>
+                <!-- Obiektyw -->
+                <div style="width:16px;height:16px;background:#0d0d14;border:1.5px solid #c084fc;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                  <div style="width:8px;height:8px;background:#f9a8d4;border-radius:50%;opacity:0.9;animation:dPulse 0.8s ease-in-out infinite;"></div>
+                </div>
+                <!-- Soczewka -->
+                <div style="position:absolute;right:-7px;top:50%;transform:translateY(-50%);width:6px;height:10px;background:#1a0a2e;border:1.5px solid #c084fc;clip-path:polygon(0 20%,100% 0,100% 100%,0 80%);"></div>
+                <!-- Czerwona dioda nagrywania -->
+                <div style="position:absolute;top:3px;right:4px;width:4px;height:4px;background:#fb7185;border-radius:50%;animation:dPulse 0.6s ease-in-out infinite;"></div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:2px;margin-top:1px;">
+                <div style="width:5px;height:16px;background:#0d0d14;border:1.5px solid #6a5a9a;border-radius:3px;margin-top:2px;transform-origin:top center;animation:aIdle 3s ease-in-out infinite;"></div>
+                <div style="width:34px;height:26px;background:#0d0d14;border:1.5px solid #6a5a9a;border-radius:5px;display:flex;align-items:center;justify-content:center;">
+                  <div style="width:18px;height:7px;background:#111;border:1px solid #c084fc;border-radius:2px;display:flex;align-items:center;justify-content:center;gap:3px;">
+                    <div style="width:3px;height:3px;border-radius:50%;background:#c084fc;animation:dPulse 1.2s ease-in-out infinite;"></div>
+                    <div style="width:3px;height:3px;border-radius:50%;background:#c084fc;animation:dPulse 1.2s ease-in-out 0.2s infinite;"></div>
+                    <div style="width:3px;height:3px;border-radius:50%;background:#c084fc;animation:dPulse 1.2s ease-in-out 0.4s infinite;"></div>
+                  </div>
+                </div>
+                <div style="width:5px;height:16px;background:#0d0d14;border:1.5px solid #6a5a9a;border-radius:3px;margin-top:2px;transform-origin:top center;animation:aIdle 3s ease-in-out 0.5s infinite;"></div>
+              </div>
+ 
+            </div>
+          </div>
           <div>
             <div class="fp-name">Marsiqo Studio</div>
             <div class="fp-tag fpt-live" id="t-studioTag">● Live</div>
@@ -380,6 +478,7 @@ var T = {
     v1name:'Pomaganie', v1desc:'Buduję narzędzia które naprawdę rozwiązują problemy',
     v2name:'Odwaga', v2desc:'Buduję od zera, uczę się w trakcie i nie stoję w miejscu',
     v3name:'Skala', v3desc:'Chcę pomagać jak największej liczbie ludzi na świecie',
+    robotBubble:'Analizuję dla Ciebie! 🤖', robotTag:'Agent AI · Live Beta', robotDesc:'Wpisujesz nazwę produktu — Marsi ocenia potencjał, ryzyko, marżę i daje konkretną rekomendację w kilka sekund.', robotBtn:'Otwórz Marsi →',
     legal1:'Regulamin', legal2:'Polityka prywatności', legal3:'Cookies'
   },
   en: {
@@ -421,6 +520,7 @@ var T = {
     v1name:'Helping', v1desc:'I build tools that truly solve problems',
     v2name:'Courage', v2desc:'I build from scratch, learn along the way and never stand still',
     v3name:'Scale', v3desc:'I want to help as many people in the world as possible',
+    robotBubble:'Analyzing for you! 🤖', robotTag:'AI Agent · Live Beta', robotDesc:'Enter a product name — Marsi evaluates potential, risk, margin and gives a concrete recommendation in seconds.', robotBtn:'Open Marsi →',
     legal1:'Terms of Service', legal2:'Privacy Policy', legal3:'Cookies'
   },
   de: {
@@ -462,6 +562,7 @@ var T = {
     v1name:'Helfen', v1desc:'Ich baue Tools, die wirklich Probleme lösen',
     v2name:'Mut', v2desc:'Ich baue von Grund auf, lerne dabei und stehe nie still',
     v3name:'Maßstab', v3desc:'Ich möchte so vielen Menschen auf der Welt wie möglich helfen',
+    robotBubble:'Analysiere für dich! 🤖', robotTag:'KI-Agent · Live Beta', robotDesc:'Gib einen Produktnamen ein — Marsi bewertet Potenzial, Risiko, Marge und gibt in Sekunden eine konkrete Empfehlung.', robotBtn:'Marsi öffnen →',
     legal1:'AGB', legal2:'Datenschutz', legal3:'Cookies'
   }
 };
