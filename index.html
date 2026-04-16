@@ -4,52 +4,41 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Marsiqo Group — AI for E-Commerce</title>
+<script defer src="/_vercel/insights/script.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600;700&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
-  :root {
-    --bg: #0d0d14; --surface: #16162a;
-    --p1: #c084fc; --p2: #a78bfa; --r1: #f9a8d4; --r2: #fb7185; --y1: #e8ff47;
-    --text: #f0eeff; --muted: #8878bb; --border: rgba(192,132,252,0.15);
-  }
- 
+  :root { --bg:#0d0d14; --surface:#16162a; --p1:#c084fc; --r1:#f9a8d4; --r2:#fb7185; --y1:#e8ff47; --text:#f0eeff; --muted:#8878bb; --border:rgba(192,132,252,0.15); }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; }
- 
-  .orb { position: fixed; border-radius: 50%; filter: blur(90px); opacity: 0.1; pointer-events: none; z-index: 0; }
-  .orb1 { width: 600px; height: 600px; background: var(--p1); top: -200px; right: -200px; animation: of 8s ease-in-out infinite; }
-  .orb2 { width: 400px; height: 400px; background: var(--r1); bottom: 50px; left: -120px; animation: of 6s ease-in-out 2s infinite; }
-  .orb3 { width: 300px; height: 300px; background: #818cf8; top: 50%; right: -100px; animation: of 7s ease-in-out 1s infinite; }
+  body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; overflow-x:hidden; }
+  .orb { position:fixed; border-radius:50%; filter:blur(90px); opacity:0.1; pointer-events:none; z-index:0; }
+  .orb1 { width:600px; height:600px; background:var(--p1); top:-200px; right:-200px; animation:of 8s ease-in-out infinite; }
+  .orb2 { width:400px; height:400px; background:var(--r1); bottom:50px; left:-120px; animation:of 6s ease-in-out 2s infinite; }
+  .orb3 { width:300px; height:300px; background:#818cf8; top:50%; right:-100px; animation:of 7s ease-in-out 1s infinite; }
   @keyframes of { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-28px)} }
- 
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; height: 64px;
-    padding: 0 60px; display: flex; align-items: center; justify-content: space-between;
-    z-index: 200; background: rgba(13,13,20,0.9); backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
+  nav { position:fixed; top:0; left:0; right:0; height:64px; padding:0 60px; display:flex; align-items:center; justify-content:space-between; z-index:200; background:rgba(13,13,20,0.9); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
   .nav-logo { display:flex; align-items:center; gap:12px; text-decoration:none; cursor:pointer; }
   .nav-logo-text { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; background:linear-gradient(90deg,var(--p1),var(--r1),var(--y1),var(--p1)); background-size:200% auto; -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:shimmer 4s linear infinite; }
   @keyframes shimmer { from{background-position:0% center} to{background-position:200% center} }
   .nav-sub { font-size:11px; color:var(--muted); letter-spacing:0.12em; text-transform:uppercase; margin-top:-2px; }
+  .nav-right { display:flex; align-items:center; gap:10px; }
+  .lang-btns { display:flex; gap:4px; }
+  .lang-btn { background:transparent; color:var(--muted); border:1px solid var(--border); border-radius:6px; padding:5px 10px; font-size:11px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:all 0.2s; }
+  .lang-btn.active { background:rgba(192,132,252,0.2); color:var(--p1); border-color:rgba(192,132,252,0.3); }
   .nav-links { display:flex; gap:8px; }
-  .nav-link { color:var(--muted); text-decoration:none; font-size:13px; font-weight:500; padding:6px 14px; border-radius:8px; transition:all 0.2s; cursor:pointer; border:none; background:transparent; font-family:'Inter',sans-serif; }
+  .nav-link { color:var(--muted); font-size:13px; font-weight:500; padding:6px 14px; border-radius:8px; transition:all 0.2s; cursor:pointer; border:none; background:transparent; font-family:'Inter',sans-serif; }
   .nav-link:hover, .nav-link.active { color:var(--text); background:rgba(192,132,252,0.1); }
   .nav-btn { background:linear-gradient(135deg,var(--p1),var(--r2)); color:#fff; border:none; border-radius:8px; padding:9px 20px; font-size:13px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; text-decoration:none; box-shadow:0 4px 16px rgba(192,132,252,0.25); transition:all 0.2s; }
-  .nav-btn:hover { transform:translateY(-1px); box-shadow:0 6px 22px rgba(192,132,252,0.4); }
+  .nav-btn:hover { transform:translateY(-1px); }
   .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px; }
   .hamburger span { width:22px; height:2px; background:var(--text); border-radius:2px; }
   .mobile-menu { display:none; position:fixed; top:64px; left:0; right:0; background:rgba(13,13,20,0.98); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding:16px; z-index:199; flex-direction:column; gap:4px; }
   .mobile-menu.open { display:flex; }
   .mob-link { color:var(--muted); font-size:15px; font-weight:500; padding:12px 16px; border-radius:10px; cursor:pointer; border:none; background:transparent; font-family:Inter,sans-serif; text-align:left; width:100%; transition:all 0.2s; }
   .mob-link:hover { color:var(--text); background:rgba(192,132,252,0.1); }
-  @media(max-width:768px){ .nav-links{display:none!important;} .nav-btn{display:none!important;} .hamburger{display:flex!important;} }
- 
+  @media(max-width:768px){ .nav-links{display:none!important;} .nav-btn{display:none!important;} .lang-btns{display:none!important;} .hamburger{display:flex!important;} }
   .page { display:none; min-height:100vh; padding-top:64px; position:relative; z-index:1; }
   .page.active { display:block; }
- 
-  /* HOME */
   .hero { min-height:calc(100vh - 64px); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:80px 60px 60px; text-align:center; }
   .hero-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(192,132,252,0.08); border:1px solid rgba(192,132,252,0.2); border-radius:20px; padding:5px 16px; font-size:11px; color:var(--p1); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:36px; font-weight:500; }
   .badge-dot { width:6px; height:6px; background:var(--p1); border-radius:50%; animation:bdp 2s ease-in-out infinite; }
@@ -59,33 +48,9 @@
   .hero-sub { font-size:19px; color:var(--muted); line-height:1.65; max-width:560px; margin:0 auto 48px; }
   .hero-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:60px; }
   .btn-grad { background:linear-gradient(135deg,var(--p1),var(--r2)); color:#fff; border:none; border-radius:12px; padding:15px 32px; font-size:15px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; text-decoration:none; box-shadow:0 6px 24px rgba(192,132,252,0.3); transition:all 0.2s; }
-  .btn-grad:hover { transform:translateY(-2px); box-shadow:0 10px 32px rgba(192,132,252,0.45); }
+  .btn-grad:hover { transform:translateY(-2px); }
   .btn-ghost { background:transparent; color:var(--text); border:1px solid var(--border); border-radius:12px; padding:15px 32px; font-size:15px; font-weight:500; cursor:pointer; font-family:'Inter',sans-serif; text-decoration:none; transition:all 0.2s; }
   .btn-ghost:hover { border-color:var(--p1); color:var(--p1); }
- 
-  /* PRODUCTS PREVIEW */
-  .prod-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:900px; margin:0 auto; }
-  .prod-card { background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:32px; text-align:left; position:relative; overflow:hidden; cursor:pointer; transition:all 0.3s ease; text-decoration:none; color:inherit; display:block; }
-  .prod-card:hover { transform:translateY(-6px); }
-  .prod-card.cm:hover { border-color:#e8ff47; box-shadow:0 0 30px rgba(232,255,71,0.2),0 20px 60px rgba(232,255,71,0.1); }
-  .prod-card.cs:hover { border-color:#f9a8d4; box-shadow:0 0 30px rgba(249,168,212,0.25),0 20px 60px rgba(249,168,212,0.12); }
-  .prod-top { position:absolute; top:0; left:0; right:0; height:2px; }
-  .pt-y { background:var(--y1); } .pt-p { background:linear-gradient(90deg,var(--p1),var(--r1)); }
-  .prod-icon { width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:16px; transition:transform 0.3s ease; }
-  .prod-card:hover .prod-icon { transform:scale(1.1) rotate(-5deg); }
-  .pi-m { background:rgba(232,255,71,0.08); border:1px solid rgba(232,255,71,0.2); }
-  .pi-s { background:rgba(192,132,252,0.08); border:1px solid rgba(192,132,252,0.2); }
-  .prod-status { display:inline-block; font-size:9px; padding:2px 8px; border-radius:4px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:12px; }
-  .ps-live { background:rgba(74,222,128,0.12); color:#4ade80; }
-  .ps-soon { background:rgba(192,132,252,0.12); color:var(--p1); }
-  .prod-name { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--text); margin-bottom:8px; }
-  .prod-desc { font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:16px; }
-  .prod-price { font-size:11px; color:var(--r1); font-weight:600; }
-  .prod-link { font-size:12px; font-weight:600; margin-top:14px; display:flex; align-items:center; gap:4px; transition:gap 0.2s; }
-  .prod-card:hover .prod-link { gap:8px; }
-  .pl-y { color:var(--y1); } .pl-p { color:var(--p1); }
- 
-  /* PRODUCTS PAGE */
   .page-inner { max-width:1100px; margin:0 auto; padding:80px 60px; }
   .page-label { font-size:11px; color:var(--p1); letter-spacing:0.18em; text-transform:uppercase; font-weight:600; margin-bottom:14px; }
   .page-title { font-family:'Playfair Display',serif; font-size:clamp(36px,5vw,60px); font-weight:700; color:var(--text); line-height:1.1; margin-bottom:16px; }
@@ -114,10 +79,7 @@
   .ffd-y { background:var(--y1); } .ffd-p { background:var(--p1); }
   .fp-cta { display:inline-flex; align-items:center; gap:8px; }
   .fp-btn { background:linear-gradient(135deg,var(--p1),var(--r2)); color:#fff; border:none; border-radius:10px; padding:13px 28px; font-size:14px; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; text-decoration:none; box-shadow:0 4px 16px rgba(192,132,252,0.25); transition:all 0.2s; }
-  .fp-btn:hover { transform:translateY(-1px); }
   .fp-note { font-size:12px; color:var(--muted); }
- 
-  /* MISSION */
   .mission-hero { padding:80px 60px 60px; max-width:900px; margin:0 auto; }
   .mission-big { font-family:'Playfair Display',serif; font-size:clamp(36px,5vw,64px); font-weight:700; color:var(--text); line-height:1.15; margin-bottom:32px; }
   .mission-big em { font-style:italic; background:linear-gradient(135deg,var(--p1),var(--r1)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
@@ -138,13 +100,11 @@
   .tl-year { font-size:11px; color:var(--p1); letter-spacing:0.12em; text-transform:uppercase; font-weight:600; margin-bottom:6px; }
   .tl-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--text); margin-bottom:8px; }
   .tl-text { font-size:13px; color:var(--muted); line-height:1.7; }
- 
-  /* FOUNDER */
   .founder-wrap { max-width:900px; margin:0 auto; padding:80px 60px; }
   .founder-top { display:flex; align-items:center; gap:40px; margin-bottom:60px; flex-wrap:wrap; }
   .founder-avatar { width:120px; height:120px; border-radius:50%; background:linear-gradient(135deg,var(--p1),var(--r1)); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:48px; font-weight:700; color:#fff; flex-shrink:0; box-shadow:0 0 40px rgba(192,132,252,0.3); }
   .founder-info-name { font-family:'Playfair Display',serif; font-size:36px; font-weight:700; color:var(--text); margin-bottom:6px; }
-  .founder-info-role { font-size:14px; color:var(--p1); font-weight:500; margin-bottom:12px; letter-spacing:0.04em; }
+  .founder-info-role { font-size:14px; color:var(--p1); font-weight:500; margin-bottom:12px; }
   .founder-info-tag { display:inline-flex; align-items:center; gap:6px; background:rgba(192,132,252,0.08); border:1px solid var(--border); border-radius:20px; padding:4px 14px; font-size:11px; color:var(--muted); }
   .founder-story { margin-bottom:48px; }
   .story-title { font-family:'Playfair Display',serif; font-size:24px; font-weight:700; color:var(--text); margin-bottom:20px; }
@@ -159,28 +119,17 @@
   .val-icon { font-size:24px; margin-bottom:10px; }
   .val-name { font-size:13px; font-weight:600; color:var(--text); margin-bottom:4px; }
   .val-desc { font-size:11px; color:var(--muted); line-height:1.5; }
- 
   .reveal { opacity:0; transform:translateY(24px); transition:all 0.6s ease; }
   .reveal.visible { opacity:1; transform:translateY(0); }
- 
   @media(max-width:768px){
-    nav{padding:0 16px;}
-    .hero{padding:60px 20px 40px;}
-    .prod-grid{grid-template-columns:1fr;}
-    .page-inner{padding:60px 20px;}
-    .mission-cards,.future-section{padding:0 20px 40px;}
-    .mission-cards{grid-template-columns:1fr;}
-    .mission-hero{padding:60px 20px 40px;}
-    .founder-wrap{padding:60px 20px;}
-    .founder-values{grid-template-columns:1fr;}
-    .fp-feats{grid-template-columns:1fr;}
-    .fp-top{flex-direction:column;}
+    nav{padding:0 16px;} .hero{padding:60px 20px 40px;} .page-inner{padding:60px 20px;}
+    .mission-cards,.future-section{padding:0 20px 40px;} .mission-cards{grid-template-columns:1fr;}
+    .mission-hero{padding:60px 20px 40px;} .founder-wrap{padding:60px 20px;}
+    .founder-values{grid-template-columns:1fr;} .fp-feats{grid-template-columns:1fr;} .fp-top{flex-direction:column;}
   }
 </style>
-<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
- 
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
 <div class="orb orb3"></div>
@@ -193,40 +142,51 @@
     </div>
   </div>
   <div class="nav-links">
-    <button class="nav-link active" onclick="showPage('home')">Start</button>
-    <button class="nav-link" onclick="showPage('products')">Produkty</button>
-    <button class="nav-link" onclick="showPage('mission')">Misja</button>
-    <button class="nav-link" onclick="showPage('founder')">Founder</button>
+    <button class="nav-link active" id="nl-home" onclick="showPage('home')">Start</button>
+    <button class="nav-link" id="nl-products" onclick="showPage('products')">Produkty</button>
+    <button class="nav-link" id="nl-mission" onclick="showPage('mission')">Misja</button>
+    <button class="nav-link" id="nl-founder" onclick="showPage('founder')">Founder</button>
   </div>
-  <a href="https://marsi-agent.vercel.app" class="nav-btn" target="_blank">Wypróbuj Marsi →</a>
+  <div class="nav-right">
+    <div class="lang-btns">
+      <button class="lang-btn active" onclick="setLang('pl')">🇵🇱 PL</button>
+      <button class="lang-btn" onclick="setLang('en')">🇬🇧 EN</button>
+      <button class="lang-btn" onclick="setLang('de')">🇩🇪 DE</button>
+    </div>
+    <a href="https://marsi-agent.vercel.app" class="nav-btn" target="_blank" id="nav-cta">Wypróbuj Marsi →</a>
+  </div>
   <div class="hamburger" id="hbg" onclick="document.getElementById('mob').classList.toggle('open')">
     <span></span><span></span><span></span>
   </div>
 </nav>
  
 <div class="mobile-menu" id="mob">
-  <button class="mob-link" onclick="showPage('home');document.getElementById('mob').classList.remove('open')">Start</button>
-  <button class="mob-link" onclick="showPage('products');document.getElementById('mob').classList.remove('open')">Produkty</button>
-  <button class="mob-link" onclick="showPage('mission');document.getElementById('mob').classList.remove('open')">Misja</button>
-  <button class="mob-link" onclick="showPage('founder');document.getElementById('mob').classList.remove('open')">Founder</button>
-  <a href="https://marsi-agent.vercel.app" target="_blank" style="background:linear-gradient(135deg,#c084fc,#fb7185);color:#fff;border:none;border-radius:10px;padding:12px;font-size:14px;font-weight:600;font-family:Inter,sans-serif;text-decoration:none;margin-top:8px;display:block;text-align:center;">Wypróbuj Marsi →</a>
+  <button class="mob-link" onclick="showPage('home');document.getElementById('mob').classList.remove('open')" id="ml-home">Start</button>
+  <button class="mob-link" onclick="showPage('products');document.getElementById('mob').classList.remove('open')" id="ml-products">Produkty</button>
+  <button class="mob-link" onclick="showPage('mission');document.getElementById('mob').classList.remove('open')" id="ml-mission">Misja</button>
+  <button class="mob-link" onclick="showPage('founder');document.getElementById('mob').classList.remove('open')" id="ml-founder">Founder</button>
+  <div style="display:flex;gap:6px;padding:8px 16px;">
+    <button class="lang-btn active" onclick="setLang('pl')">🇵🇱</button>
+    <button class="lang-btn" onclick="setLang('en')">🇬🇧</button>
+    <button class="lang-btn" onclick="setLang('de')">🇩🇪</button>
+  </div>
+  <a href="https://marsi-agent.vercel.app" target="_blank" style="background:linear-gradient(135deg,#c084fc,#fb7185);color:#fff;border:none;border-radius:10px;padding:12px;font-size:14px;font-weight:600;font-family:Inter,sans-serif;text-decoration:none;margin-top:8px;display:block;text-align:center;" id="mob-cta">Wypróbuj Marsi →</a>
 </div>
  
 <!-- HOME -->
 <div class="page active" id="page-home">
   <section class="hero">
-    <div class="hero-badge"><div class="badge-dot"></div>Marsiqo Group · AI for E-Commerce</div>
-    <h1 class="hero-title">Narzędzia AI<br>dla <span class="grad">e-commerce</span></h1>
-    <p class="hero-sub">Marsiqo Group buduje inteligentne narzędzia dla sprzedawców online — analizuj produkty, twórz content i sprzedawaj mądrzej.</p>
+    <div class="hero-badge"><div class="badge-dot"></div><span id="t-badge">Marsiqo Group · AI for E-Commerce</span></div>
+    <h1 class="hero-title" id="t-heroTitle">Narzędzia AI<br>dla <span class="grad">e-commerce</span></h1>
+    <p class="hero-sub" id="t-heroSub">Marsiqo Group buduje inteligentne narzędzia dla sprzedawców online — analizuj produkty, twórz content i sprzedawaj mądrzej.</p>
     <div class="hero-btns">
-      <a href="https://marsi-agent.vercel.app" class="btn-grad" target="_blank">Wypróbuj Marsi za darmo</a>
-      <button class="btn-ghost" onclick="showPage('products')">Zobacz produkty →</button>
+      <a href="https://marsi-agent.vercel.app" class="btn-grad" target="_blank" id="t-heroBtnPrimary">Wypróbuj Marsi za darmo</a>
+      <button class="btn-ghost" onclick="showPage('products')" id="t-heroBtnSecondary">Zobacz produkty →</button>
     </div>
- 
     <div style="max-width:600px;margin:0 auto;padding:32px 36px;background:rgba(192,132,252,0.06);border:1px solid rgba(192,132,252,0.15);border-radius:20px;position:relative;overflow:hidden;">
       <div style="position:absolute;top:-10px;left:20px;font-size:80px;color:var(--p1);opacity:0.08;font-family:'Playfair Display',serif;line-height:1;">&ldquo;</div>
-      <div style="font-family:'Playfair Display',serif;font-size:20px;font-style:italic;color:var(--text);line-height:1.6;margin-bottom:16px;position:relative;z-index:1;">Najlepszy sposób na przewidzenie przyszłości to jej stworzenie.</div>
-      <div style="font-size:12px;color:var(--muted);letter-spacing:0.08em;">— Peter Drucker</div>
+      <div style="font-family:'Playfair Display',serif;font-size:20px;font-style:italic;color:var(--text);line-height:1.6;margin-bottom:16px;position:relative;z-index:1;" id="t-quote">Najlepszy sposób na przewidzenie przyszłości to jej stworzenie.</div>
+      <div style="font-size:12px;color:var(--muted);letter-spacing:0.08em;" id="t-quoteAuthor">— Peter Drucker</div>
     </div>
   </section>
 </div>
@@ -234,38 +194,38 @@
 <!-- PRODUCTS -->
 <div class="page" id="page-products">
   <div class="page-inner">
-    <div class="page-label">Nasze produkty</div>
-    <h2 class="page-title">Dwa narzędzia.<br><em>Jeden ekosystem.</em></h2>
-    <p class="page-sub">Każdy produkt rozwiązuje inny problem — razem tworzą kompletny system dla sprzedawcy e-commerce.</p>
+    <div class="page-label" id="t-productsLabel">Nasze produkty</div>
+    <h2 class="page-title" id="t-productsTitle">Dwa narzędzia.<br><em>Jeden ekosystem.</em></h2>
+    <p class="page-sub" id="t-productsSub">Każdy produkt rozwiązuje inny problem — razem tworzą kompletny system dla sprzedawcy e-commerce.</p>
  
     <div class="full-prod cm reveal">
       <div class="fp-bar fpb-y"></div>
       <div class="fp-top">
         <div class="fp-left">
-          <div class="fp-icon pi-m" style="background:rgba(232,255,71,0.08);border:1px solid rgba(232,255,71,0.2);">🤖</div>
+          <div class="fp-icon" style="background:rgba(232,255,71,0.08);border:1px solid rgba(232,255,71,0.2);">🤖</div>
           <div>
             <div class="fp-name">Marsi</div>
-            <div class="fp-tag fpt-live">● Live — Beta</div>
+            <div class="fp-tag fpt-live" id="t-marsiTag">● Live — Beta</div>
           </div>
         </div>
         <div class="fp-price-box">
-          <div class="fp-price-label">Cena</div>
-          <div class="fp-price" style="color:#4ade80;">Za darmo</div>
-          <div class="fp-price-sub">Dostępny teraz</div>
+          <div class="fp-price-label" id="t-marsiPriceLabel">Cena</div>
+          <div class="fp-price" style="color:#4ade80;" id="t-marsiPrice">Za darmo</div>
+          <div class="fp-price-sub" id="t-marsiPriceSub">Dostępny teraz</div>
         </div>
       </div>
-      <p class="fp-desc">Agent AI który analizuje produkty e-commerce w kilka sekund. Wpisujesz nazwę produktu — Marsi ocenia potencjał rynkowy, ryzyko, marżę i daje konkretną rekomendację czy warto sprzedawać.</p>
+      <p class="fp-desc" id="t-marsiDesc">Agent AI który analizuje produkty e-commerce w kilka sekund. Wpisujesz nazwę produktu — Marsi ocenia potencjał rynkowy, ryzyko, marżę i daje konkretną rekomendację czy warto sprzedawać.</p>
       <div class="fp-feats">
-        <div class="fp-feat"><div class="fp-feat-dot ffd-y"></div>Analiza potencjału sprzedaży</div>
-        <div class="fp-feat"><div class="fp-feat-dot ffd-y"></div>Ocena ryzyka rynkowego</div>
-        <div class="fp-feat"><div class="fp-feat-dot ffd-y"></div>Analiza marży i modelu</div>
-        <div class="fp-feat"><div class="fp-feat-dot ffd-y"></div>Konkretna rekomendacja</div>
-        <div class="fp-feat"><div class="fp-feat-dot ffd-y"></div>Historia analiz</div>
-        <div class="fp-feat"><div class="fp-feat-dot ffd-y"></div>Język polski</div>
+        <div class="fp-feat"><div class="fp-feat-dot ffd-y"></div><span id="t-mf1">Analiza potencjału sprzedaży</span></div>
+        <div class="fp-feat"><div class="fp-feat-dot ffd-y"></div><span id="t-mf2">Ocena ryzyka rynkowego</span></div>
+        <div class="fp-feat"><div class="fp-feat-dot ffd-y"></div><span id="t-mf3">Analiza marży i modelu</span></div>
+        <div class="fp-feat"><div class="fp-feat-dot ffd-y"></div><span id="t-mf4">Konkretna rekomendacja</span></div>
+        <div class="fp-feat"><div class="fp-feat-dot ffd-y"></div><span id="t-mf5">Historia analiz</span></div>
+        <div class="fp-feat"><div class="fp-feat-dot ffd-y"></div><span id="t-mf6">Język polski</span></div>
       </div>
       <div class="fp-cta">
-        <a href="https://marsi-agent.vercel.app" class="fp-btn" target="_blank">Otwórz Marsi →</a>
-        <span class="fp-note">Bez rejestracji, za darmo</span>
+        <a href="https://marsi-agent.vercel.app" class="fp-btn" target="_blank" id="t-marsiBtnOpen">Otwórz Marsi →</a>
+        <span class="fp-note" id="t-marsiNote">Bez rejestracji, za darmo</span>
       </div>
     </div>
  
@@ -273,30 +233,30 @@
       <div class="fp-bar fpb-p"></div>
       <div class="fp-top">
         <div class="fp-left">
-          <div class="fp-icon" style="width:64px;height:64px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:28px;background:rgba(192,132,252,0.08);border:1px solid rgba(192,132,252,0.2);">🎬</div>
+          <div class="fp-icon" style="background:rgba(192,132,252,0.08);border:1px solid rgba(192,132,252,0.2);">🎬</div>
           <div>
             <div class="fp-name">Marsiqo Studio</div>
-            <div class="fp-tag fpt-live">● Live</div>
+            <div class="fp-tag fpt-live" id="t-studioTag">● Live</div>
           </div>
         </div>
         <div class="fp-price-box">
-          <div class="fp-price-label">Limit</div>
+          <div class="fp-price-label" id="t-studioPriceLabel">Limit</div>
           <div class="fp-price" style="font-size:20px;">5 / 2h</div>
           <div class="fp-price-sub" id="studioTimer">reset co 2 godziny</div>
         </div>
       </div>
-      <p class="fp-desc">Generator skryptów wideo AI dla TikTok i Instagram Reels. Wpisujesz produkt lub pomysł — dostajesz 5 gotowych skryptów z chwytliwym hookiem, gotowymi hashtagami, oceną wiralowości i sugestią muzyki.</p>
+      <p class="fp-desc" id="t-studioDesc">Generator skryptów wideo AI dla TikTok i Instagram Reels. Wpisujesz produkt lub pomysł — dostajesz 5 gotowych skryptów z chwytliwym hookiem, gotowymi hashtagami, oceną wiralowości i sugestią muzyki.</p>
       <div class="fp-feats">
-        <div class="fp-feat"><div class="fp-feat-dot ffd-p"></div>5 skryptów wideo na raz</div>
-        <div class="fp-feat"><div class="fp-feat-dot ffd-p"></div>Hook ranking 🔥 (ocena 1-10)</div>
-        <div class="fp-feat"><div class="fp-feat-dot ffd-p"></div>Gotowe hashtagi do każdego skryptu</div>
-        <div class="fp-feat"><div class="fp-feat-dot ffd-p"></div>Sugestie muzyki do wideo</div>
-        <div class="fp-feat"><div class="fp-feat-dot ffd-p"></div>5 skryptów co 2 godziny</div>
-        <div class="fp-feat"><div class="fp-feat-dot ffd-p"></div>Polski i angielski</div>
+        <div class="fp-feat"><div class="fp-feat-dot ffd-p"></div><span id="t-sf1">5 skryptów wideo na raz</span></div>
+        <div class="fp-feat"><div class="fp-feat-dot ffd-p"></div><span id="t-sf2">Hook ranking 🔥 (ocena 1-10)</span></div>
+        <div class="fp-feat"><div class="fp-feat-dot ffd-p"></div><span id="t-sf3">Gotowe hashtagi do każdego skryptu</span></div>
+        <div class="fp-feat"><div class="fp-feat-dot ffd-p"></div><span id="t-sf4">Sugestie muzyki do wideo</span></div>
+        <div class="fp-feat"><div class="fp-feat-dot ffd-p"></div><span id="t-sf5">5 skryptów co 2 godziny</span></div>
+        <div class="fp-feat"><div class="fp-feat-dot ffd-p"></div><span id="t-sf6">Polski i angielski</span></div>
       </div>
       <div class="fp-cta">
-        <a href="https://marsiqo-studio.vercel.app" class="fp-btn" target="_blank">Otwórz Studio →</a>
-        <span class="fp-note">5 skryptów co 2h · bezpłatnie</span>
+        <a href="https://marsiqo-studio.vercel.app" class="fp-btn" target="_blank" id="t-studioBtnOpen">Otwórz Studio →</a>
+        <span class="fp-note" id="t-studioNote">5 skryptów co 2h · bezpłatnie</span>
       </div>
     </div>
   </div>
@@ -305,72 +265,35 @@
 <!-- MISSION -->
 <div class="page" id="page-mission">
   <div class="mission-hero">
-    <div class="page-label">Nasza misja</div>
-    <div class="mission-big">"Budujemy narzędzia które dają małym sprzedawcom <em>przewagę dużych graczy.</em>"</div>
-    <p style="font-size:16px;color:var(--muted);line-height:1.7;max-width:620px;">Wierzymy że technologia AI nie powinna być tylko dla korporacji. Każdy sprzedawca online — niezależnie od budżetu — zasługuje na dostęp do narzędzi które pomagają mu rosnąć.</p>
+    <div class="page-label" id="t-missionLabel">Nasza misja</div>
+    <div class="mission-big" id="t-missionBig">"Budujemy narzędzia które dają małym sprzedawcom <em>przewagę dużych graczy.</em>"</div>
+    <p style="font-size:16px;color:var(--muted);line-height:1.7;max-width:620px;" id="t-missionIntro">Wierzymy że technologia AI nie powinna być tylko dla korporacji. Każdy sprzedawca online — niezależnie od budżetu — zasługuje na dostęp do narzędzi które pomagają mu rosnąć.</p>
   </div>
- 
   <div class="mission-cards">
     <div class="mc reveal">
       <div class="mc-icon">🎯</div>
-      <div class="mc-title">Nasz cel</div>
-      <div class="mc-text">Demokratyzacja AI dla e-commerce — każdy sprzedawca online ma dostęp do narzędzi które wcześniej były tylko dla dużych firm z dużymi budżetami.</div>
+      <div class="mc-title" id="t-mc1title">Nasz cel</div>
+      <div class="mc-text" id="t-mc1text">Demokratyzacja AI dla e-commerce — każdy sprzedawca online ma dostęp do narzędzi które wcześniej były tylko dla dużych firm z dużymi budżetami.</div>
     </div>
     <div class="mc reveal">
       <div class="mc-icon">💡</div>
-      <div class="mc-title">Skąd pomysł</div>
-      <div class="mc-text">Frustacja brakiem prostych narzędzi do analizy produktów. Zamiast czekać na kogoś kto to zrobi — Marcel postanowił zbudować to sam. Tak powstało Marsiqo Group.</div>
+      <div class="mc-title" id="t-mc2title">Skąd pomysł</div>
+      <div class="mc-text" id="t-mc2text">Frustacja brakiem prostych narzędzi do analizy produktów. Zamiast czekać na kogoś kto to zrobi — Marcel postanowił zbudować to sam. Tak powstało Marsiqo Group.</div>
     </div>
     <div class="mc reveal">
       <div class="mc-icon">🌍</div>
-      <div class="mc-title">Globalna wizja</div>
-      <div class="mc-text">Zaczynamy w Polsce. Budujemy narzędzia w polskim i angielskim. Docelowo Marsiqo Group ma pomagać sprzedawcom na całym świecie.</div>
+      <div class="mc-title" id="t-mc3title">Globalna wizja</div>
+      <div class="mc-text" id="t-mc3text">Zaczynamy w Polsce. Budujemy narzędzia w polskim i angielskim. Docelowo Marsiqo Group ma pomagać sprzedawcom na całym świecie.</div>
     </div>
   </div>
- 
   <div class="future-section">
-    <div class="future-title">Gdzie chcemy być <em>za kilka lat</em></div>
+    <div class="future-title" id="t-futureTitle">Gdzie chcemy być <em>za kilka lat</em></div>
     <div class="timeline">
-      <div class="tl-item reveal">
-        <div class="tl-dot">💡</div>
-        <div class="tl-content">
-          <div class="tl-year">2026 — Początek</div>
-          <div class="tl-title">Narodziny pomysłu</div>
-          <div class="tl-text">Powstaje wizja Marsiqo Group — ekosystemu narzędzi AI dla e-commerce. Jeden człowiek, jeden pomysł, zero ograniczeń.</div>
-        </div>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-dot">🚀</div>
-        <div class="tl-content">
-          <div class="tl-year">2026 — Teraz</div>
-          <div class="tl-title">Pierwszy produkt live</div>
-          <div class="tl-text">Marsi dostępny dla pierwszych użytkowników. Marsiqo Studio w budowie. Pierwsze opinie, pierwsze lekcje. Budujemy i słuchamy.</div>
-        </div>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-dot">⚡</div>
-        <div class="tl-content">
-          <div class="tl-year">2026-2027</div>
-          <div class="tl-title">Wzrost</div>
-          <div class="tl-text">Marsiqo Studio oficjalnie live. Pierwsze przychody. Rozbudowa Marsi o nowe funkcje. Ekspansja na rynek anglojęzyczny.</div>
-        </div>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-dot">🌍</div>
-        <div class="tl-content">
-          <div class="tl-year">2027-2028</div>
-          <div class="tl-title">Skalowanie</div>
-          <div class="tl-text">Trzeci produkt w ekosystemie. Tysiące użytkowników. Marsiqo Group jako rozpoznawalna marka AI dla e-commerce w Europie.</div>
-        </div>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-dot">🏆</div>
-        <div class="tl-content">
-          <div class="tl-year">2028+</div>
-          <div class="tl-title">Globalny gracz</div>
-          <div class="tl-text">Marsiqo Group jako platforma AI dla e-commerce znana na całym świecie. Pomagamy setkom tysięcy sprzedawców sprzedawać mądrzej.</div>
-        </div>
-      </div>
+      <div class="tl-item reveal"><div class="tl-dot">💡</div><div class="tl-content"><div class="tl-year">2026</div><div class="tl-title" id="t-tl1title">Narodziny pomysłu</div><div class="tl-text" id="t-tl1text">Powstaje wizja Marsiqo Group — ekosystemu narzędzi AI dla e-commerce. Jeden człowiek, jeden pomysł, zero ograniczeń.</div></div></div>
+      <div class="tl-item reveal"><div class="tl-dot">🚀</div><div class="tl-content"><div class="tl-year">2026</div><div class="tl-title" id="t-tl2title">Pierwszy produkt live</div><div class="tl-text" id="t-tl2text">Marsi dostępny dla pierwszych użytkowników. Marsiqo Studio w budowie. Pierwsze opinie, pierwsze lekcje. Budujemy i słuchamy.</div></div></div>
+      <div class="tl-item reveal"><div class="tl-dot">⚡</div><div class="tl-content"><div class="tl-year">2026-2027</div><div class="tl-title" id="t-tl3title">Wzrost</div><div class="tl-text" id="t-tl3text">Marsiqo Studio oficjalnie live. Pierwsze przychody. Rozbudowa Marsi o nowe funkcje. Ekspansja na rynek anglojęzyczny.</div></div></div>
+      <div class="tl-item reveal"><div class="tl-dot">🌍</div><div class="tl-content"><div class="tl-year">2027-2028</div><div class="tl-title" id="t-tl4title">Skalowanie</div><div class="tl-text" id="t-tl4text">Trzeci produkt w ekosystemie. Tysiące użytkowników. Marsiqo Group jako rozpoznawalna marka AI dla e-commerce w Europie.</div></div></div>
+      <div class="tl-item reveal"><div class="tl-dot">🏆</div><div class="tl-content"><div class="tl-year">2028+</div><div class="tl-title" id="t-tl5title">Globalny gracz</div><div class="tl-text" id="t-tl5text">Marsiqo Group jako platforma AI dla e-commerce znana na całym świecie. Pomagamy setkom tysięcy sprzedawców sprzedawać mądrzej.</div></div></div>
     </div>
   </div>
 </div>
@@ -378,34 +301,206 @@
 <!-- FOUNDER -->
 <div class="page" id="page-founder">
   <div class="founder-wrap">
-    <div class="page-label">Founder</div>
+    <div class="page-label" id="t-founderLabel">Founder</div>
     <div class="founder-top reveal">
       <div class="founder-avatar">M</div>
       <div>
         <div class="founder-info-name">Marcel</div>
-        <div class="founder-info-role">Founder & CEO · Marsiqo Group</div>
-        <div class="founder-info-tag">🇵🇱 Polska · 26 lat · Buduję od zera</div>
+        <div class="founder-info-role" id="t-founderRole">Founder & CEO · Marsiqo Group</div>
+        <div class="founder-info-tag" id="t-founderTag">🇵🇱 Polska · 26 lat · Buduję od zera</div>
       </div>
     </div>
     <div class="founder-quote reveal">
-      <div class="quote-text">"Zawsze chciałem pomagać. Marsiqo Group to mój sposób na pomaganie jak największej liczbie ludzi — przez narzędzia które naprawdę działają."</div>
+      <div class="quote-text" id="t-founderQuote">"Zawsze chciałem pomagać. Marsiqo Group to mój sposób na pomaganie jak największej liczbie ludzi — przez narzędzia które naprawdę działają."</div>
     </div>
     <div class="founder-story reveal">
-      <div class="story-title">Dlaczego to buduję</div>
-      <p class="story-p">Od zawsze lubiłem pomagać innym. Kiedy zobaczyłem jak wiele osób traci czas i pieniądze na złe decyzje w e-commerce — wiedziałem że chcę to zmienić.</p>
-      <p class="story-p"><strong>Marsi</strong> to odpowiedź na pytanie: "Czy warto sprzedawać ten produkt?". Zamiast godzin researchu — kilka sekund i konkretna odpowiedź.</p>
-      <p class="story-p"><strong>Marsiqo Studio</strong> to odpowiedź na pytanie: "Co powiedzieć w filmiku?". Zamiast siedzenia nad pustą kartką — 5 gotowych skryptów w sekundy.</p>
-      <p class="story-p">Nie buduję tego dla siebie. Buduję to dla każdego kto ma pomysł na biznes online ale nie wie od czego zacząć. <strong>Marsiqo Group to mój sposób na pomaganie na skalę.</strong></p>
+      <div class="story-title" id="t-storyTitle">Dlaczego to buduję</div>
+      <p class="story-p" id="t-sp1">Od zawsze lubiłem pomagać innym. Kiedy zobaczyłem jak wiele osób traci czas i pieniądze na złe decyzje w e-commerce — wiedziałem że chcę to zmienić.</p>
+      <p class="story-p" id="t-sp2"><strong>Marsi</strong> to odpowiedź na pytanie: "Czy warto sprzedawać ten produkt?". Zamiast godzin researchu — kilka sekund i konkretna odpowiedź.</p>
+      <p class="story-p" id="t-sp3"><strong>Marsiqo Studio</strong> to odpowiedź na pytanie: "Co powiedzieć w filmiku?". Zamiast siedzenia nad pustą kartką — 5 gotowych skryptów w sekundy.</p>
+      <p class="story-p" id="t-sp4">Nie buduję tego dla siebie. Buduję to dla każdego kto ma pomysł na biznes online ale nie wie od czego zacząć. <strong>Marsiqo Group to mój sposób na pomaganie na skalę.</strong></p>
     </div>
     <div class="founder-values reveal">
-      <div class="val"><div class="val-icon">❤️</div><div class="val-name">Pomaganie</div><div class="val-desc">Buduję narzędzia które naprawdę rozwiązują problemy</div></div>
-      <div class="val"><div class="val-icon">🔥</div><div class="val-name">Odwaga</div><div class="val-desc">Buduję od zera, uczę się w trakcie i nie stoję w miejscu</div></div>
-      <div class="val"><div class="val-icon">🌍</div><div class="val-name">Skala</div><div class="val-desc">Chcę pomagać jak największej liczbie ludzi na świecie</div></div>
+      <div class="val"><div class="val-icon">❤️</div><div class="val-name" id="t-v1name">Pomaganie</div><div class="val-desc" id="t-v1desc">Buduję narzędzia które naprawdę rozwiązują problemy</div></div>
+      <div class="val"><div class="val-icon">🔥</div><div class="val-name" id="t-v2name">Odwaga</div><div class="val-desc" id="t-v2desc">Buduję od zera, uczę się w trakcie i nie stoję w miejscu</div></div>
+      <div class="val"><div class="val-icon">🌍</div><div class="val-name" id="t-v3name">Skala</div><div class="val-desc" id="t-v3desc">Chcę pomagać jak największej liczbie ludzi na świecie</div></div>
     </div>
   </div>
 </div>
  
+<footer style="border-top:1px solid rgba(192,132,252,0.15);padding:28px 60px;position:relative;z-index:1;">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+    <div style="font-size:12px;color:rgba(255,255,255,0.2);">© 2026 Marsiqo Group</div>
+    <div style="display:flex;gap:20px;">
+      <a href="/legal" style="font-size:11px;color:rgba(255,255,255,0.3);text-decoration:none;" onmouseover="this.style.color='#c084fc'" onmouseout="this.style.color='rgba(255,255,255,0.3)'" id="t-legal1">Regulamin</a>
+      <a href="/legal" style="font-size:11px;color:rgba(255,255,255,0.3);text-decoration:none;" onmouseover="this.style.color='#c084fc'" onmouseout="this.style.color='rgba(255,255,255,0.3)'" id="t-legal2">Polityka prywatności</a>
+      <a href="/legal" style="font-size:11px;color:rgba(255,255,255,0.3);text-decoration:none;" onmouseover="this.style.color='#c084fc'" onmouseout="this.style.color='rgba(255,255,255,0.3)'" id="t-legal3">Cookies</a>
+    </div>
+  </div>
+</footer>
+ 
 <script>
+var T = {
+  pl: {
+    navHome:'Start', navProducts:'Produkty', navMission:'Misja', navFounder:'Founder',
+    navCta:'Wypróbuj Marsi →', mobCta:'Wypróbuj Marsi →',
+    badge:'Marsiqo Group · AI for E-Commerce',
+    heroTitle:'Narzędzia AI<br>dla <span class="grad">e-commerce</span>',
+    heroSub:'Marsiqo Group buduje inteligentne narzędzia dla sprzedawców online — analizuj produkty, twórz content i sprzedawaj mądrzej.',
+    heroBtnP:'Wypróbuj Marsi za darmo', heroBtnS:'Zobacz produkty →',
+    quote:'Najlepszy sposób na przewidzenie przyszłości to jej stworzenie.',
+    productsLabel:'Nasze produkty', productsTitle:'Dwa narzędzia.<br><em>Jeden ekosystem.</em>',
+    productsSub:'Każdy produkt rozwiązuje inny problem — razem tworzą kompletny system dla sprzedawcy e-commerce.',
+    marsiTag:'● Live — Beta', marsiPriceLabel:'Cena', marsiPrice:'Za darmo', marsiPriceSub:'Dostępny teraz',
+    marsiDesc:'Agent AI który analizuje produkty e-commerce w kilka sekund. Wpisujesz nazwę produktu — Marsi ocenia potencjał rynkowy, ryzyko, marżę i daje konkretną rekomendację czy warto sprzedawać.',
+    mf1:'Analiza potencjału sprzedaży', mf2:'Ocena ryzyka rynkowego', mf3:'Analiza marży i modelu', mf4:'Konkretna rekomendacja', mf5:'Historia analiz', mf6:'Język polski',
+    marsiBtnOpen:'Otwórz Marsi →', marsiNote:'Bez rejestracji, za darmo',
+    studioTag:'● Live', studioPriceLabel:'Limit',
+    studioDesc:'Generator skryptów wideo AI dla TikTok i Instagram Reels. Wpisujesz produkt lub pomysł — dostajesz 5 gotowych skryptów z chwytliwym hookiem, gotowymi hashtagami, oceną wiralowości i sugestią muzyki.',
+    sf1:'5 skryptów wideo na raz', sf2:'Hook ranking 🔥 (ocena 1-10)', sf3:'Gotowe hashtagi do każdego skryptu', sf4:'Sugestie muzyki do wideo', sf5:'5 skryptów co 2 godziny', sf6:'Polski i angielski',
+    studioBtnOpen:'Otwórz Studio →', studioNote:'5 skryptów co 2h · bezpłatnie',
+    missionLabel:'Nasza misja', missionBig:'"Budujemy narzędzia które dają małym sprzedawcom <em>przewagę dużych graczy.</em>"',
+    missionIntro:'Wierzymy że technologia AI nie powinna być tylko dla korporacji. Każdy sprzedawca online — niezależnie od budżetu — zasługuje na dostęp do narzędzi które pomagają mu rosnąć.',
+    mc1title:'Nasz cel', mc1text:'Demokratyzacja AI dla e-commerce — każdy sprzedawca online ma dostęp do narzędzi które wcześniej były tylko dla dużych firm z dużymi budżetami.',
+    mc2title:'Skąd pomysł', mc2text:'Frustacja brakiem prostych narzędzi do analizy produktów. Zamiast czekać na kogoś kto to zrobi — Marcel postanowił zbudować to sam. Tak powstało Marsiqo Group.',
+    mc3title:'Globalna wizja', mc3text:'Zaczynamy w Polsce. Budujemy narzędzia w polskim i angielskim. Docelowo Marsiqo Group ma pomagać sprzedawcom na całym świecie.',
+    futureTitle:'Gdzie chcemy być <em>za kilka lat</em>',
+    tl1title:'Narodziny pomysłu', tl1text:'Powstaje wizja Marsiqo Group — ekosystemu narzędzi AI dla e-commerce. Jeden człowiek, jeden pomysł, zero ograniczeń.',
+    tl2title:'Pierwszy produkt live', tl2text:'Marsi dostępny dla pierwszych użytkowników. Marsiqo Studio w budowie. Pierwsze opinie, pierwsze lekcje. Budujemy i słuchamy.',
+    tl3title:'Wzrost', tl3text:'Marsiqo Studio oficjalnie live. Pierwsze przychody. Rozbudowa Marsi o nowe funkcje. Ekspansja na rynek anglojęzyczny.',
+    tl4title:'Skalowanie', tl4text:'Trzeci produkt w ekosystemie. Tysiące użytkowników. Marsiqo Group jako rozpoznawalna marka AI dla e-commerce w Europie.',
+    tl5title:'Globalny gracz', tl5text:'Marsiqo Group jako platforma AI dla e-commerce znana na całym świecie. Pomagamy setkom tysięcy sprzedawców sprzedawać mądrzej.',
+    founderLabel:'Founder', founderRole:'Founder & CEO · Marsiqo Group', founderTag:'🇵🇱 Polska · 26 lat · Buduję od zera',
+    founderQuote:'"Zawsze chciałem pomagać. Marsiqo Group to mój sposób na pomaganie jak największej liczbie ludzi — przez narzędzia które naprawdę działają."',
+    storyTitle:'Dlaczego to buduję',
+    sp1:'Od zawsze lubiłem pomagać innym. Kiedy zobaczyłem jak wiele osób traci czas i pieniądze na złe decyzje w e-commerce — wiedziałem że chcę to zmienić.',
+    sp2:'<strong>Marsi</strong> to odpowiedź na pytanie: "Czy warto sprzedawać ten produkt?". Zamiast godzin researchu — kilka sekund i konkretna odpowiedź.',
+    sp3:'<strong>Marsiqo Studio</strong> to odpowiedź na pytanie: "Co powiedzieć w filmiku?". Zamiast siedzenia nad pustą kartką — 5 gotowych skryptów w sekundy.',
+    sp4:'Nie buduję tego dla siebie. Buduję to dla każdego kto ma pomysł na biznes online ale nie wie od czego zacząć. <strong>Marsiqo Group to mój sposób na pomaganie na skalę.</strong>',
+    v1name:'Pomaganie', v1desc:'Buduję narzędzia które naprawdę rozwiązują problemy',
+    v2name:'Odwaga', v2desc:'Buduję od zera, uczę się w trakcie i nie stoję w miejscu',
+    v3name:'Skala', v3desc:'Chcę pomagać jak największej liczbie ludzi na świecie',
+    legal1:'Regulamin', legal2:'Polityka prywatności', legal3:'Cookies'
+  },
+  en: {
+    navHome:'Home', navProducts:'Products', navMission:'Mission', navFounder:'Founder',
+    navCta:'Try Marsi →', mobCta:'Try Marsi →',
+    badge:'Marsiqo Group · AI for E-Commerce',
+    heroTitle:'AI Tools<br>for <span class="grad">e-commerce</span>',
+    heroSub:'Marsiqo Group builds intelligent tools for online sellers — analyze products, create content and sell smarter.',
+    heroBtnP:'Try Marsi for free', heroBtnS:'See products →',
+    quote:'The best way to predict the future is to create it.',
+    productsLabel:'Our products', productsTitle:'Two tools.<br><em>One ecosystem.</em>',
+    productsSub:'Each product solves a different problem — together they create a complete system for e-commerce sellers.',
+    marsiTag:'● Live — Beta', marsiPriceLabel:'Price', marsiPrice:'Free', marsiPriceSub:'Available now',
+    marsiDesc:'AI agent that analyzes e-commerce products in seconds. Enter a product name — Marsi evaluates market potential, risk, margin and gives a concrete recommendation on whether to sell.',
+    mf1:'Sales potential analysis', mf2:'Market risk assessment', mf3:'Margin & model analysis', mf4:'Concrete recommendation', mf5:'Analysis history', mf6:'Polish language',
+    marsiBtnOpen:'Open Marsi →', marsiNote:'No registration, free',
+    studioTag:'● Live', studioPriceLabel:'Limit',
+    studioDesc:'AI video script generator for TikTok and Instagram Reels. Enter a product or idea — get 5 ready scripts with a catchy hook, hashtags, virality score and music suggestion.',
+    sf1:'5 video scripts at once', sf2:'Hook ranking 🔥 (score 1-10)', sf3:'Ready hashtags for each script', sf4:'Music suggestions', sf5:'5 scripts every 2 hours', sf6:'Polish and English',
+    studioBtnOpen:'Open Studio →', studioNote:'5 scripts every 2h · free',
+    missionLabel:'Our mission', missionBig:'"We build tools that give small sellers <em>the advantage of big players.</em>"',
+    missionIntro:'We believe AI technology should not be only for corporations. Every online seller — regardless of budget — deserves access to tools that help them grow.',
+    mc1title:'Our goal', mc1text:'Democratization of AI for e-commerce — every online seller has access to tools that were previously only for large companies with large budgets.',
+    mc2title:'The idea', mc2text:'Frustration with the lack of simple product analysis tools. Instead of waiting for someone to do it — Marcel decided to build it himself. That\'s how Marsiqo Group was born.',
+    mc3title:'Global vision', mc3text:'We start in Poland. We build tools in Polish and English. Ultimately, Marsiqo Group aims to help sellers worldwide.',
+    futureTitle:'Where we want to be <em>in a few years</em>',
+    tl1title:'Birth of the idea', tl1text:'The vision of Marsiqo Group is born — an ecosystem of AI tools for e-commerce. One person, one idea, zero limits.',
+    tl2title:'First product live', tl2text:'Marsi available to first users. Marsiqo Studio in development. First feedback, first lessons. We build and listen.',
+    tl3title:'Growth', tl3text:'Marsiqo Studio officially live. First revenue. Expanding Marsi with new features. Expansion into the English-speaking market.',
+    tl4title:'Scaling', tl4text:'Third product in the ecosystem. Thousands of users. Marsiqo Group as a recognizable AI brand for e-commerce in Europe.',
+    tl5title:'Global player', tl5text:'Marsiqo Group as a globally known AI platform for e-commerce. Helping hundreds of thousands of sellers sell smarter.',
+    founderLabel:'Founder', founderRole:'Founder & CEO · Marsiqo Group', founderTag:'🇵🇱 Poland · 26 years old · Building from scratch',
+    founderQuote:'"I always wanted to help. Marsiqo Group is my way of helping as many people as possible — through tools that really work."',
+    storyTitle:'Why I build this',
+    sp1:'I have always liked helping others. When I saw how many people waste time and money on bad decisions in e-commerce — I knew I wanted to change that.',
+    sp2:'<strong>Marsi</strong> answers the question: "Is this product worth selling?". Instead of hours of research — seconds and a concrete answer.',
+    sp3:'<strong>Marsiqo Studio</strong> answers the question: "What should I say in the video?". Instead of staring at a blank page — 5 ready scripts in seconds.',
+    sp4:'I am not building this for myself. I am building it for everyone who has an idea for an online business but does not know where to start. <strong>Marsiqo Group is my way of helping at scale.</strong>',
+    v1name:'Helping', v1desc:'I build tools that truly solve problems',
+    v2name:'Courage', v2desc:'I build from scratch, learn along the way and never stand still',
+    v3name:'Scale', v3desc:'I want to help as many people in the world as possible',
+    legal1:'Terms of Service', legal2:'Privacy Policy', legal3:'Cookies'
+  },
+  de: {
+    navHome:'Start', navProducts:'Produkte', navMission:'Mission', navFounder:'Gründer',
+    navCta:'Marsi testen →', mobCta:'Marsi testen →',
+    badge:'Marsiqo Group · KI für E-Commerce',
+    heroTitle:'KI-Tools<br>für <span class="grad">E-Commerce</span>',
+    heroSub:'Marsiqo Group entwickelt intelligente Tools für Online-Verkäufer — analysiere Produkte, erstelle Content und verkaufe cleverer.',
+    heroBtnP:'Marsi kostenlos testen', heroBtnS:'Produkte ansehen →',
+    quote:'Der beste Weg, die Zukunft vorherzusagen, ist, sie zu gestalten.',
+    productsLabel:'Unsere Produkte', productsTitle:'Zwei Tools.<br><em>Ein Ökosystem.</em>',
+    productsSub:'Jedes Produkt löst ein anderes Problem — zusammen bilden sie ein komplettes System für E-Commerce-Verkäufer.',
+    marsiTag:'● Live — Beta', marsiPriceLabel:'Preis', marsiPrice:'Kostenlos', marsiPriceSub:'Jetzt verfügbar',
+    marsiDesc:'KI-Agent der E-Commerce-Produkte in Sekunden analysiert. Du gibst einen Produktnamen ein — Marsi bewertet Marktpotenzial, Risiko, Marge und gibt eine konkrete Empfehlung.',
+    mf1:'Verkaufspotenzialanalyse', mf2:'Marktrisikobewertung', mf3:'Margen- und Modellanalyse', mf4:'Konkrete Empfehlung', mf5:'Analyseverlauf', mf6:'Polnische Sprache',
+    marsiBtnOpen:'Marsi öffnen →', marsiNote:'Ohne Registrierung, kostenlos',
+    studioTag:'● Live', studioPriceLabel:'Limit',
+    studioDesc:'KI-Videoskript-Generator für TikTok und Instagram Reels. Du gibst ein Produkt oder eine Idee ein — du bekommst 5 fertige Skripte mit einem packenden Hook, Hashtags, Viralitätsbewertung und Musikvorschlag.',
+    sf1:'5 Videoskripte auf einmal', sf2:'Hook-Ranking 🔥 (Bewertung 1-10)', sf3:'Fertige Hashtags für jedes Skript', sf4:'Musikvorschläge', sf5:'5 Skripte alle 2 Stunden', sf6:'Polnisch und Englisch',
+    studioBtnOpen:'Studio öffnen →', studioNote:'5 Skripte alle 2h · kostenlos',
+    missionLabel:'Unsere Mission', missionBig:'"Wir bauen Tools, die kleinen Verkäufern <em>den Vorteil großer Spieler</em> geben."',
+    missionIntro:'Wir glauben, dass KI-Technologie nicht nur für Konzerne sein sollte. Jeder Online-Verkäufer — unabhängig vom Budget — verdient Zugang zu Tools, die ihm beim Wachsen helfen.',
+    mc1title:'Unser Ziel', mc1text:'Demokratisierung der KI für E-Commerce — jeder Online-Verkäufer hat Zugang zu Tools, die früher nur für große Unternehmen mit großen Budgets verfügbar waren.',
+    mc2title:'Die Idee', mc2text:'Frustration über das Fehlen einfacher Produktanalyse-Tools. Statt auf jemanden zu warten — hat Marcel beschlossen, es selbst zu bauen. So entstand Marsiqo Group.',
+    mc3title:'Globale Vision', mc3text:'Wir starten in Polen. Wir bauen Tools auf Polnisch und Englisch. Letztendlich soll Marsiqo Group Verkäufern weltweit helfen.',
+    futureTitle:'Wo wir in <em>ein paar Jahren</em> sein wollen',
+    tl1title:'Geburt der Idee', tl1text:'Die Vision von Marsiqo Group entsteht — ein Ökosystem von KI-Tools für E-Commerce. Eine Person, eine Idee, keine Grenzen.',
+    tl2title:'Erstes Produkt live', tl2text:'Marsi für erste Nutzer verfügbar. Marsiqo Studio in Entwicklung. Erstes Feedback, erste Lektionen. Wir bauen und hören zu.',
+    tl3title:'Wachstum', tl3text:'Marsiqo Studio offiziell live. Erste Einnahmen. Erweiterung von Marsi um neue Funktionen. Expansion in den englischsprachigen Markt.',
+    tl4title:'Skalierung', tl4text:'Drittes Produkt im Ökosystem. Tausende von Nutzern. Marsiqo Group als bekannte KI-Marke für E-Commerce in Europa.',
+    tl5title:'Globaler Spieler', tl5text:'Marsiqo Group als weltweit bekannte KI-Plattform für E-Commerce. Wir helfen Hunderttausenden von Verkäufern, cleverer zu verkaufen.',
+    founderLabel:'Gründer', founderRole:'Gründer & CEO · Marsiqo Group', founderTag:'🇵🇱 Polen · 26 Jahre · Aufbau von Grund auf',
+    founderQuote:'"Ich wollte immer helfen. Marsiqo Group ist mein Weg, so vielen Menschen wie möglich zu helfen — durch Tools, die wirklich funktionieren."',
+    storyTitle:'Warum ich das baue',
+    sp1:'Ich habe immer gerne anderen geholfen. Als ich sah, wie viele Menschen Zeit und Geld mit schlechten E-Commerce-Entscheidungen verschwenden — wusste ich, dass ich das ändern wollte.',
+    sp2:'<strong>Marsi</strong> beantwortet die Frage: "Ist es wert, dieses Produkt zu verkaufen?". Statt stundenlanger Recherche — Sekunden und eine konkrete Antwort.',
+    sp3:'<strong>Marsiqo Studio</strong> beantwortet die Frage: "Was soll ich im Video sagen?". Statt auf eine leere Seite zu starren — 5 fertige Skripte in Sekunden.',
+    sp4:'Ich baue das nicht für mich. Ich baue es für jeden, der eine Idee für ein Online-Geschäft hat, aber nicht weiß, wo er anfangen soll. <strong>Marsiqo Group ist mein Weg, im großen Maßstab zu helfen.</strong>',
+    v1name:'Helfen', v1desc:'Ich baue Tools, die wirklich Probleme lösen',
+    v2name:'Mut', v2desc:'Ich baue von Grund auf, lerne dabei und stehe nie still',
+    v3name:'Maßstab', v3desc:'Ich möchte so vielen Menschen auf der Welt wie möglich helfen',
+    legal1:'AGB', legal2:'Datenschutz', legal3:'Cookies'
+  }
+};
+ 
+var currentLang = 'pl';
+ 
+function setLang(lang) {
+  currentLang = lang;
+  var t = T[lang];
+  var ids = ['navHome','navProducts','navMission','navFounder','badge','heroSub','heroBtnP','heroBtnS','quote','productsLabel','productsSub','marsiTag','marsiPriceLabel','marsiPrice','marsiPriceSub','marsiDesc','mf1','mf2','mf3','mf4','mf5','mf6','marsiBtnOpen','marsiNote','studioTag','studioPriceLabel','studioDesc','sf1','sf2','sf3','sf4','sf5','sf6','studioBtnOpen','studioNote','missionLabel','missionBig','missionIntro','mc1title','mc1text','mc2title','mc2text','mc3title','mc3text','futureTitle','tl1title','tl1text','tl2title','tl2text','tl3title','tl3text','tl4title','tl4text','tl5title','tl5text','founderLabel','founderRole','founderTag','founderQuote','storyTitle','sp1','sp2','sp3','sp4','v1name','v1desc','v2name','v2desc','v3name','v3desc','legal1','legal2','legal3'];
+  ids.forEach(function(id) {
+    var el = document.getElementById('t-' + id);
+    if (el && t[id]) el.innerHTML = t[id];
+  });
+  var heroTitleEl = document.getElementById('t-heroTitle');
+  if (heroTitleEl) heroTitleEl.innerHTML = t.heroTitle;
+  var productsTitleEl = document.getElementById('t-productsTitle');
+  if (productsTitleEl) productsTitleEl.innerHTML = t.productsTitle;
+  var navCta = document.getElementById('nav-cta');
+  if (navCta) navCta.textContent = t.navCta;
+  var mobCta = document.getElementById('mob-cta');
+  if (mobCta) mobCta.textContent = t.mobCta;
+  // Nav links
+  var nlHome = document.getElementById('nl-home'); if (nlHome) nlHome.textContent = t.navHome;
+  var nlProd = document.getElementById('nl-products'); if (nlProd) nlProd.textContent = t.navProducts;
+  var nlMiss = document.getElementById('nl-mission'); if (nlMiss) nlMiss.textContent = t.navMission;
+  var nlFound = document.getElementById('nl-founder'); if (nlFound) nlFound.textContent = t.navFounder;
+  var mlHome = document.getElementById('ml-home'); if (mlHome) mlHome.textContent = t.navHome;
+  var mlProd = document.getElementById('ml-products'); if (mlProd) mlProd.textContent = t.navProducts;
+  var mlMiss = document.getElementById('ml-mission'); if (mlMiss) mlMiss.textContent = t.navMission;
+  var mlFound = document.getElementById('ml-founder'); if (mlFound) mlFound.textContent = t.navFounder;
+  // Lang buttons
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.remove('active');
+    if (btn.textContent.includes(lang.toUpperCase()) || btn.textContent.includes({'pl':'🇵🇱','en':'🇬🇧','de':'🇩🇪'}[lang])) btn.classList.add('active');
+  });
+  localStorage.setItem('msq_lang', lang);
+}
+ 
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
@@ -437,24 +532,18 @@ function updateStudioTimer() {
     var m = Math.floor((msLeft % 3600000) / 60000);
     var s = Math.floor((msLeft % 60000) / 1000);
     el.textContent = 'reset za ' + (h > 0 ? h + 'h ' : '') + m + 'm ' + s + 's';
-  } catch(e) { el.textContent = 'reset co 2 godziny'; }
+  } catch(e) {}
 }
  
 window.addEventListener('scroll', revealAll);
 setTimeout(revealAll, 200);
 setInterval(updateStudioTimer, 1000);
 updateStudioTimer();
-</script>
  
-<footer style="border-top:1px solid rgba(192,132,252,0.15);padding:28px 60px;margin-top:40px;">
-  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
-    <div style="font-size:12px;color:rgba(255,255,255,0.2);">© 2026 Marsiqo Group</div>
-    <div style="display:flex;gap:20px;">
-      <a href="/legal" style="font-size:11px;color:rgba(255,255,255,0.3);text-decoration:none;" onmouseover="this.style.color='#c084fc'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">Regulamin</a>
-      <a href="/legal" style="font-size:11px;color:rgba(255,255,255,0.3);text-decoration:none;" onmouseover="this.style.color='#c084fc'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">Polityka prywatności</a>
-      <a href="/legal" style="font-size:11px;color:rgba(255,255,255,0.3);text-decoration:none;" onmouseover="this.style.color='#c084fc'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">Cookies</a>
-    </div>
-  </div>
-</footer>
+document.addEventListener('DOMContentLoaded', function() {
+  var saved = localStorage.getItem('msq_lang');
+  if (saved && T[saved]) setLang(saved);
+});
+</script>
 </body>
 </html>
