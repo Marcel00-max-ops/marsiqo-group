@@ -127,7 +127,7 @@
     .mission-hero{padding:60px 20px 40px;} .founder-wrap{padding:60px 20px;}
     .founder-values{grid-template-columns:1fr;} .fp-feats{grid-template-columns:1fr;} .fp-top{flex-direction:column;}
   }
- 
+
   /* Robot Marsi */
   .marsi-robot-box { background:var(--surface); border:1px solid rgba(232,255,71,0.2); border-radius:20px; padding:28px; margin-bottom:24px; display:flex; align-items:center; gap:28px; position:relative; overflow:hidden; }
   .marsi-robot-box::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--y1); }
@@ -168,14 +168,14 @@
   .robot-info-desc { font-size:13px; color:var(--muted); line-height:1.75; margin-bottom:16px; }
   .robot-info-btn { background:var(--y1); color:#000; border:none; border-radius:10px; padding:11px 24px; font-size:13px; font-weight:700; cursor:pointer; font-family:'Inter',sans-serif; text-decoration:none; display:inline-block; transition:all 0.2s; }
   .robot-info-btn:hover { opacity:0.85; transform:translateY(-1px); }
- 
+
 </style>
 </head>
 <body>
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
 <div class="orb orb3"></div>
- 
+
 <nav>
   <div class="nav-logo" onclick="showPage('home')">
     <div>
@@ -201,7 +201,7 @@
     <span></span><span></span><span></span>
   </div>
 </nav>
- 
+
 <div class="mobile-menu" id="mob">
   <button class="mob-link" onclick="showPage('home');document.getElementById('mob').classList.remove('open')" id="ml-home">Start</button>
   <button class="mob-link" onclick="showPage('products');document.getElementById('mob').classList.remove('open')" id="ml-products">Produkty</button>
@@ -214,7 +214,7 @@
   </div>
   <a href="https://marsi-agent.vercel.app" target="_blank" style="background:linear-gradient(135deg,#c084fc,#fb7185);color:#fff;border:none;border-radius:10px;padding:12px;font-size:14px;font-weight:600;font-family:Inter,sans-serif;text-decoration:none;margin-top:8px;display:block;text-align:center;" id="mob-cta">Wypróbuj Marsi →</a>
 </div>
- 
+
 <!-- HOME -->
 <div class="page active" id="page-home">
   <section class="hero">
@@ -232,14 +232,14 @@
     </div>
   </section>
 </div>
- 
+
 <!-- PRODUCTS -->
 <div class="page" id="page-products">
   <div class="page-inner">
     <div class="page-label" id="t-productsLabel">Nasze produkty</div>
     <h2 class="page-title" id="t-productsTitle">Dwa narzędzia.<br><em>Jeden ekosystem.</em></h2>
     <p class="page-sub" id="t-productsSub">Każdy produkt rozwiązuje inny problem — razem tworzą kompletny system dla sprzedawcy e-commerce.</p>
- 
+
     <div class="full-prod cm reveal">
       <div class="fp-bar fpb-y"></div>
       <div class="fp-top">
@@ -272,13 +272,13 @@
           </div>
           <div>
             <div class="fp-name">Marsi</div>
-            <div style="height:0;overflow:hidden;"></div>
+            <div class="fp-tag fpt-live" id="t-marsiTag">● Live</div>
           </div>
         </div>
         <div class="fp-price-box">
           <div class="fp-price-label" id="t-marsiPriceLabel">Cena</div>
-          <div class="fp-price" style="color:#4ade80;" id="t-marsiPrice">Za darmo</div>
-          <div class="fp-price-sub" id="t-marsiPriceSub">Dostępny teraz</div>
+          <div class="fp-price" style="color:#4ade80;font-size:20px;" id="t-marsiPrice">10 / 24h</div>
+          <div class="fp-price-sub" id="t-marsiPriceSub">reset co 24 godziny</div>
         </div>
       </div>
       <p class="fp-desc" id="t-marsiDesc">Agent AI który analizuje produkty e-commerce w kilka sekund. Wpisujesz nazwę produktu — Marsi ocenia potencjał rynkowy, ryzyko, marżę i daje konkretną rekomendację czy warto sprzedawać.</p>
@@ -292,10 +292,10 @@
       </div>
       <div class="fp-cta">
         <a href="https://marsi-agent.vercel.app" class="fp-btn" target="_blank" id="t-marsiBtnOpen">Otwórz Marsi →</a>
-        <span class="fp-note" id="t-marsiNote">Bez rejestracji, za darmo</span>
+        
       </div>
     </div>
- 
+
     <div class="full-prod cs reveal">
       <div class="fp-bar fpb-p"></div>
       <div class="fp-top">
@@ -329,7 +329,7 @@
                 </div>
                 <div style="width:5px;height:16px;background:#0d0d14;border:1.5px solid #6a5a9a;border-radius:3px;margin-top:2px;transform-origin:top center;animation:aIdle 3s ease-in-out 0.5s infinite;"></div>
               </div>
- 
+
             </div>
           </div>
           <div>
@@ -354,12 +354,12 @@
       </div>
       <div class="fp-cta">
         <a href="https://marsiqo-studio.vercel.app" class="fp-btn" target="_blank" id="t-studioBtnOpen">Otwórz Studio →</a>
-        <span class="fp-note" id="t-studioNote">5 skryptów co 2h · bezpłatnie</span>
+        
       </div>
     </div>
   </div>
 </div>
- 
+
 <!-- MISSION -->
 <div class="page" id="page-mission">
   <div class="mission-hero">
@@ -395,7 +395,7 @@
     </div>
   </div>
 </div>
- 
+
 <!-- FOUNDER -->
 <div class="page" id="page-founder">
   <div class="founder-wrap">
@@ -425,7 +425,7 @@
     </div>
   </div>
 </div>
- 
+
 <footer style="border-top:1px solid rgba(192,132,252,0.15);padding:28px 60px;position:relative;z-index:1;">
   <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
     <div style="font-size:12px;color:rgba(255,255,255,0.2);">© 2026 Marsiqo Group</div>
@@ -436,7 +436,7 @@
     </div>
   </div>
 </footer>
- 
+
 <script>
 var T = {
   pl: {
@@ -449,14 +449,14 @@ var T = {
     quote:'Najlepszy sposób na przewidzenie przyszłości to jej stworzenie.',
     productsLabel:'Nasze produkty', productsTitle:'Dwa narzędzia.<br><em>Jeden ekosystem.</em>',
     productsSub:'Każdy produkt rozwiązuje inny problem — razem tworzą kompletny system dla sprzedawcy e-commerce.',
-    marsiTag:'● Live — Beta', marsiPriceLabel:'Cena', marsiPrice:'Za darmo', marsiPriceSub:'Dostępny teraz',
+    marsiTag:'● Live', marsiPriceLabel:'Limit', marsiPrice:'10 / 24h', marsiPriceSub:'reset co 24 godziny',
     marsiDesc:'Agent AI który analizuje produkty e-commerce w kilka sekund. Wpisujesz nazwę produktu — Marsi ocenia potencjał rynkowy, ryzyko, marżę i daje konkretną rekomendację czy warto sprzedawać.',
     mf1:'Analiza potencjału sprzedaży', mf2:'Ocena ryzyka rynkowego', mf3:'Analiza marży i modelu', mf4:'Konkretna rekomendacja', mf5:'Historia analiz', mf6:'Język polski',
-    marsiBtnOpen:'Otwórz Marsi →', marsiNote:'Bez rejestracji, za darmo',
+    marsiBtnOpen:'Otwórz Marsi →', marsiNote:'10 analiz co 24h · bezpłatnie',
     studioTag:'● Live', studioPriceLabel:'Limit',
     studioDesc:'Generator skryptów wideo AI dla TikTok i Instagram Reels. Wpisujesz produkt lub pomysł — dostajesz 5 gotowych skryptów z chwytliwym hookiem, gotowymi hashtagami, oceną wiralowości i sugestią muzyki.',
     sf1:'5 skryptów wideo na raz', sf2:'Hook ranking 🔥 (ocena 1-10)', sf3:'Gotowe hashtagi do każdego skryptu', sf4:'Sugestie muzyki do wideo', sf5:'5 skryptów co 2 godziny', sf6:'Polski i angielski',
-    studioBtnOpen:'Otwórz Studio →', studioNote:'5 skryptów co 2h · bezpłatnie',
+    studioBtnOpen:'Otwórz Studio →', studioNote:'',
     missionLabel:'Nasza misja', missionBig:'"Budujemy narzędzia które dają małym sprzedawcom <em>przewagę dużych graczy.</em>"',
     missionIntro:'Wierzymy że technologia AI nie powinna być tylko dla korporacji. Każdy sprzedawca online — niezależnie od budżetu — zasługuje na dostęp do narzędzi które pomagają mu rosnąć.',
     mc1title:'Nasz cel', mc1text:'Demokratyzacja AI dla e-commerce — każdy sprzedawca online ma dostęp do narzędzi które wcześniej były tylko dla dużych firm z dużymi budżetami.',
@@ -491,14 +491,14 @@ var T = {
     quote:'The best way to predict the future is to create it.',
     productsLabel:'Our products', productsTitle:'Two tools.<br><em>One ecosystem.</em>',
     productsSub:'Each product solves a different problem — together they create a complete system for e-commerce sellers.',
-    marsiTag:'● Live — Beta', marsiPriceLabel:'Price', marsiPrice:'Free', marsiPriceSub:'Available now',
+    marsiTag:'● Live', marsiPriceLabel:'Limit', marsiPrice:'10 / 24h', marsiPriceSub:'reset every 24 hours',
     marsiDesc:'AI agent that analyzes e-commerce products in seconds. Enter a product name — Marsi evaluates market potential, risk, margin and gives a concrete recommendation on whether to sell.',
     mf1:'Sales potential analysis', mf2:'Market risk assessment', mf3:'Margin & model analysis', mf4:'Concrete recommendation', mf5:'Analysis history', mf6:'Polish language',
-    marsiBtnOpen:'Open Marsi →', marsiNote:'No registration, free',
+    marsiBtnOpen:'Open Marsi →', marsiNote:'',
     studioTag:'● Live', studioPriceLabel:'Limit',
     studioDesc:'AI video script generator for TikTok and Instagram Reels. Enter a product or idea — get 5 ready scripts with a catchy hook, hashtags, virality score and music suggestion.',
     sf1:'5 video scripts at once', sf2:'Hook ranking 🔥 (score 1-10)', sf3:'Ready hashtags for each script', sf4:'Music suggestions', sf5:'5 scripts every 2 hours', sf6:'Polish and English',
-    studioBtnOpen:'Open Studio →', studioNote:'5 scripts every 2h · free',
+    studioBtnOpen:'Open Studio →', studioNote:'',
     missionLabel:'Our mission', missionBig:'"We build tools that give small sellers <em>the advantage of big players.</em>"',
     missionIntro:'We believe AI technology should not be only for corporations. Every online seller — regardless of budget — deserves access to tools that help them grow.',
     mc1title:'Our goal', mc1text:'Democratization of AI for e-commerce — every online seller has access to tools that were previously only for large companies with large budgets.',
@@ -533,14 +533,14 @@ var T = {
     quote:'Der beste Weg, die Zukunft vorherzusagen, ist, sie zu gestalten.',
     productsLabel:'Unsere Produkte', productsTitle:'Zwei Tools.<br><em>Ein Ökosystem.</em>',
     productsSub:'Jedes Produkt löst ein anderes Problem — zusammen bilden sie ein komplettes System für E-Commerce-Verkäufer.',
-    marsiTag:'● Live — Beta', marsiPriceLabel:'Preis', marsiPrice:'Kostenlos', marsiPriceSub:'Jetzt verfügbar',
+    marsiTag:'● Live', marsiPriceLabel:'Limit', marsiPrice:'10 / 24h', marsiPriceSub:'Reset alle 24 Stunden',
     marsiDesc:'KI-Agent der E-Commerce-Produkte in Sekunden analysiert. Du gibst einen Produktnamen ein — Marsi bewertet Marktpotenzial, Risiko, Marge und gibt eine konkrete Empfehlung.',
     mf1:'Verkaufspotenzialanalyse', mf2:'Marktrisikobewertung', mf3:'Margen- und Modellanalyse', mf4:'Konkrete Empfehlung', mf5:'Analyseverlauf', mf6:'Polnische Sprache',
-    marsiBtnOpen:'Marsi öffnen →', marsiNote:'Ohne Registrierung, kostenlos',
+    marsiBtnOpen:'Marsi öffnen →', marsiNote:'',
     studioTag:'● Live', studioPriceLabel:'Limit',
     studioDesc:'KI-Videoskript-Generator für TikTok und Instagram Reels. Du gibst ein Produkt oder eine Idee ein — du bekommst 5 fertige Skripte mit einem packenden Hook, Hashtags, Viralitätsbewertung und Musikvorschlag.',
     sf1:'5 Videoskripte auf einmal', sf2:'Hook-Ranking 🔥 (Bewertung 1-10)', sf3:'Fertige Hashtags für jedes Skript', sf4:'Musikvorschläge', sf5:'5 Skripte alle 2 Stunden', sf6:'Polnisch und Englisch',
-    studioBtnOpen:'Studio öffnen →', studioNote:'5 Skripte alle 2h · kostenlos',
+    studioBtnOpen:'Studio öffnen →', studioNote:'',
     missionLabel:'Unsere Mission', missionBig:'"Wir bauen Tools, die kleinen Verkäufern <em>den Vorteil großer Spieler</em> geben."',
     missionIntro:'Wir glauben, dass KI-Technologie nicht nur für Konzerne sein sollte. Jeder Online-Verkäufer — unabhängig vom Budget — verdient Zugang zu Tools, die ihm beim Wachsen helfen.',
     mc1title:'Unser Ziel', mc1text:'Demokratisierung der KI für E-Commerce — jeder Online-Verkäufer hat Zugang zu Tools, die früher nur für große Unternehmen mit großen Budgets verfügbar waren.',
@@ -566,9 +566,9 @@ var T = {
     legal1:'AGB', legal2:'Datenschutz', legal3:'Cookies'
   }
 };
- 
+
 var currentLang = 'pl';
- 
+
 function setLang(lang) {
   currentLang = lang;
   var t = T[lang];
@@ -601,7 +601,7 @@ function setLang(lang) {
   });
   localStorage.setItem('msq_lang', lang);
 }
- 
+
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
@@ -613,14 +613,14 @@ function showPage(name) {
   window.scrollTo(0,0);
   setTimeout(revealAll, 100);
 }
- 
+
 function revealAll() {
   document.querySelectorAll('.reveal').forEach(el => {
     var rect = el.getBoundingClientRect();
     if (rect.top < window.innerHeight - 50) el.classList.add('visible');
   });
 }
- 
+
 function updateStudioTimer() {
   var el = document.getElementById('studioTimer');
   if (!el) return;
@@ -635,12 +635,12 @@ function updateStudioTimer() {
     el.textContent = 'reset za ' + (h > 0 ? h + 'h ' : '') + m + 'm ' + s + 's';
   } catch(e) {}
 }
- 
+
 window.addEventListener('scroll', revealAll);
 setTimeout(revealAll, 200);
 setInterval(updateStudioTimer, 1000);
 updateStudioTimer();
- 
+
 document.addEventListener('DOMContentLoaded', function() {
   var saved = localStorage.getItem('msq_lang');
   if (saved && T[saved]) setLang(saved);
