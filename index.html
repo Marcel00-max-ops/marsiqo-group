@@ -195,7 +195,6 @@
       <button class="lang-btn" onclick="setLang('en')">🇬🇧 EN</button>
       <button class="lang-btn" onclick="setLang('de')">🇩🇪 DE</button>
     </div>
-    <a href="https://marsi-agent.vercel.app" class="nav-btn" target="_blank" id="nav-cta">Wypróbuj Marsi →</a>
   </div>
   <div class="hamburger" id="hbg" onclick="document.getElementById('mob').classList.toggle('open')">
     <span></span><span></span><span></span>
@@ -221,8 +220,50 @@
     <div class="hero-badge"><div class="badge-dot"></div><span id="t-badge">Marsiqo Group · AI for E-Commerce</span></div>
     <h1 class="hero-title" id="t-heroTitle">Narzędzia AI<br>dla <span class="grad">e-commerce</span></h1>
     <p class="hero-sub" id="t-heroSub">Marsiqo Group buduje inteligentne narzędzia dla sprzedawców online — analizuj produkty, twórz content i sprzedawaj mądrzej.</p>
+
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:32px;">
+      <!-- Karta Marsi -->
+      <div style="background:rgba(232,255,71,0.06);border:1px solid rgba(232,255,71,0.2);border-radius:16px;padding:20px;max-width:220px;text-align:left;">
+        <div style="display:flex;flex-direction:column;align-items:center;margin-bottom:12px;animation:rFloat 2.5s ease-in-out infinite;">
+          <div style="width:2px;height:7px;background:#e8ff47;margin:0 auto;position:relative;"><div style="position:absolute;top:-4px;left:-3px;width:8px;height:8px;background:#e8ff47;border-radius:50%;animation:antP 1.5s ease-in-out infinite;"></div></div>
+          <div style="width:36px;height:28px;background:#0d0d14;border:1.5px solid #e8ff47;border-radius:7px;display:flex;align-items:center;justify-content:center;position:relative;margin-top:2px;animation:hGlowY 2s ease-in-out infinite;">
+            <div style="position:absolute;top:7px;left:-5px;width:4px;height:7px;background:#e8ff47;border-radius:1px;"></div>
+            <div style="position:absolute;top:7px;right:-5px;width:4px;height:7px;background:#e8ff47;border-radius:1px;"></div>
+            <div style="display:flex;gap:6px;"><div style="width:6px;height:6px;background:#e8ff47;border-radius:50%;animation:eBlink 4s ease-in-out infinite;"></div><div style="width:6px;height:6px;background:#e8ff47;border-radius:50%;animation:eBlink 4s ease-in-out 0.1s infinite;"></div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:2px;margin-top:2px;">
+            <div style="width:5px;height:18px;background:#0d0d14;border:1.5px solid #3a3a20;border-radius:3px;margin-top:2px;transform-origin:top center;animation:aWave 0.6s ease-in-out 0.5s 5;"></div>
+            <div style="width:36px;height:26px;background:#0d0d14;border:1.5px solid #3a3a20;border-radius:5px;display:flex;align-items:center;justify-content:center;"><div style="width:20px;height:8px;background:#111;border:1px solid #e8ff47;border-radius:2px;display:flex;align-items:center;justify-content:center;gap:3px;"><div style="width:3px;height:3px;border-radius:50%;background:#e8ff47;animation:dPulse 1.2s ease-in-out infinite;"></div><div style="width:3px;height:3px;border-radius:50%;background:#e8ff47;animation:dPulse 1.2s ease-in-out 0.2s infinite;"></div><div style="width:3px;height:3px;border-radius:50%;background:#e8ff47;animation:dPulse 1.2s ease-in-out 0.4s infinite;"></div></div></div>
+            <div style="width:5px;height:18px;background:#0d0d14;border:1.5px solid #3a3a20;border-radius:3px;margin-top:2px;transform-origin:top center;animation:aIdle 3s ease-in-out infinite;"></div>
+          </div>
+        </div>
+        <div style="font-size:13px;font-weight:600;color:#e8ff47;margin-bottom:6px;">Marsi</div>
+        <div style="font-size:11px;color:#8878bb;line-height:1.7;" id="t-heroCard1">Wpisz produkt — dostań ocenę potencjału, ryzyka i marży w kilka sekund.</div>
+      </div>
+
+      <!-- Karta Studio -->
+      <div style="background:rgba(192,132,252,0.06);border:1px solid rgba(192,132,252,0.2);border-radius:16px;padding:20px;max-width:220px;text-align:left;">
+        <div style="display:flex;flex-direction:column;align-items:center;margin-bottom:12px;animation:rFloat 2.5s ease-in-out 0.4s infinite;">
+          <div style="width:2px;height:7px;background:#c084fc;margin:0 auto;position:relative;"><div style="position:absolute;top:-4px;left:-3px;width:8px;height:8px;background:#c084fc;border-radius:50%;animation:antP 1.5s ease-in-out infinite;"></div></div>
+          <div style="width:38px;height:28px;background:#1a0a2e;border:1.5px solid #c084fc;border-radius:6px;display:flex;align-items:center;justify-content:center;position:relative;margin-top:2px;animation:hGlowP 2s ease-in-out infinite;">
+            <div style="position:absolute;top:7px;left:-5px;width:4px;height:7px;background:#6a5a9a;border-radius:1px;"></div>
+            <div style="position:absolute;top:7px;right:-5px;width:4px;height:7px;background:#6a5a9a;border-radius:1px;"></div>
+            <div style="width:16px;height:16px;background:#0d0d14;border:1.5px solid #c084fc;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:8px;height:8px;background:#f9a8d4;border-radius:50%;animation:dPulse 0.8s ease-in-out infinite;"></div></div>
+            <div style="position:absolute;right:-7px;top:50%;transform:translateY(-50%);width:6px;height:10px;background:#1a0a2e;border:1.5px solid #c084fc;clip-path:polygon(0 20%,100% 0,100% 100%,0 80%);"></div>
+            <div style="position:absolute;top:3px;right:4px;width:4px;height:4px;background:#fb7185;border-radius:50%;animation:dPulse 0.6s ease-in-out infinite;"></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:2px;margin-top:2px;">
+            <div style="width:5px;height:18px;background:#0d0d14;border:1.5px solid #4a3a6a;border-radius:3px;margin-top:2px;transform-origin:top center;animation:aIdle 3s ease-in-out infinite;"></div>
+            <div style="width:36px;height:26px;background:#0d0d14;border:1.5px solid #4a3a6a;border-radius:5px;display:flex;align-items:center;justify-content:center;"><div style="width:20px;height:8px;background:#111;border:1px solid #c084fc;border-radius:2px;display:flex;align-items:center;justify-content:center;gap:3px;"><div style="width:3px;height:3px;border-radius:50%;background:#c084fc;animation:dPulse 1.2s ease-in-out infinite;"></div><div style="width:3px;height:3px;border-radius:50%;background:#c084fc;animation:dPulse 1.2s ease-in-out 0.2s infinite;"></div><div style="width:3px;height:3px;border-radius:50%;background:#c084fc;animation:dPulse 1.2s ease-in-out 0.4s infinite;"></div></div></div>
+            <div style="width:5px;height:18px;background:#0d0d14;border:1.5px solid #4a3a6a;border-radius:3px;margin-top:2px;transform-origin:top center;animation:aWave 0.6s ease-in-out 1s 5;"></div>
+          </div>
+        </div>
+        <div style="font-size:13px;font-weight:600;color:#c084fc;margin-bottom:6px;">Marsiqo Studio</div>
+        <div style="font-size:11px;color:#8878bb;line-height:1.7;" id="t-heroCard2">Wpisz temat — dostań 5 gotowych skryptów wideo z hookiem i hashtagami.</div>
+      </div>
+    </div>
     <div class="hero-btns">
-      <a href="https://marsi-agent.vercel.app" class="btn-grad" target="_blank" id="t-heroBtnPrimary">Wypróbuj Marsi za darmo</a>
+      
       <button class="btn-ghost" onclick="showPage('products')" id="t-heroBtnSecondary">Zobacz produkty →</button>
     </div>
     <div style="max-width:600px;margin:0 auto;padding:32px 36px;background:rgba(192,132,252,0.06);border:1px solid rgba(192,132,252,0.15);border-radius:20px;position:relative;overflow:hidden;">
@@ -244,7 +285,7 @@
       <div class="fp-bar fpb-y"></div>
       <div class="fp-top">
         <div class="fp-left">
-          <div class="fp-icon" style="background:transparent;border:none;overflow:visible;position:relative;">
+          <div class="fp-icon" style="background:transparent;border:none;overflow:visible;position:relative;pointer-events:none;">
             <div style="display:flex;flex-direction:column;align-items:center;animation:rFloat 2.5s ease-in-out infinite;">
               <div style="width:2px;height:7px;background:#e8ff47;margin:0 auto;position:relative;">
                 <div style="position:absolute;top:-4px;left:-3px;width:8px;height:8px;background:#e8ff47;border-radius:50%;animation:antP 1.5s ease-in-out infinite;"></div>
@@ -300,7 +341,7 @@
       <div class="fp-bar fpb-p"></div>
       <div class="fp-top">
         <div class="fp-left">
-          <div class="fp-icon" style="background:transparent;border:none;overflow:visible;position:relative;">
+          <div class="fp-icon" style="background:transparent;border:none;overflow:visible;position:relative;pointer-events:none;">
             <div style="display:flex;flex-direction:column;align-items:center;animation:rFloat 2.5s ease-in-out infinite;">
               <div style="width:2px;height:7px;background:#c084fc;margin:0 auto;position:relative;">
                 <div style="position:absolute;top:-4px;left:-3px;width:8px;height:8px;background:#c084fc;border-radius:50%;animation:antP 1.5s ease-in-out infinite;"></div>
@@ -444,7 +485,7 @@ var T = {
     navCta:'Wypróbuj Marsi →', mobCta:'Wypróbuj Marsi →',
     badge:'Marsiqo Group · AI for E-Commerce',
     heroTitle:'Narzędzia AI<br>dla <span class="grad">e-commerce</span>',
-    heroSub:'Marsiqo Group buduje inteligentne narzędzia dla sprzedawców online — analizuj produkty, twórz content i sprzedawaj mądrzej.',
+    heroSub:'Marsiqo Group buduje inteligentne narzędzia dla sprzedawców online — analizuj produkty, twórz content i sprzedawaj mądrzej.', heroCard1:'Wpisz produkt — dostań ocenę potencjału, ryzyka i marży w kilka sekund.', heroCard2:'Wpisz temat — dostań 5 gotowych skryptów wideo z hookiem i hashtagami.',
     heroBtnP:'Wypróbuj Marsi za darmo', heroBtnS:'Zobacz produkty →',
     quote:'Najlepszy sposób na przewidzenie przyszłości to jej stworzenie.',
     productsLabel:'Nasze produkty', productsTitle:'Dwa narzędzia.<br><em>Jeden ekosystem.</em>',
@@ -486,7 +527,7 @@ var T = {
     navCta:'Try Marsi →', mobCta:'Try Marsi →',
     badge:'Marsiqo Group · AI for E-Commerce',
     heroTitle:'AI Tools<br>for <span class="grad">e-commerce</span>',
-    heroSub:'Marsiqo Group builds intelligent tools for online sellers — analyze products, create content and sell smarter.',
+    heroSub:'Marsiqo Group builds intelligent tools for online sellers — analyze products, create content and sell smarter.', heroCard1:'Enter a product — get a potential, risk and margin score in seconds.', heroCard2:'Enter a topic — get 5 ready video scripts with hooks and hashtags.',
     heroBtnP:'Try Marsi for free', heroBtnS:'See products →',
     quote:'The best way to predict the future is to create it.',
     productsLabel:'Our products', productsTitle:'Two tools.<br><em>One ecosystem.</em>',
@@ -528,7 +569,7 @@ var T = {
     navCta:'Marsi testen →', mobCta:'Marsi testen →',
     badge:'Marsiqo Group · KI für E-Commerce',
     heroTitle:'KI-Tools<br>für <span class="grad">E-Commerce</span>',
-    heroSub:'Marsiqo Group entwickelt intelligente Tools für Online-Verkäufer — analysiere Produkte, erstelle Content und verkaufe cleverer.',
+    heroSub:'Marsiqo Group entwickelt intelligente Tools für Online-Verkäufer — analysiere Produkte, erstelle Content und verkaufe cleverer.', heroCard1:'Gib ein Produkt ein — erhalte in Sekunden eine Bewertung von Potenzial, Risiko und Marge.', heroCard2:'Gib ein Thema ein — erhalte 5 fertige Videoskripte mit Hooks und Hashtags.',
     heroBtnP:'Marsi kostenlos testen', heroBtnS:'Produkte ansehen →',
     quote:'Der beste Weg, die Zukunft vorherzusagen, ist, sie zu gestalten.',
     productsLabel:'Unsere Produkte', productsTitle:'Zwei Tools.<br><em>Ein Ökosystem.</em>',
@@ -572,7 +613,7 @@ var currentLang = 'pl';
 function setLang(lang) {
   currentLang = lang;
   var t = T[lang];
-  var ids = ['navHome','navProducts','navMission','navFounder','badge','heroSub','heroBtnP','heroBtnS','quote','productsLabel','productsSub','marsiTag','marsiPriceLabel','marsiPrice','marsiPriceSub','marsiDesc','mf1','mf2','mf3','mf4','mf5','mf6','marsiBtnOpen','marsiNote','studioTag','studioPriceLabel','studioDesc','sf1','sf2','sf3','sf4','sf5','sf6','studioBtnOpen','studioNote','missionLabel','missionBig','missionIntro','mc1title','mc1text','mc2title','mc2text','mc3title','mc3text','futureTitle','tl1title','tl1text','tl2title','tl2text','tl3title','tl3text','tl4title','tl4text','tl5title','tl5text','founderLabel','founderRole','founderTag','founderQuote','storyTitle','sp1','sp2','sp3','sp4','v1name','v1desc','v2name','v2desc','v3name','v3desc','legal1','legal2','legal3'];
+  var ids = ['navHome','heroCard1','heroCard2','navProducts','navMission','navFounder','badge','heroSub','heroBtnP','heroBtnS','quote','productsLabel','productsSub','marsiTag','marsiPriceLabel','marsiPrice','marsiPriceSub','marsiDesc','mf1','mf2','mf3','mf4','mf5','mf6','marsiBtnOpen','marsiNote','studioTag','studioPriceLabel','studioDesc','sf1','sf2','sf3','sf4','sf5','sf6','studioBtnOpen','studioNote','missionLabel','missionBig','missionIntro','mc1title','mc1text','mc2title','mc2text','mc3title','mc3text','futureTitle','tl1title','tl1text','tl2title','tl2text','tl3title','tl3text','tl4title','tl4text','tl5title','tl5text','founderLabel','founderRole','founderTag','founderQuote','storyTitle','sp1','sp2','sp3','sp4','v1name','v1desc','v2name','v2desc','v3name','v3desc','legal1','legal2','legal3'];
   ids.forEach(function(id) {
     var el = document.getElementById('t-' + id);
     if (el && t[id]) el.innerHTML = t[id];
