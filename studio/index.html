@@ -345,10 +345,10 @@
     <div class="splash-name">Marsiqo <span>Studio</span></div>
     <div class="splash-tagline">by Marsiqo Group</div>
     <div class="splash-desc">
-      Wpisz produkt lub pomysł —<br>dostań 5 gotowych skryptów wideo<br>z hookiem, hashtagami i rankingiem.
+      Wpisz produkt lub pomysł —<br>dostań 3 gotowych skryptów wideo<br>z hookiem, hashtagami i rankingiem.
     </div>
     <button class="splash-btn" onclick="goTo('home')">Zacznij tworzyć ✨</button>
-    <div class="splash-footer">beta v0.1 · by Marsiqo Group</div>
+    <div class="splash-footer"> v0.1 · by Marsiqo Group</div>
   </div>
  
   <!-- HOME -->
@@ -370,7 +370,7 @@
  
     <div class="hero">
       <div class="hero-title">Content który<br><span>zatrzymuje scroll</span></div>
-      <div class="hero-sub">Wpisz temat — Marsi napisze 5 skryptów z hookiem, hashtagami i oceną wiralowości.</div>
+      <div class="hero-sub">Wpisz temat — Marsi napisze 3 skryptów z hookiem, hashtagami i oceną wiralowości.</div>
     </div>
  
     <div class="api-card">
@@ -381,7 +381,7 @@
  
     <div class="input-card">
       <label class="field-lbl">🎯 Temat / Produkt / Pomysł</label>
-      <input type="text" class="field-in" id="productInput" placeholder="np. Electric Water Gun, porady na TikTok..." />
+      <input type="text" class="field-in" id="productInput" placeholder="np. produkt, porady na TikTok..." />
       <div style="margin-top:12px;">
         <label class="field-lbl">🌍 Język</label>
         <div class="lang-row">
@@ -391,7 +391,7 @@
       </div>
     </div>
  
-    <button class="gen-btn" id="generateBtn" onclick="generate()">✨ Generuj 5 skryptów</button>
+    <button class="gen-btn" id="generateBtn" onclick="generate()">✨ Generuj 3 skryptów</button>
  
     <div class="loading-wrap" id="loading">
       <div class="ld"></div><div class="ld"></div><div class="ld"></div>
@@ -404,7 +404,7 @@
     <div class="res-header">
       <div class="res-back" onclick="goTo('home')">←</div>
       <div class="res-title">Twoje skrypty</div>
-      <div class="res-badge" id="resCount">10 skryptów</div>
+      <div class="res-badge" id="resCount">3 skryptów</div>
     </div>
     <div id="scriptsList"></div>
   </div>
@@ -413,7 +413,7 @@
  
 <script>
 var selectedLang = 'PL';
-var LIMIT = 5;
+var LIMIT = 3;
 var RESET_HOURS = 2;
  
 function getCredits() {
@@ -530,10 +530,10 @@ async function generate() {
 }
  
 function renderScripts(scripts) {
-  var FREE_LIMIT = 5;
+  var FREE_LIMIT = 3;
   var html = '';
  
-  for (var i = 0; i < Math.min(scripts.length, 5); i++) {
+  for (var i = 0; i < Math.min(scripts.length, 3); i++) {
     var s = scripts[i];
     var locked = i >= FREE_LIMIT && creditsLeft <= 0;
     var score = parseInt(s.hook_score) || 0;
@@ -570,7 +570,7 @@ function renderScripts(scripts) {
   }
  
   document.getElementById('scriptsList').innerHTML = html;
-  document.getElementById('resCount').textContent = scripts.length + '/5 skryptów';
+  document.getElementById('resCount').textContent = scripts.length + '/3 skryptów';
 }
  
 function copyScript(i) {
