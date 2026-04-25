@@ -239,7 +239,7 @@
         </div>
         <div style="font-size:13px;font-weight:600;color:#e8ff47;margin-bottom:6px;">Marsi</div>
         <div style="font-size:11px;color:#8878bb;line-height:1.7;" id="t-heroCard1">Wpisz produkt — dostań ocenę potencjału, ryzyka i marży w kilka sekund.</div>
-        <div style="margin-top:12px;background:#e8ff47;color:#000;border-radius:8px;padding:8px 14px;font-size:11px;font-weight:700;text-align:center;">Otwórz Marsi →</div>
+        <div style="margin-top:12px;background:#e8ff47;color:#000;border-radius:8px;padding:8px 14px;font-size:11px;font-weight:700;text-align:center;" id="t-heroMarsiBtn">Otwórz Marsi →</div>
       </a>
 
       <!-- Karta Studio -->
@@ -261,12 +261,12 @@
         </div>
         <div style="font-size:13px;font-weight:600;color:#c084fc;margin-bottom:6px;">Marsiqo Studio</div>
         <div style="font-size:11px;color:#8878bb;line-height:1.7;" id="t-heroCard2">Wpisz temat — dostań 5 gotowych skryptów wideo z hookiem i hashtagami.</div>
-        <div style="margin-top:12px;background:linear-gradient(135deg,#c084fc,#f9a8d4);color:#fff;border-radius:8px;padding:8px 14px;font-size:11px;font-weight:700;text-align:center;">Otwórz Studio →</div>
+        <div style="margin-top:12px;background:linear-gradient(135deg,#c084fc,#f9a8d4);color:#fff;border-radius:8px;padding:8px 14px;font-size:11px;font-weight:700;text-align:center;" id="t-heroStudioBtn">Otwórz Studio →</div>
       </a>
     </div>
     <div class="hero-btns">
       
-      <button class="btn-ghost" onclick="showPage('products')" id="t-heroBtnSecondary">Zobacz produkty →</button>
+      <button class="btn-ghost" onclick="showPage('products')" id="t-heroBtnS">Zobacz produkty →</button>
     </div>
     <div style="max-width:600px;margin:0 auto;padding:32px 36px;background:rgba(192,132,252,0.06);border:1px solid rgba(192,132,252,0.15);border-radius:20px;position:relative;overflow:hidden;">
       <div style="position:absolute;top:-10px;left:20px;font-size:80px;color:var(--p1);opacity:0.08;font-family:'Playfair Display',serif;line-height:1;">&ldquo;</div>
@@ -495,7 +495,7 @@ var T = {
     marsiTag:'● Live', marsiPriceLabel:'Limit', marsiPrice:'10 / 24h', marsiPriceSub:'reset co 24 godziny',
     marsiDesc:'Agent AI który analizuje produkty e-commerce w kilka sekund. Wpisujesz nazwę produktu — Marsi ocenia potencjał rynkowy, ryzyko, marżę i daje konkretną rekomendację czy warto sprzedawać.',
     mf1:'Analiza potencjału sprzedaży', mf2:'Ocena ryzyka rynkowego', mf3:'Analiza marży i modelu', mf4:'Konkretna rekomendacja', mf5:'Historia analiz', mf6:'Język polski',
-    marsiBtnOpen:'Otwórz Marsi →', marsiNote:'10 analiz co 24h · bezpłatnie',
+    marsiBtnOpen:'Otwórz Marsi →', heroMarsiBtn:'Otwórz Marsi →', heroStudioBtn:'Otwórz Studio →', marsiNote:'10 analiz co 24h · bezpłatnie',
     studioTag:'● Live', studioPriceLabel:'Limit',
     studioDesc:'Generator skryptów wideo AI dla TikTok i Instagram Reels. Wpisujesz produkt lub pomysł — dostajesz 5 gotowych skryptów z chwytliwym hookiem, gotowymi hashtagami, oceną wiralowości i sugestią muzyki.',
     sf1:'5 skryptów wideo na raz', sf2:'Hook ranking 🔥 (ocena 1-10)', sf3:'Gotowe hashtagi do każdego skryptu', sf4:'Sugestie muzyki do wideo', sf5:'5 skryptów co 2 godziny', sf6:'Polski i angielski',
@@ -537,7 +537,7 @@ var T = {
     marsiTag:'● Live', marsiPriceLabel:'Limit', marsiPrice:'10 / 24h', marsiPriceSub:'reset every 24 hours',
     marsiDesc:'AI agent that analyzes e-commerce products in seconds. Enter a product name — Marsi evaluates market potential, risk, margin and gives a concrete recommendation on whether to sell.',
     mf1:'Sales potential analysis', mf2:'Market risk assessment', mf3:'Margin & model analysis', mf4:'Concrete recommendation', mf5:'Analysis history', mf6:'Polish language',
-    marsiBtnOpen:'Open Marsi →', marsiNote:'',
+    marsiBtnOpen:'Open Marsi →', heroMarsiBtn:'Open Marsi →', heroStudioBtn:'Open Studio →', marsiNote:'',
     studioTag:'● Live', studioPriceLabel:'Limit',
     studioDesc:'AI video script generator for TikTok and Instagram Reels. Enter a product or idea — get 5 ready scripts with a catchy hook, hashtags, virality score and music suggestion.',
     sf1:'5 video scripts at once', sf2:'Hook ranking 🔥 (score 1-10)', sf3:'Ready hashtags for each script', sf4:'Music suggestions', sf5:'5 scripts every 2 hours', sf6:'Polish and English',
@@ -579,7 +579,7 @@ var T = {
     marsiTag:'● Live', marsiPriceLabel:'Limit', marsiPrice:'10 / 24h', marsiPriceSub:'Reset alle 24 Stunden',
     marsiDesc:'KI-Agent der E-Commerce-Produkte in Sekunden analysiert. Du gibst einen Produktnamen ein — Marsi bewertet Marktpotenzial, Risiko, Marge und gibt eine konkrete Empfehlung.',
     mf1:'Verkaufspotenzialanalyse', mf2:'Marktrisikobewertung', mf3:'Margen- und Modellanalyse', mf4:'Konkrete Empfehlung', mf5:'Analyseverlauf', mf6:'Polnische Sprache',
-    marsiBtnOpen:'Marsi öffnen →', marsiNote:'',
+    marsiBtnOpen:'Marsi öffnen →', heroMarsiBtn:'Marsi öffnen →', heroStudioBtn:'Studio öffnen →', marsiNote:'',
     studioTag:'● Live', studioPriceLabel:'Limit',
     studioDesc:'KI-Videoskript-Generator für TikTok und Instagram Reels. Du gibst ein Produkt oder eine Idee ein — du bekommst 5 fertige Skripte mit einem packenden Hook, Hashtags, Viralitätsbewertung und Musikvorschlag.',
     sf1:'5 Videoskripte auf einmal', sf2:'Hook-Ranking 🔥 (Bewertung 1-10)', sf3:'Fertige Hashtags für jedes Skript', sf4:'Musikvorschläge', sf5:'5 Skripte alle 2 Stunden', sf6:'Polnisch und Englisch',
@@ -615,7 +615,7 @@ var currentLang = 'pl';
 function setLang(lang) {
   currentLang = lang;
   var t = T[lang];
-  var ids = ['navHome','heroCard1','heroCard2','navProducts','navMission','navFounder','badge','heroSub','heroBtnP','heroBtnS','quote','productsLabel','productsSub','marsiTag','marsiPriceLabel','marsiPrice','marsiPriceSub','marsiDesc','mf1','mf2','mf3','mf4','mf5','mf6','marsiBtnOpen','marsiNote','studioTag','studioPriceLabel','studioDesc','sf1','sf2','sf3','sf4','sf5','sf6','studioBtnOpen','studioNote','missionLabel','missionBig','missionIntro','mc1title','mc1text','mc2title','mc2text','mc3title','mc3text','futureTitle','tl1title','tl1text','tl2title','tl2text','tl3title','tl3text','tl4title','tl4text','tl5title','tl5text','founderLabel','founderRole','founderTag','founderQuote','storyTitle','sp1','sp2','sp3','sp4','v1name','v1desc','v2name','v2desc','v3name','v3desc','legal1','legal2','legal3'];
+  var ids = ['navHome','heroCard1','heroCard2','navProducts','navMission','navFounder','badge','heroSub','heroBtnP','heroBtnS','quote','productsLabel','productsSub','marsiTag','marsiPriceLabel','marsiPrice','marsiPriceSub','marsiDesc','mf1','mf2','mf3','mf4','mf5','mf6','marsiBtnOpen','marsiNote','heroMarsiBtn','heroStudioBtn','studioTag','studioPriceLabel','studioDesc','sf1','sf2','sf3','sf4','sf5','sf6','studioBtnOpen','studioNote','missionLabel','missionBig','missionIntro','mc1title','mc1text','mc2title','mc2text','mc3title','mc3text','futureTitle','tl1title','tl1text','tl2title','tl2text','tl3title','tl3text','tl4title','tl4text','tl5title','tl5text','founderLabel','founderRole','founderTag','founderQuote','storyTitle','sp1','sp2','sp3','sp4','v1name','v1desc','v2name','v2desc','v3name','v3desc','legal1','legal2','legal3'];
   ids.forEach(function(id) {
     var el = document.getElementById('t-' + id);
     if (el && t[id]) el.innerHTML = t[id];
