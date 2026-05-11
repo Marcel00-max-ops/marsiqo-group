@@ -19,12 +19,14 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body { 
             background: var(--bg); 
             color: var(--text); 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            overflow: hidden;
-            height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto; /* Poprawka scrolla na telefonie */
+            min-height: 100vh;
         }
 
         /* --- ANIMOWANE TŁO CANDY PASTEL --- */
@@ -90,10 +92,18 @@
         .lang-btn.active { background: #fff; color: #000; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
         /* --- SPA SEKCJE --- */
-        main { width: 100%; height: 100vh; position: relative; }
+        main { width: 100%; min-height: 100vh; position: relative; padding-top: 75px; }
+        
         section { 
-            position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center;
-            padding: 80px 40px; max-width: 1100px; margin: 0 auto; text-align: center;
+            position: relative; /* Zmienione z absolute dla lepszego scrolla */
+            display: none; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
+            padding: 60px 20px; 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            text-align: center;
             opacity: 0;
         }
         section.active { display: flex; opacity: 1; animation: sectionIn 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
@@ -131,7 +141,8 @@
         @media (max-width: 768px) {
             .grid { grid-template-columns: 1fr; }
             .nav-links { display: none; }
-            h1 { font-size: 45px; }
+            h1 { font-size: 42px; }
+            section { padding: 40px 20px; }
         }
     </style>
 </head>
@@ -139,8 +150,7 @@
     <div class="bg-pastels"></div>
 
     <div id="intro-overlay">
-        <div class="intro-logo">MARSIIQO GROUP</div>
-    </div>
+        <div class="intro-logo">MARSIQO GROUP</div> </div>
 
     <nav id="navbar">
         <div class="nav-content">
@@ -207,10 +217,7 @@
     <script>
         const translations = {
             pl: {
-                nl_home: "Start",
-                nl_products: "System",
-                nl_mission: "Wizja",
-                nl_founder: "Founder",
+                nl_home: "Start", nl_products: "System", nl_mission: "Wizja", nl_founder: "Founder",
                 h1: "Inteligencja operacyjna.<br>Dla e-commerce.", 
                 p: "Budujemy autonomiczne systemy przyszłości, które skalują sprzedaż i chronią Twój biznes.",
                 btn: "Odkryj System", 
@@ -219,15 +226,11 @@
                 ph: "System Operacyjny.", 
                 pc1h: "Marsiqo Studio", pc1p: "Pełna automatyzacja obecności w social media i kreacji reklamowej.",
                 pc2h: "Marsiqo Scout", pc2p: "System optymalizacji marży i zarządzania stockiem nowej ery.",
-                mh: "Misja Marsiqo.", 
-                mp: "Wierzymy, że AI to fundament, który daje średnim sprzedawcom przewagę korporacyjną.",
+                mh: "Misja Marsiqo.", mp: "Wierzymy, że AI to fundament, który daje średnim sprzedawcom przewagę korporacyjną.",
                 fh: "The Founder.", fname: "Marcel", fdesc: "Inicjator Marsiqo Group. Łączę technologię z realnymi potrzebami rynku e-commerce."
             },
             en: {
-                nl_home: "Home",
-                nl_products: "System",
-                nl_mission: "Vision",
-                nl_founder: "Founder",
+                nl_home: "Home", nl_products: "System", nl_mission: "Vision", nl_founder: "Founder",
                 h1: "Operating Intelligence.<br>For e-commerce.", 
                 p: "We build autonomous systems of the future that scale sales and protect your business.",
                 btn: "Explore System", 
@@ -236,22 +239,17 @@
                 ph: "Operating System.", 
                 pc1h: "Marsiqo Studio", pc1p: "Full social media presence and ad creation automation.",
                 pc2h: "Marsiqo Scout", pc2p: "New era margin and stock management optimization system.",
-                mh: "Marsiqo Mission.", 
-                mp: "We believe AI is a foundation that gives medium sellers a corporate advantage.",
+                mh: "Marsiqo Mission.", mp: "We believe AI is a foundation that gives medium sellers a corporate advantage.",
                 fh: "The Founder.", fname: "Marcel", fdesc: "Founder of Marsiqo Group. Bridging technology with real e-commerce market needs."
             }
         };
 
         function setLang(lang) {
             const t = translations[lang];
-            
-            // Tłumaczenie nawigacji
             document.getElementById('t-nl-home').innerText = t.nl_home;
             document.getElementById('t-nl-products').innerText = t.nl_products;
             document.getElementById('t-nl-mission').innerText = t.nl_mission;
             document.getElementById('t-nl-founder').innerText = t.nl_founder;
-
-            // Tłumaczenie treści
             document.getElementById('t-h1').innerHTML = t.h1;
             document.getElementById('t-p').innerText = t.p;
             document.getElementById('t-btn').innerText = t.btn;
@@ -269,7 +267,6 @@
             document.getElementById('t-f-h').innerText = t.fh;
             document.getElementById('t-f-name').innerText = t.fname;
             document.getElementById('t-f-desc').innerText = t.fdesc;
-            
             document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('btn-' + lang).classList.add('active');
         }
@@ -296,10 +293,12 @@
 
                 const target = document.getElementById(id);
                 target.style.display = 'flex';
-                // Trigger reflow
-                target.offsetHeight; 
-                target.classList.add('active');
-                target.style.opacity = '1';
+                window.scrollTo(0,0); // Reset scrolla przy zmianie strony
+                
+                setTimeout(() => {
+                    target.classList.add('active');
+                    target.style.opacity = '1';
+                }, 50);
                 
                 document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
                 const link = document.getElementById('nl-' + id);
