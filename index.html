@@ -94,8 +94,9 @@
         section { 
             position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center;
             padding: 80px 40px; max-width: 1100px; margin: 0 auto; text-align: center;
+            opacity: 0;
         }
-        section.active { display: flex; animation: sectionIn 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+        section.active { display: flex; opacity: 1; animation: sectionIn 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
 
         @keyframes sectionIn {
             from { opacity: 0; transform: translateY(30px) scale(0.97); }
@@ -138,17 +139,17 @@
     <div class="bg-pastels"></div>
 
     <div id="intro-overlay">
-        <div class="intro-logo">MARSIQO GROUP</div>
+        <div class="intro-logo">MARSIIQO GROUP</div>
     </div>
 
     <nav id="navbar">
         <div class="nav-content">
             <div class="logo" onclick="showPage('home')">MARSIQO.</div>
             <div class="nav-links">
-                <span class="nav-link active" id="nl-home" onclick="showPage('home')">Start</span>
-                <span class="nav-link" id="nl-products" onclick="showPage('products')">System</span>
-                <span class="nav-link" id="nl-mission" onclick="showPage('mission')">Wizja</span>
-                <span class="nav-link" id="nl-founder" onclick="showPage('founder')">Founder</span>
+                <span class="nav-link active" id="nl-home" onclick="showPage('home')"><span id="t-nl-home">Start</span></span>
+                <span class="nav-link" id="nl-products" onclick="showPage('products')"><span id="t-nl-products">System</span></span>
+                <span class="nav-link" id="nl-mission" onclick="showPage('mission')"><span id="t-nl-mission">Wizja</span></span>
+                <span class="nav-link" id="nl-founder" onclick="showPage('founder')"><span id="t-nl-founder">Founder</span></span>
                 <div class="lang-control">
                     <button class="lang-btn active" id="btn-pl" onclick="setLang('pl')">PL</button>
                     <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
@@ -206,6 +207,10 @@
     <script>
         const translations = {
             pl: {
+                nl_home: "Start",
+                nl_products: "System",
+                nl_mission: "Wizja",
+                nl_founder: "Founder",
                 h1: "Inteligencja operacyjna.<br>Dla e-commerce.", 
                 p: "Budujemy autonomiczne systemy przyszłości, które skalują sprzedaż i chronią Twój biznes.",
                 btn: "Odkryj System", 
@@ -219,6 +224,10 @@
                 fh: "The Founder.", fname: "Marcel", fdesc: "Inicjator Marsiqo Group. Łączę technologię z realnymi potrzebami rynku e-commerce."
             },
             en: {
+                nl_home: "Home",
+                nl_products: "System",
+                nl_mission: "Vision",
+                nl_founder: "Founder",
                 h1: "Operating Intelligence.<br>For e-commerce.", 
                 p: "We build autonomous systems of the future that scale sales and protect your business.",
                 btn: "Explore System", 
@@ -235,6 +244,14 @@
 
         function setLang(lang) {
             const t = translations[lang];
+            
+            // Tłumaczenie nawigacji
+            document.getElementById('t-nl-home').innerText = t.nl_home;
+            document.getElementById('t-nl-products').innerText = t.nl_products;
+            document.getElementById('t-nl-mission').innerText = t.nl_mission;
+            document.getElementById('t-nl-founder').innerText = t.nl_founder;
+
+            // Tłumaczenie treści
             document.getElementById('t-h1').innerHTML = t.h1;
             document.getElementById('t-p').innerText = t.p;
             document.getElementById('t-btn').innerText = t.btn;
@@ -259,9 +276,10 @@
 
         window.onload = () => {
             setTimeout(() => {
-                document.getElementById('intro-overlay').style.opacity = '0';
+                const intro = document.getElementById('intro-overlay');
+                intro.style.opacity = '0';
                 setTimeout(() => {
-                    document.getElementById('intro-overlay').style.display = 'none';
+                    intro.style.display = 'none';
                     document.getElementById('navbar').style.opacity = '1';
                 }, 800);
             }, 2000);
@@ -270,10 +288,19 @@
         function showPage(id) {
             const current = document.querySelector('section.active');
             if (current.id === id) return;
+            
             current.style.opacity = '0';
             setTimeout(() => {
                 current.classList.remove('active');
-                document.getElementById(id).classList.add('active');
+                current.style.display = 'none';
+
+                const target = document.getElementById(id);
+                target.style.display = 'flex';
+                // Trigger reflow
+                target.offsetHeight; 
+                target.classList.add('active');
+                target.style.opacity = '1';
+                
                 document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
                 const link = document.getElementById('nl-' + id);
                 if (link) link.classList.add('active');
