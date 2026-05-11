@@ -1,691 +1,284 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marsiqo Group — AI for E-Commerce</title>
-<script defer src="/_vercel/insights/script.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --bg:#06060f;--surface:rgba(255,255,255,0.04);--surface2:rgba(255,255,255,0.07);
-  --p1:#c084fc;--p2:#9b59f5;--r1:#f9a8d4;--r2:#fb7185;--y1:#e8ff47;--g1:#4ade80;
-  --text:#f0eeff;--muted:rgba(240,238,255,0.45);--border:rgba(255,255,255,0.08);
-  --border-p:rgba(192,132,252,0.25);
-}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;min-height:100vh;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marsiqo Group — Inteligencja Operacyjna</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #1d1d1f;
+            --muted: #4b4b4f;
+            --c-blue: #a2d2ff;
+            --c-pink: #ffafcc;
+            --c-purple: #cdb4db;
+            --c-yellow: #ffef96;
+            --c-mint: #b9fbc0;
+        }
 
-/* GRID BG */
-body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:linear-gradient(rgba(192,132,252,0.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(192,132,252,0.04) 1px,transparent 1px);
-  background-size:48px 48px;
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--bg); 
+            color: var(--text); 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            overflow: hidden;
+            height: 100vh;
+        }
 
-/* BLOBS */
-.blob{position:fixed;border-radius:50%;filter:blur(100px);opacity:0.15;pointer-events:none;z-index:0;}
-.blob1{width:700px;height:700px;background:radial-gradient(circle,#c084fc,transparent);top:-200px;right:-200px;animation:bfloat 12s ease-in-out infinite;}
-.blob2{width:500px;height:500px;background:radial-gradient(circle,#4ade80,transparent);bottom:-100px;left:-150px;animation:bfloat 9s ease-in-out 3s infinite;}
-.blob3{width:400px;height:400px;background:radial-gradient(circle,#f9a8d4,transparent);top:40%;left:30%;animation:bfloat 15s ease-in-out 1s infinite;}
-@keyframes bfloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(20px,-30px) scale(1.05)}66%{transform:translate(-15px,15px) scale(0.97)}}
+        /* --- ANIMOWANE TŁO CANDY PASTEL --- */
+        .bg-pastels {
+            position: fixed;
+            inset: -50%;
+            z-index: -1;
+            background: #fff;
+            background-image: 
+                radial-gradient(circle at 20% 30%, var(--c-blue) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, var(--c-purple) 0%, transparent 40%),
+                radial-gradient(circle at 40% 70%, var(--c-pink) 0%, transparent 40%),
+                radial-gradient(circle at 70% 80%, var(--c-yellow) 0%, transparent 35%),
+                radial-gradient(circle at 50% 50%, var(--c-mint) 0%, transparent 30%);
+            filter: blur(70px);
+            opacity: 0.9;
+            animation: bgRotate 20s infinite alternate ease-in-out;
+        }
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;
-  display:flex;align-items:center;justify-content:space-between;padding:0 48px;
-  background:rgba(6,6,15,0.7);backdrop-filter:blur(24px);
-  border-bottom:1px solid var(--border);}
-.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none;}
-.nav-logo-mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#c084fc,#4ade80);
-  display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#000;font-family:'Playfair Display',serif;font-style:italic;}
-.nav-logo-text{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;
-  background:linear-gradient(90deg,#c084fc,#f9a8d4,#e8ff47,#c084fc);
-  background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  animation:shimmer 5s linear infinite;}
-@keyframes shimmer{from{background-position:0% center}to{background-position:300% center}}
-.nav-sub{font-size:10px;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;margin-top:-2px;}
-.nav-center{display:flex;gap:4px;}
-.nav-link{color:var(--muted);font-size:13px;font-weight:500;padding:6px 14px;border-radius:8px;
-  cursor:pointer;border:none;background:transparent;font-family:'Inter',sans-serif;transition:all 0.2s;}
-.nav-link:hover,.nav-link.active{color:var(--text);background:rgba(192,132,252,0.1);}
-.nav-right{display:flex;align-items:center;gap:8px;}
-.lang-btns{display:flex;gap:3px;}
-.lang-btn{background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:6px;
-  padding:4px 10px;font-size:11px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;}
-.lang-btn.active{background:rgba(192,132,252,0.15);color:var(--p1);border-color:var(--border-p);}
-.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
-.hbg span{width:22px;height:1.5px;background:var(--text);border-radius:2px;transition:all 0.3s;}
-.mob-menu{display:none;position:fixed;top:60px;left:0;right:0;
-  background:rgba(6,6,15,0.97);backdrop-filter:blur(24px);
-  border-bottom:1px solid var(--border);padding:16px;z-index:199;flex-direction:column;gap:4px;}
-.mob-menu.open{display:flex;}
-.mob-link{color:var(--muted);font-size:15px;padding:12px 16px;border-radius:10px;cursor:pointer;
-  border:none;background:transparent;font-family:Inter,sans-serif;text-align:left;width:100%;transition:all 0.2s;}
-.mob-link:hover{color:var(--text);background:rgba(192,132,252,0.08);}
-@media(max-width:768px){
-  nav{padding:0 16px;}
-  .nav-center{display:none!important;}
-  .lang-btns{display:none!important;}
-  .hbg{display:flex!important;}
-}
+        @keyframes bgRotate {
+            0% { transform: rotate(0deg) scale(1); }
+            100% { transform: rotate(15deg) scale(1.1); }
+        }
 
-/* PAGES */
-.page{display:none;min-height:100vh;padding-top:60px;position:relative;z-index:1;}
-.page.active{display:block;}
+        /* --- MINIMALISTYCZNE INTRO --- */
+        #intro-overlay {
+            position: fixed; inset: 0; background: #fff;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 10000; transition: opacity 0.8s ease-in-out;
+        }
+        .intro-logo {
+            font-size: 40px; font-weight: 800; letter-spacing: -2px;
+            background: linear-gradient(45deg, #6366f1, #ec4899);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: introFade 2s forwards;
+        }
+        @keyframes introFade {
+            0% { opacity: 0; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.1); }
+        }
 
-/* ─── HOME HERO ─── */
-.hero{
-  min-height:calc(100vh - 60px);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:80px 48px 60px;text-align:center;position:relative;
-}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(192,132,252,0.08);border:1px solid var(--border-p);
-  border-radius:24px;padding:5px 16px;font-size:10px;color:var(--p1);
-  letter-spacing:0.16em;text-transform:uppercase;margin-bottom:32px;font-weight:500;
-}
-.badge-dot{width:5px;height:5px;background:var(--p1);border-radius:50%;animation:bdp 2s ease-in-out infinite;}
-@keyframes bdp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.3;transform:scale(0.6)}}
-.hero-title{
-  font-family:'Playfair Display',serif;font-size:clamp(52px,8vw,96px);font-weight:900;
-  line-height:0.95;letter-spacing:-0.03em;color:var(--text);margin-bottom:24px;
-}
-.hero-title .grad{
-  background:linear-gradient(135deg,var(--p1),var(--r1),var(--y1),var(--g1));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;font-style:italic;
-}
-.hero-sub{font-size:18px;color:var(--muted);line-height:1.7;max-width:560px;margin:0 auto 48px;}
-.hero-sub strong{color:var(--text);font-weight:500;}
+        /* --- NAWIGACJA --- */
+        nav {
+            position: fixed; top: 0; width: 100%; height: 75px;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 1000; background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(30px); border-bottom: 1px solid rgba(0,0,0,0.05);
+            opacity: 0; transition: 1s ease;
+        }
+        .nav-content { width: 100%; max-width: 1100px; display: flex; justify-content: space-between; align-items: center; padding: 0 30px; }
+        .logo { font-weight: 800; font-size: 22px; cursor: pointer; letter-spacing: -1px; }
+        
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-link { font-size: 13px; color: #1d1d1f; cursor: pointer; transition: 0.3s; font-weight: 700; text-transform: uppercase; }
+        .nav-link:hover, .nav-link.active { color: #ec4899; }
 
-/* PRODUCT CARDS */
-.hero-cards{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:56px;}
-.hcard{
-  width:210px;border-radius:16px;padding:22px 20px;text-align:left;text-decoration:none;
-  display:block;transition:all 0.3s ease;position:relative;overflow:hidden;
-  border:1px solid;
-}
-.hcard::before{
-  content:'';position:absolute;inset:0;opacity:0;
-  transition:opacity 0.3s;border-radius:16px;
-}
-.hcard:hover::before{opacity:1;}
-.hcard:hover{transform:translateY(-4px);}
-.hcard-marsi{background:rgba(232,255,71,0.05);border-color:rgba(232,255,71,0.15);}
-.hcard-marsi::before{background:radial-gradient(circle at 30% 30%,rgba(232,255,71,0.08),transparent 70%);}
-.hcard-marsi:hover{border-color:rgba(232,255,71,0.35);box-shadow:0 20px 60px rgba(232,255,71,0.08);}
-.hcard-studio{background:rgba(192,132,252,0.05);border-color:rgba(192,132,252,0.15);}
-.hcard-studio::before{background:radial-gradient(circle at 30% 30%,rgba(192,132,252,0.1),transparent 70%);}
-.hcard-studio:hover{border-color:rgba(192,132,252,0.4);box-shadow:0 20px 60px rgba(192,132,252,0.1);}
-.hcard-scout{background:rgba(74,222,128,0.05);border-color:rgba(74,222,128,0.15);}
-.hcard-scout::before{background:radial-gradient(circle at 30% 30%,rgba(74,222,128,0.08),transparent 70%);}
-.hcard-scout:hover{border-color:rgba(74,222,128,0.35);box-shadow:0 20px 60px rgba(74,222,128,0.08);}
-.hcard-top{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
-.hcard-icon{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;}
-.hcard-name{font-size:13px;font-weight:600;}
-.hcard-desc{font-size:11px;color:var(--muted);line-height:1.65;margin-bottom:16px;}
-.hcard-btn{font-size:10px;font-weight:700;padding:7px 14px;border-radius:7px;
-  text-align:center;letter-spacing:0.04em;transition:all 0.2s;}
+        .lang-control { display: flex; background: rgba(0,0,0,0.06); padding: 4px; border-radius: 14px; gap: 4px; }
+        .lang-btn {
+            font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 10px; border: none; cursor: pointer;
+            background: transparent; color: #555; transition: 0.3s;
+        }
+        .lang-btn.active { background: #fff; color: #000; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
-/* QUOTE */
-.hero-quote{
-  max-width:580px;margin:0 auto;
-  background:rgba(255,255,255,0.03);border:1px solid var(--border);
-  border-radius:20px;padding:28px 32px;position:relative;overflow:hidden;
-}
-.hero-quote::before{
-  content:'\201C';position:absolute;top:-16px;left:18px;
-  font-size:90px;color:var(--p1);opacity:0.08;font-family:'Playfair Display',serif;line-height:1;
-}
-.quote-text{
-  font-family:'Playfair Display',serif;font-size:18px;font-style:italic;
-  color:rgba(240,238,255,0.7);line-height:1.6;margin-bottom:12px;position:relative;z-index:1;
-}
-.quote-author{font-size:11px;color:var(--muted);letter-spacing:0.08em;}
+        /* --- SPA SEKCJE --- */
+        main { width: 100%; height: 100vh; position: relative; }
+        section { 
+            position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center;
+            padding: 80px 40px; max-width: 1100px; margin: 0 auto; text-align: center;
+        }
+        section.active { display: flex; animation: sectionIn 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
 
-/* ─── INNER PAGES ─── */
-.page-inner{max-width:1100px;margin:0 auto;padding:80px 48px;}
-.page-lbl{font-size:10px;color:var(--p1);letter-spacing:0.2em;text-transform:uppercase;font-weight:600;margin-bottom:12px;}
-.page-title{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,58px);font-weight:900;
-  color:var(--text);line-height:1.05;margin-bottom:14px;}
-.page-title em{font-style:italic;background:linear-gradient(135deg,var(--p1),var(--r1));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.page-sub{font-size:16px;color:var(--muted);line-height:1.75;max-width:560px;margin-bottom:56px;}
+        @keyframes sectionIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
 
-/* PRODUCT CARDS FULL */
-.fprod{
-  background:rgba(255,255,255,0.03);border:1px solid var(--border);
-  border-radius:24px;padding:44px;margin-bottom:20px;position:relative;overflow:hidden;
-  transition:all 0.35s ease;
-}
-.fprod::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
-.fprod.cm::before{background:linear-gradient(90deg,transparent,#e8ff47,transparent);}
-.fprod.cs::before{background:linear-gradient(90deg,transparent,#c084fc,#f9a8d4,transparent);}
-.fprod.csc::before{background:linear-gradient(90deg,transparent,#4ade80,#22d3ee,transparent);}
-.fprod.cm:hover{border-color:rgba(232,255,71,0.2);box-shadow:0 0 60px rgba(232,255,71,0.05);}
-.fprod.cs:hover{border-color:rgba(192,132,252,0.25);box-shadow:0 0 60px rgba(192,132,252,0.07);}
-.fprod.csc:hover{border-color:rgba(74,222,128,0.2);box-shadow:0 0 60px rgba(74,222,128,0.05);}
-.fp-glow{position:absolute;border-radius:50%;filter:blur(80px);opacity:0;pointer-events:none;transition:opacity 0.4s;top:-100px;right:-100px;width:300px;height:300px;}
-.fprod:hover .fp-glow{opacity:0.06;}
-.fprod.cm .fp-glow{background:#e8ff47;}
-.fprod.cs .fp-glow{background:#c084fc;}
-.fprod.csc .fp-glow{background:#4ade80;}
-.fptop{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:28px;flex-wrap:wrap;}
-.fpleft{display:flex;align-items:center;gap:18px;}
-.fp-ic{width:58px;height:58px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;}
-.fp-ic-m{background:rgba(232,255,71,0.08);border:1px solid rgba(232,255,71,0.2);}
-.fp-ic-s{background:rgba(192,132,252,0.08);border:1px solid rgba(192,132,252,0.2);}
-.fp-ic-sc{background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);}
-.fp-name{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--text);margin-bottom:5px;}
-.fp-tag{font-size:10px;padding:3px 10px;border-radius:5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;display:inline-block;}
-.fpt-live{background:rgba(74,222,128,0.1);color:#4ade80;border:1px solid rgba(74,222,128,0.2);}
-.fp-pbox{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:12px;padding:14px 20px;text-align:center;flex-shrink:0;}
-.fp-plbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:3px;}
-.fp-pval{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;line-height:1;margin-bottom:2px;}
-.fp-psub{font-size:9px;color:var(--muted);}
-.fp-desc{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:24px;max-width:680px;}
-.fp-feats{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:28px;}
-.fp-feat{display:flex;align-items:center;gap:9px;font-size:13px;color:rgba(240,238,255,0.7);}
-.fp-fd{width:4px;height:4px;border-radius:50%;flex-shrink:0;}
-.fd-y{background:#e8ff47;} .fd-p{background:#c084fc;} .fd-g{background:#4ade80;}
-.fp-btn{display:inline-block;border:none;border-radius:10px;padding:12px 26px;
-  font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;
-  text-decoration:none;transition:all 0.2s;}
-.fp-btn:hover{transform:translateY(-2px);}
-.fp-btn-m{background:rgba(232,255,71,0.15);color:#e8ff47;border:1px solid rgba(232,255,71,0.3);}
-.fp-btn-m:hover{background:rgba(232,255,71,0.25);}
-.fp-btn-s{background:rgba(192,132,252,0.15);color:#c084fc;border:1px solid rgba(192,132,252,0.3);}
-.fp-btn-s:hover{background:rgba(192,132,252,0.25);}
-.fp-btn-sc{background:rgba(74,222,128,0.15);color:#4ade80;border:1px solid rgba(74,222,128,0.3);}
-.fp-btn-sc:hover{background:rgba(74,222,128,0.25);}
+        /* --- TREŚĆ --- */
+        h1 { 
+            font-size: clamp(38px, 9vw, 85px); font-weight: 800; letter-spacing: -0.05em; line-height: 0.95; margin-bottom: 25px; 
+            color: #000;
+        }
+        .hero-p { font-size: 22px; color: var(--muted); max-width: 750px; margin-bottom: 45px; font-weight: 500; line-height: 1.3; }
 
-/* ─── MISSION ─── */
-.mission-hero{padding:80px 48px 48px;max-width:900px;margin:0 auto;}
-.mission-big{font-family:'Playfair Display',serif;font-size:clamp(34px,5vw,58px);
-  font-weight:900;color:var(--text);line-height:1.1;margin-bottom:28px;}
-.mission-big em{font-style:italic;background:linear-gradient(135deg,var(--p1),var(--g1));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.mission-intro{font-size:16px;color:var(--muted);line-height:1.8;max-width:620px;}
-.mcards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1100px;margin:0 auto;padding:0 48px 48px;}
-.mcard{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:18px;padding:26px;transition:all 0.3s;}
-.mcard:hover{border-color:var(--border-p);transform:translateY(-4px);}
-.mcard-icon{font-size:26px;margin-bottom:14px;}
-.mcard-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--text);margin-bottom:8px;}
-.mcard-text{font-size:13px;color:var(--muted);line-height:1.75;}
-.future-sec{max-width:1100px;margin:0 auto;padding:0 48px 60px;}
-.future-title{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,40px);
-  font-weight:700;color:var(--text);margin-bottom:36px;}
-.future-title em{font-style:italic;color:var(--p1);-webkit-text-fill-color:var(--p1);}
-.tl-item{display:flex;gap:24px;position:relative;}
-.tl-item:not(:last-child)::after{content:'';position:absolute;left:18px;top:44px;width:1px;height:100%;background:var(--border);}
-.tl-dot{width:38px;height:38px;border-radius:50%;background:rgba(192,132,252,0.1);
-  border:1px solid var(--border-p);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;z-index:1;}
-.tl-content{padding:0 0 36px;}
-.tl-year{font-size:10px;color:var(--p1);letter-spacing:0.14em;text-transform:uppercase;font-weight:600;margin-bottom:5px;}
-.tl-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px;}
-.tl-text{font-size:13px;color:var(--muted);line-height:1.7;}
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; width: 100%; }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.75); border: 1px solid rgba(255,255,255,0.5); border-radius: 35px; padding: 40px; text-align: left;
+            transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1); cursor: pointer;
+        }
+        .card:hover { 
+            transform: translateY(-10px); background: #fff;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06); 
+        }
+        .card h3 { font-size: 32px; margin-bottom: 12px; font-weight: 800; letter-spacing: -1px; }
+        
+        .btn-main {
+            background: #000; color: #fff; padding: 18px 40px; border-radius: 100px; font-weight: 800; 
+            text-decoration: none; display: inline-block; margin-bottom: 55px; transition: 0.4s;
+        }
+        .btn-main:hover { transform: scale(1.05); background: #ec4899; }
 
-/* ─── FOUNDER ─── */
-.founder-wrap{max-width:860px;margin:0 auto;padding:80px 48px;}
-.founder-top{display:flex;align-items:center;gap:36px;margin-bottom:52px;flex-wrap:wrap;}
-.founder-av{
-  width:110px;height:110px;border-radius:50%;flex-shrink:0;
-  background:linear-gradient(135deg,var(--p1),var(--g1));
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Playfair Display',serif;font-size:44px;font-weight:900;color:#000;
-  box-shadow:0 0 50px rgba(192,132,252,0.2);
-}
-.founder-name{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--text);margin-bottom:5px;}
-.founder-role{font-size:13px;color:var(--p1);font-weight:500;margin-bottom:10px;}
-.founder-tag{display:inline-flex;align-items:center;gap:6px;
-  background:rgba(192,132,252,0.06);border:1px solid var(--border);border-radius:20px;
-  padding:4px 12px;font-size:11px;color:var(--muted);}
-.founder-q{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:18px;
-  padding:28px;margin-bottom:36px;position:relative;overflow:hidden;}
-.founder-q::before{content:'\201C';position:absolute;top:-16px;left:16px;font-size:90px;
-  color:var(--p1);opacity:0.08;font-family:'Playfair Display',serif;line-height:1;}
-.qtext{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;
-  color:rgba(240,238,255,0.7);line-height:1.6;position:relative;z-index:1;}
-.story-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:18px;}
-.story-p{font-size:15px;color:var(--muted);line-height:1.9;margin-bottom:14px;}
-.story-p strong{color:var(--text);}
-.fvals{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px;}
-.fval{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center;transition:all 0.2s;}
-.fval:hover{border-color:var(--border-p);}
-.fval-icon{font-size:22px;margin-bottom:8px;}
-.fval-name{font-size:12px;font-weight:600;color:var(--text);margin-bottom:3px;}
-.fval-desc{font-size:11px;color:var(--muted);line-height:1.5;}
-
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(20px);transition:all 0.6s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
-
-/* FOOTER */
-footer{
-  border-top:1px solid var(--border);padding:24px 48px;
-  position:relative;z-index:1;
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
-}
-.f-logo{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;
-  background:linear-gradient(90deg,var(--p1),var(--r1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.f-copy{font-size:11px;color:var(--muted);}
-.f-links{display:flex;gap:18px;}
-.f-link{font-size:11px;color:var(--muted);text-decoration:none;transition:color 0.2s;}
-.f-link:hover{color:var(--text);}
-
-@media(max-width:768px){
-  .hero{padding:60px 20px 40px;}
-  .hero-cards{flex-direction:column;align-items:center;}
-  .hcard{width:100%;max-width:320px;}
-  .page-inner,.founder-wrap,.mission-hero{padding:60px 20px;}
-  .mcards,.future-sec{padding:0 20px 40px;}
-  .mcards{grid-template-columns:1fr;}
-  .fp-feats{grid-template-columns:1fr;}
-  .fptop{flex-direction:column;}
-  .fprod{padding:28px 20px;}
-  .fvals{grid-template-columns:1fr;}
-  footer{padding:18px 20px;flex-direction:column;text-align:center;}
-}
-</style>
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            h1 { font-size: 45px; }
+        }
+    </style>
 </head>
 <body>
-<div class="blob blob1"></div>
-<div class="blob blob2"></div>
-<div class="blob blob3"></div>
+    <div class="bg-pastels"></div>
 
-<nav>
-  <div class="nav-logo" onclick="showPage('home')">
-    <div class="nav-logo-mark">M</div>
-    <div>
-      <div class="nav-logo-text">Marsiqo Group</div>
-      <div class="nav-sub">AI for E-Commerce</div>
+    <div id="intro-overlay">
+        <div class="intro-logo">MARSIQO GROUP</div>
     </div>
-  </div>
-  <div class="nav-center">
-    <button class="nav-link active" id="nl-home" onclick="showPage('home')">Start</button>
-    <button class="nav-link" id="nl-products" onclick="showPage('products')">Produkty</button>
-    <button class="nav-link" id="nl-mission" onclick="showPage('mission')">Misja</button>
-    <button class="nav-link" id="nl-founder" onclick="showPage('founder')">Founder</button>
-  </div>
-  <div class="nav-right">
-    <div class="lang-btns">
-      <button class="lang-btn active" onclick="setLang('pl')">&#127477;&#127473; PL</button>
-      <button class="lang-btn" onclick="setLang('en')">&#127468;&#127463; EN</button>
-      <button class="lang-btn" onclick="setLang('de')">&#127465;&#127466; DE</button>
-    </div>
-    <div class="hbg" id="hbg" onclick="document.getElementById('mob').classList.toggle('open')">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
-</nav>
 
-<div class="mob-menu" id="mob">
-  <button class="mob-link" onclick="showPage('home');document.getElementById('mob').classList.remove('open')" id="ml-home">Start</button>
-  <button class="mob-link" onclick="showPage('products');document.getElementById('mob').classList.remove('open')" id="ml-products">Produkty</button>
-  <button class="mob-link" onclick="showPage('mission');document.getElementById('mob').classList.remove('open')" id="ml-mission">Misja</button>
-  <button class="mob-link" onclick="showPage('founder');document.getElementById('mob').classList.remove('open')" id="ml-founder">Founder</button>
-  <div style="display:flex;gap:6px;padding:8px 16px;">
-    <button class="lang-btn active" onclick="setLang('pl')">&#127477;&#127473;</button>
-    <button class="lang-btn" onclick="setLang('en')">&#127468;&#127463;</button>
-    <button class="lang-btn" onclick="setLang('de')">&#127465;&#127466;</button>
-  </div>
-</div>
-
-<!-- HOME -->
-<div class="page active" id="page-home">
-  <section class="hero">
-    <div class="hero-badge"><div class="badge-dot"></div><span id="t-badge">Marsiqo Group · AI for E-Commerce</span></div>
-    <h1 class="hero-title" id="t-heroTitle">Narzędzia AI<br>dla <span class="grad">e-commerce</span></h1>
-    <p class="hero-sub" id="t-heroSub">Marsiqo Group buduje inteligentne narzędzia dla biznesu online — <strong>analizuj produkty, planuj marketing i kupuj mądrze.</strong></p>
-</a>
-      <a href="https://marsiqo-studio.vercel.app" target="_blank" class="hcard hcard-studio">
-        <div class="hcard-top">
-          <div class="hcard-icon" style="background:rgba(192,132,252,0.1);border:1px solid rgba(192,132,252,0.2);">💡</div>
-          <div class="hcard-name" style="color:#c084fc;">Marsiqo Studio</div>
+    <nav id="navbar">
+        <div class="nav-content">
+            <div class="logo" onclick="showPage('home')">MARSIQO.</div>
+            <div class="nav-links">
+                <span class="nav-link active" id="nl-home" onclick="showPage('home')">Start</span>
+                <span class="nav-link" id="nl-products" onclick="showPage('products')">System</span>
+                <span class="nav-link" id="nl-mission" onclick="showPage('mission')">Wizja</span>
+                <span class="nav-link" id="nl-founder" onclick="showPage('founder')">Founder</span>
+                <div class="lang-control">
+                    <button class="lang-btn active" id="btn-pl" onclick="setLang('pl')">PL</button>
+                    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+                </div>
+            </div>
         </div>
-        <div class="hcard-desc" id="t-hc2">Opisz cel — dostaniesz konkretne pomysły na marketing i plan tygodnia.</div>
-        <div class="hcard-btn" style="background:rgba(192,132,252,0.12);color:#c084fc;border:1px solid rgba(192,132,252,0.25);" id="t-hb2">Otwórz Studio →</div>
-      
-    
-      <a href="https://marsiqo-scout.vercel.app" target="_blank" class="hcard hcard-scout">
-        <div class="hcard-top">
-          <div class="hcard-icon" style="background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.2);">🔍</div>
-          <div class="hcard-name" style="color:#4ade80;">Marsiqo Scout</div>
-        </div>
-        <div class="hcard-desc" id="t-hc3">Plan zakupowy: ile kupić, kiedy i skąd. BUY / WAIT / AVOID.</div>
-        <div class="hcard-btn" style="background:rgba(74,222,128,0.12);color:#4ade80;border:1px solid rgba(74,222,128,0.25);" id="t-hb3">Otwórz Scout →</div>
-      </a>
-    </div>
+    </nav>
 
-  
- 
+    <main>
+        <section class="active" id="home">
+            <h1 id="t-h1">Inteligencja operacyjna.<br>Dla e-commerce.</h1>
+            <p class="hero-p" id="t-p">Budujemy autonomiczne systemy przyszłości, które skalują sprzedaż i chronią Twój biznes.</p>
+            <a href="#" onclick="showPage('products')" class="btn-main" id="t-btn">Odkryj System</a>
+            
+            <div class="grid">
+                <div class="card" style="border-top: 6px solid var(--c-purple);" onclick="window.open('https://marsiqo-studio.vercel.app')">
+                    <h3 id="t-c1-h">Studio_</h3>
+                    <p id="t-c1-p">Twój kreatywny mózg AI. Od strategii po wiralowy content w kilka sekund.</p>
+                </div>
+                <div class="card" style="border-top: 6px solid var(--c-blue);" onclick="window.open('https://marsiqo-scout.vercel.app')">
+                    <h3 id="t-c2-h">Scout_</h3>
+                    <p id="t-c2-p">Analityka bez błędu. Precyzyjne dane, które mówią kiedy i co kupić.</p>
+                </div>
+            </div>
+        </section>
 
-<!-- PRODUCTS -->
-<div class="page" id="page-products">
-  <div class="page-inner">
-    <div class="page-lbl" id="t-prodLbl">Nasze produkty</div>
-    <h2 class="page-title" id="t-prodTitle">Trzy narzędzia.<br><em>Jeden ekosystem.</em></h2>
-    <p class="page-sub" id="t-prodSub">Każdy produkt rozwiązuje inny problem — razem tworzą kompletny system dla sprzedawcy e-commerce.</p>
- <div class="fprod cs reveal">
-      <div class="fp-glow"></div>
-      <div class="fptop">
-        <div class="fpleft">
-          <div class="fp-ic fp-ic-s">💡</div>
-          <div>
-            <div class="fp-name">Marsiqo Studio</div>
-            <div class="fp-tag fpt-live" id="t-stag">● Live</div>
-          </div>
-        </div>
-        <div class="fp-pbox">
-          <div class="fp-plbl" id="t-splbl">Limit</div>
-          <div class="fp-pval" style="color:#c084fc;">5 / 2h</div>
-          <div class="fp-psub" id="t-spsub">reset co 2 godziny</div>
-        </div>
-      </div>
-      <p class="fp-desc" id="t-sdesc">Asystent kreatywny dla Twojego biznesu. Opisz problem marketingowy — dostaniesz konkretne pomysły na content, strategie krok po kroku i plan tygodnia na social media.</p>
-      <div class="fp-feats">
-        <div class="fp-feat"><div class="fp-fd fd-p"></div><span id="t-sf1">Konkretne pomysły na content</span></div>
-        <div class="fp-feat"><div class="fp-fd fd-p"></div><span id="t-sf2">Plan tygodnia na social media</span></div>
-        <div class="fp-feat"><div class="fp-fd fd-p"></div><span id="t-sf3">Strategie marketingowe krok po kroku</span></div>
-        <div class="fp-feat"><div class="fp-fd fd-p"></div><span id="t-sf4">Działa dla każdej branży</span></div>
-        <div class="fp-feat"><div class="fp-fd fd-p"></div><span id="t-sf5">5 sesje co 2 godziny · bezpłatnie</span></div>
-        <div class="fp-feat"><div class="fp-fd fd-p"></div><span id="t-sf6">3 języki</span></div>
-      </div>
-      <a href="https://marsiqo-studio.vercel.app" target="_blank" class="fp-btn fp-btn-s" id="t-sopen">Otwórz Studio →</a>
-    </div>
+        <section id="products">
+            <h1 id="t-p-h">System Operacyjny.</h1>
+            <div class="grid">
+                <div class="card" style="border-left: 6px solid var(--c-pink);">
+                    <h3 id="t-p-c1-h">Marsiqo Studio</h3>
+                    <p id="t-p-c1-p">Pełna automatyzacja obecności w social media i kreacji reklamowej.</p>
+                </div>
+                <div class="card" style="border-left: 6px solid var(--c-yellow);">
+                    <h3 id="t-p-c2-h">Marsiqo Scout</h3>
+                    <p id="t-p-c2-p">System optymalizacji marży i zarządzania stockiem nowej ery.</p>
+                </div>
+            </div>
+        </section>
 
-    <div class="fprod csc reveal">
-      <div class="fp-glow"></div>
-      <div class="fptop">
-        <div class="fpleft">
-          <div class="fp-ic fp-ic-sc">🔍</div>
-          <div>
-            <div class="fp-name">Marsiqo Scout</div>
-            <div class="fp-tag fpt-live" id="t-sctag">● Live</div>
-          </div>
-        </div>
-        <div class="fp-pbox">
-          <div class="fp-plbl" id="t-scplbl">Limit</div>
-          <div class="fp-pval" style="color:#4ade80;">5 / 2h</div>
-          <div class="fp-psub" id="t-scpsub">reset co 2 godziny</div>
-        </div>
-      </div>
-      <p class="fp-desc" id="t-scdesc">Agent zakupowy AI który mówi Ci co kupić zanim zainwestujesz w towar. BUY / WAIT / AVOID, plan zakupowy z ilością i budżetem, analiza konkurencji i dostawcy z realnymi cenami w 16 walutach.</p>
-      <div class="fp-feats">
-        <div class="fp-feat"><div class="fp-fd fd-g"></div><span id="t-scf1">Werdykt BUY / WAIT / AVOID</span></div>
-        <div class="fp-feat"><div class="fp-fd fd-g"></div><span id="t-scf2">Plan zakupowy z bezpieczną ilością</span></div>
-        <div class="fp-feat"><div class="fp-fd fd-g"></div><span id="t-scf3">Realna marża netto po opłatach</span></div>
-        <div class="fp-feat"><div class="fp-fd fd-g"></div><span id="t-scf4">Analiza 3 konkurentów + luka cenowa</span></div>
-        <div class="fp-feat"><div class="fp-fd fd-g"></div><span id="t-scf5">Dostawcy z cenami w 16 walutach</span></div>
-        <div class="fp-feat"><div class="fp-fd fd-g"></div><span id="t-scf6">16 języków · bezpłatnie</span></div>
-      </div>
-      <a href="https://marsiqo-scout.vercel.app" target="_blank" class="fp-btn fp-btn-sc" id="t-scopen">Otwórz Scout →</a>
-    </div>
-  </div>
-</div>
+        <section id="mission">
+            <h1 id="t-m-h">Misja Marsiqo.</h1>
+            <p class="hero-p" id="t-m-p">Wierzymy, że AI to fundament, który daje średnim sprzedawcom przewagę korporacyjną.</p>
+        </section>
 
-<!-- MISSION -->
-<div class="page" id="page-mission">
-  <div class="mission-hero">
-    <div class="page-lbl" id="t-misslbl">Nasza misja</div>
-    <div class="mission-big" id="t-missbig">"Budujemy narzędzia które dają małym sprzedawcom <em>przewagę dużych graczy.</em>"</div>
-    <p class="mission-intro" id="t-missintro">Wierzymy że technologia AI nie powinna być tylko dla korporacji. Każdy sprzedawca online — niezależnie od budżetu — zasługuje na dostęp do narzędzi które pomagają mu rosnąć.</p>
-  </div>
-  <div class="mcards">
-    <div class="mcard reveal"><div class="mcard-icon">🎯</div><div class="mcard-title" id="t-mc1t">Nasz cel</div><div class="mcard-text" id="t-mc1d">Demokratyzacja AI dla e-commerce — każdy sprzedawca online ma dostęp do narzędzi wcześniej dostępnych tylko dla dużych firm.</div></div>
-    <div class="mcard reveal"><div class="mcard-icon">💡</div><div class="mcard-title" id="t-mc2t">Skąd pomysł</div><div class="mcard-text" id="t-mc2d">Frustacja brakiem prostych narzędzi. Zamiast czekać — Marcel postanowił zbudować to sam. Tak powstało Marsiqo Group.</div></div>
-    <div class="mcard reveal"><div class="mcard-icon">🌍</div><div class="mcard-title" id="t-mc3t">Globalna wizja</div><div class="mcard-text" id="t-mc3d">Zaczynamy w Polsce. Budujemy w 16 językach. Docelowo Marsiqo Group ma pomagać sprzedawcom na całym świecie.</div></div>
-  </div>
-  <div class="future-sec">
-    <div class="future-title" id="t-futT">Gdzie chcemy być <em>za kilka lat</em></div>
-    <div class="timeline">
-      <div class="tl-item reveal"><div class="tl-dot">💡</div><div class="tl-content"><div class="tl-year">2026</div><div class="tl-title" id="t-tl1t">Narodziny pomysłu</div><div class="tl-text" id="t-tl1d">Powstaje wizja Marsiqo Group. Jeden człowiek, jeden pomysł, zero ograniczeń.</div></div></div>
-      <div class="tl-item reveal"><div class="tl-dot">🚀</div><div class="tl-content"><div class="tl-year">2026</div><div class="tl-title" id="t-tl2t">Trzy produkty live</div><div class="tl-text" id="t-tl2d">Marsi, Studio i Scout dostępne dla użytkowników. Pierwsze opinie, pierwsze lekcje.</div></div></div>
-      <div class="tl-item reveal"><div class="tl-dot">⚡</div><div class="tl-content"><div class="tl-year">2026-2027</div><div class="tl-title" id="t-tl3t">Wzrost</div><div class="tl-text" id="t-tl3d">Pierwsze przychody. Rozbudowa produktów. Ekspansja na rynek anglojęzyczny.</div></div></div>
-      <div class="tl-item reveal"><div class="tl-dot">🌍</div><div class="tl-content"><div class="tl-year">2027-2028</div><div class="tl-title" id="t-tl4t">Skalowanie</div><div class="tl-text" id="t-tl4d">Czwarty produkt. Tysiące użytkowników. Marsiqo Group jako rozpoznawalna marka AI w Europie.</div></div></div>
-      <div class="tl-item reveal"><div class="tl-dot">🏆</div><div class="tl-content"><div class="tl-year">2028+</div><div class="tl-title" id="t-tl5t">Globalny gracz</div><div class="tl-text" id="t-tl5d">Marsiqo Group jako platforma AI dla e-commerce znana na całym świecie.</div></div></div>
-    </div>
-  </div>
-</div>
+        <section id="founder">
+            <h1 id="t-f-h">The Founder.</h1>
+            <div class="card" style="max-width: 600px; text-align: center; border: 1px solid var(--c-purple);">
+                <h3 id="t-f-name">Marcel</h3>
+                <p id="t-f-desc">Inicjator Marsiqo Group. Łączę technologię z realnymi potrzebami rynku e-commerce.</p>
+            </div>
+        </section>
+    </main>
 
-<!-- FOUNDER -->
-<div class="page" id="page-founder">
-  <div class="founder-wrap">
-    <div class="page-lbl" id="t-flbl">Founder</div>
-    <div class="founder-top reveal">
-      <div class="founder-av">M</div>
-      <div>
-        <div class="founder-name">Marcel</div>
-        <div class="founder-role" id="t-frole">Founder & CEO · Marsiqo Group</div>
-        <div class="founder-tag" id="t-ftag">🇵🇱 Polska · 26 lat · Buduję od zera</div>
-      </div>
-    </div>
-    <div class="founder-q reveal"><div class="qtext" id="t-fquote">"Zawsze chciałem pomagać. Marsiqo Group to mój sposób na pomaganie jak największej liczbie ludzi — przez narzędzia które naprawdę działają."</div></div>
-    <div class="reveal">
-      <div class="story-title" id="t-stitle">Dlaczego to buduję</div>
-      <p class="story-p" id="t-sp1">Od zawsze lubiłem pomagać innym. Kiedy zobaczyłem jak wiele osób traci czas i pieniądze na złe decyzje w e-commerce — wiedziałem że chcę to zmienić.</p>
-      <p class="story-p" id="t-sp3"><strong>Marsiqo Studio</strong> — Twój asystent marketingowy  </p>
-      <p class="story-p" id="t-sp4"><strong>Marsiqo Scout</strong> — "Ile i kiedy kupić towaru?". Zamiast zgadywania — plan zakupowy z werdyktem BUY / WAIT / AVOID.</p>
-    </div>
-    <div class="fvals reveal">
-      <div class="fval"><div class="fval-icon">❤️</div><div class="fval-name" id="t-v1n">Pomaganie</div><div class="fval-desc" id="t-v1d">Buduję narzędzia które naprawdę rozwiązują problemy</div></div>
-      <div class="fval"><div class="fval-icon">🔥</div><div class="fval-name" id="t-v2n">Odwaga</div><div class="fval-desc" id="t-v2d">Buduję od zera, uczę się w trakcie i nie stoję w miejscu</div></div>
-      <div class="fval"><div class="fval-icon">🌍</div><div class="fval-name" id="t-v3n">Skala</div><div class="fval-desc" id="t-v3d">Chcę pomagać jak największej liczbie ludzi na świecie</div></div>
-    </div>
-  </div>
-</div>
+    <script>
+        const translations = {
+            pl: {
+                h1: "Inteligencja operacyjna.<br>Dla e-commerce.", 
+                p: "Budujemy autonomiczne systemy przyszłości, które skalują sprzedaż i chronią Twój biznes.",
+                btn: "Odkryj System", 
+                c1h: "Studio_", c1p: "Twój kreatywny mózg AI. Od strategii po wiralowy content w kilka sekund.",
+                c2h: "Scout_", c2p: "Analityka bez błędu. Precyzyjne dane, które mówią kiedy i co kupić.",
+                ph: "System Operacyjny.", 
+                pc1h: "Marsiqo Studio", pc1p: "Pełna automatyzacja obecności w social media i kreacji reklamowej.",
+                pc2h: "Marsiqo Scout", pc2p: "System optymalizacji marży i zarządzania stockiem nowej ery.",
+                mh: "Misja Marsiqo.", 
+                mp: "Wierzymy, że AI to fundament, który daje średnim sprzedawcom przewagę korporacyjną.",
+                fh: "The Founder.", fname: "Marcel", fdesc: "Inicjator Marsiqo Group. Łączę technologię z realnymi potrzebami rynku e-commerce."
+            },
+            en: {
+                h1: "Operating Intelligence.<br>For e-commerce.", 
+                p: "We build autonomous systems of the future that scale sales and protect your business.",
+                btn: "Explore System", 
+                c1h: "Studio_", c1p: "Your AI creative brain. From strategy to viral content in seconds.",
+                c2h: "Scout_", c2p: "Flawless analytics. Precise data that tells you when and what to buy.",
+                ph: "Operating System.", 
+                pc1h: "Marsiqo Studio", pc1p: "Full social media presence and ad creation automation.",
+                pc2h: "Marsiqo Scout", pc2p: "New era margin and stock management optimization system.",
+                mh: "Marsiqo Mission.", 
+                mp: "We believe AI is a foundation that gives medium sellers a corporate advantage.",
+                fh: "The Founder.", fname: "Marcel", fdesc: "Founder of Marsiqo Group. Bridging technology with real e-commerce market needs."
+            }
+        };
 
-<footer>
-  <div class="f-logo">Marsiqo Group</div>
-  <div class="f-copy">© 2026 Marsiqo Group · Bezpłatnie · Bez rejestracji</div>
-  <div class="f-links">
-    <a href="/legal" class="f-link" id="t-l1">Regulamin</a>
-    <a href="/legal" class="f-link" id="t-l2">Polityka prywatności</a>
-    <a href="/legal" class="f-link" id="t-l3">Cookies</a>
-  </div>
-</footer>
+        function setLang(lang) {
+            const t = translations[lang];
+            document.getElementById('t-h1').innerHTML = t.h1;
+            document.getElementById('t-p').innerText = t.p;
+            document.getElementById('t-btn').innerText = t.btn;
+            document.getElementById('t-c1-h').innerText = t.c1h;
+            document.getElementById('t-c1-p').innerText = t.c1p;
+            document.getElementById('t-c2-h').innerText = t.c2h;
+            document.getElementById('t-c2-p').innerText = t.c2p;
+            document.getElementById('t-p-h').innerText = t.ph;
+            document.getElementById('t-p-c1-h').innerText = t.pc1h;
+            document.getElementById('t-p-c1-p').innerText = t.pc1p;
+            document.getElementById('t-p-c2-h').innerText = t.pc2h;
+            document.getElementById('t-p-c2-p').innerText = t.pc2p;
+            document.getElementById('t-m-h').innerText = t.mh;
+            document.getElementById('t-m-p').innerText = t.mp;
+            document.getElementById('t-f-h').innerText = t.fh;
+            document.getElementById('t-f-name').innerText = t.fname;
+            document.getElementById('t-f-desc').innerText = t.fdesc;
+            
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
+        }
 
-<script>
-var T={
-pl:{
-  navHome:'Start',navProd:'Produkty',navMiss:'Misja',navFound:'Founder',
-  badge:'Marsiqo Group · AI for E-Commerce',
-  heroTitle:'Narzędzia AI<br>dla <span class="grad">e-commerce</span>',
-  heroSub:'Marsiqo Group buduje inteligentne narzędzia dla biznesu online — <strong>analizuj produkty, planuj marketing i kupuj mądrze.</strong>',
-  hc2:'Opisz cel — dostaniesz konkretne pomysły na marketing i plan tygodnia.',
-  hc3:'Plan zakupowy: ile kupić, kiedy i skąd. BUY / WAIT / AVOID.',
-  hb2:'Otwórz Studio →',hb3:'Otwórz Scout →',
-  quote:'Najlepszy sposób na przewidzenie przyszłości to jej stworzenie.',
-  prodLbl:'Nasze produkty',prodTitle:'Trzy narzędzia.<br><em>Jeden ekosystem.</em>',
-  prodSub:'Każdy produkt rozwiązuje inny problem — razem tworzą kompletny system dla sprzedawcy e-commerce.',
-  mtag:'● Live',mplbl:'Limit',mpsub:'reset co godzinę',
-  mf1:'Analiza potencjału sprzedaży',mf2:'Ocena ryzyka rynkowego',mf3:'Analiza marży i modelu',
-  mf4:'Konkretna rekomendacja',mf5:'Historia analiz',mf6:'16 języków',mopen:'Otwórz Marsi →',
-  stag:'● Live',splbl:'Limit',spsub:'reset co 2 godziny',
-  sdesc:'Asystent kreatywny. Opisz problem marketingowy — dostaniesz pomysły na content i plan tygodnia.',
-  sf1:'Konkretne pomysły na content',sf2:'Plan tygodnia na social media',sf3:'Strategie marketingowe',
-  sf4:'Działa dla każdej branży',sf5:'5 sesje co 2h · bezpłatnie',sf6:'3 języki',sopen:'Otwórz Studio →',
-  sctag:'● Live',scplbl:'Limit',scpsub:'reset co 2 godziny',
-  scdesc:'Agent zakupowy AI. BUY / WAIT / AVOID, plan zakupowy, analiza konkurencji i dostawcy z cenami w 16 walutach.',
-  scf1:'Werdykt BUY / WAIT / AVOID',scf2:'Plan zakupowy z bezpieczną ilością',scf3:'Realna marża netto po opłatach',
-  scf4:'Analiza 3 konkurentów',scf5:'Dostawcy z cenami w 16 walutach',scf6:'16 języków · bezpłatnie',scopen:'Otwórz Scout →',
-  misslbl:'Nasza misja',missbig:'"Budujemy narzędzia które dają małym sprzedawcom <em>przewagę dużych graczy.</em>"',
-  missintro:'Wierzymy że technologia AI nie powinna być tylko dla korporacji. Każdy sprzedawca online zasługuje na dostęp do narzędzi które pomagają mu rosnąć.',
-  mc1t:'Nasz cel',mc1d:'Demokratyzacja AI dla e-commerce — każdy ma dostęp do narzędzi wcześniej dostępnych tylko dla dużych firm.',
-  mc2t:'Skąd pomysł',mc2d:'Frustacja brakiem prostych narzędzi. Zamiast czekać — Marcel zbudował to sam.',
-  mc3t:'Globalna wizja',mc3d:'Zaczynamy w Polsce. 16 języków. Docelowo Marsiqo Group ma pomagać sprzedawcom na całym świecie.',
-  futT:'Gdzie chcemy być <em>za kilka lat</em>',
-  tl1t:'Narodziny pomysłu',tl1d:'Powstaje wizja Marsiqo Group. Jeden człowiek, jeden pomysł.',
-  tl2t:'Trzy produkty live',tl2d:'Marsi, Studio i Scout dostępne. Pierwsze opinie, pierwsze lekcje.',
-  tl3t:'Wzrost',tl3d:'Pierwsze przychody. Rozbudowa produktów. Ekspansja na rynek anglojęzyczny.',
-  tl4t:'Skalowanie',tl4d:'Czwarty produkt. Tysiące użytkowników. Rozpoznawalna marka AI w Europie.',
-  tl5t:'Globalny gracz',tl5d:'Marsiqo Group jako platforma AI dla e-commerce znana na całym świecie.',
-  flbl:'Founder',frole:'Founder & CEO · Marsiqo Group',ftag:'🇵🇱 Polska · 26 lat · Buduję od zera',
-  fquote:'"Zawsze chciałem pomagać. Marsiqo Group to mój sposób na pomaganie jak największej liczbie ludzi — przez narzędzia które naprawdę działają."',
-  stitle:'Dlaczego to buduję',
-  sp1:'Od zawsze lubiłem pomagać innym. Kiedy zobaczyłem jak wiele osób traci czas i pieniądze na złe decyzje — wiedziałem że chcę to zmienić.',
-  sp2:'<strong>Marsi</strong> — "Czy warto sprzedawać ten produkt?". Zamiast godzin researchu — konkretna odpowiedź.',
-  sp3:'<strong>Marsiqo Studio</strong> — "Co powiedzieć w filmiku?". Zamiast pustej kartki — gotowe skrypty.',
-  sp4:'<strong>Marsiqo Scout</strong> — "Ile i kiedy kupić towaru?". Plan zakupowy z werdyktem BUY / WAIT / AVOID.',
-  v1n:'Pomaganie',v1d:'Buduję narzędzia które naprawdę rozwiązują problemy',
-  v2n:'Odwaga',v2d:'Buduję od zera, uczę się w trakcie i nie stoję w miejscu',
-  v3n:'Skala',v3d:'Chcę pomagać jak największej liczbie ludzi na świecie',
-  l1:'Regulamin',l2:'Polityka prywatności',l3:'Cookies'
-},
-en:{
-  navHome:'Home',navProd:'Products',navMiss:'Mission',navFound:'Founder',
-  badge:'Marsiqo Group · AI for E-Commerce',
-  heroTitle:'AI Tools<br>for <span class="grad">e-commerce</span>',
-  heroSub:'Marsiqo Group builds intelligent tools for online business — <strong>analyse products, plan marketing and buy smarter.</strong>',
-  hc1:'Enter a product — get potential, risk and margin score in seconds.',
-  hc2:'Describe your goal — get concrete marketing ideas and a weekly plan.',
-  hc3:'Buying plan: how much, when and where. BUY / WAIT / AVOID.',
-  hb1:'Open Marsi →',hb2:'Open Studio →',hb3:'Open Scout →',
-  quote:'The best way to predict the future is to create it.',
-  prodLbl:'Our products',prodTitle:'Three tools.<br><em>One ecosystem.</em>',
-  prodSub:'Each product solves a different problem — together they create a complete system for e-commerce sellers.',
-  mtag:'● Live',mplbl:'Limit',mpsub:'reset every hour',
-  mdesc:'AI agent that analyses e-commerce products in seconds. Enter a product name — Marsi evaluates potential, risk, margin and gives a concrete recommendation.',
-  mf1:'Sales potential analysis',mf2:'Market risk assessment',mf3:'Margin & model analysis',
-  mf4:'Concrete recommendation',mf5:'Analysis history',mf6:'16 languages',mopen:'Open Marsi →',
-  stag:'● Live',splbl:'Limit',spsub:'reset every 2 hours',
-  sdesc:'Creative assistant. Describe a marketing problem — get content ideas and a weekly plan.',
-  sf1:'Concrete content ideas',sf2:'Weekly social media plan',sf3:'Marketing strategies',
-  sf4:'Works for any industry',sf5:'3 sessions per 2h · free',sf6:'16 languages',sopen:'Open Studio →',
-  sctag:'● Live',scplbl:'Limit',scpsub:'reset every 24 hours',
-  scdesc:'AI buying agent. BUY / WAIT / AVOID, buying plan, competitor analysis and suppliers with real prices in 16 currencies.',
-  scf1:'BUY / WAIT / AVOID verdict',scf2:'Safe buying plan with quantity',scf3:'Real net margin after fees',
-  scf4:'Competitor analysis + price gap',scf5:'Suppliers with prices in 16 currencies',scf6:'16 languages · free',scopen:'Open Scout →',
-  misslbl:'Our mission',missbig:'"We build tools that give small sellers <em>the advantage of big players.</em>"',
-  missintro:'We believe AI should not be only for corporations. Every online seller deserves access to tools that help them grow.',
-  mc1t:'Our goal',mc1d:'Democratisation of AI for e-commerce — everyone has access to tools previously only for large companies.',
-  mc2t:'The idea',mc2d:"Frustration with the lack of simple tools. Instead of waiting — Marcel built it himself.",
-  mc3t:'Global vision',mc3d:'We start in Poland. 16 languages. Marsiqo Group aims to help sellers worldwide.',
-  futT:'Where we want to be <em>in a few years</em>',
-  tl1t:'Birth of the idea',tl1d:'The vision of Marsiqo Group is born. One person, one idea.',
-  tl2t:'Three products live',tl2d:'Marsi, Studio and Scout available. First feedback, first lessons.',
-  tl3t:'Growth',tl3d:'First revenue. Expanding products. Expansion into the English-speaking market.',
-  tl4t:'Scaling',tl4d:'Fourth product. Thousands of users. Recognisable AI brand in Europe.',
-  tl5t:'Global player',tl5d:'Marsiqo Group as a globally known AI platform for e-commerce.',
-  flbl:'Founder',frole:'Founder & CEO · Marsiqo Group',ftag:'🇵🇱 Poland · 26 years old · Building from scratch',
-  fquote:'"I always wanted to help. Marsiqo Group is my way of helping as many people as possible — through tools that really work."',
-  stitle:'Why I build this',
-  sp1:'I always liked helping others. When I saw how many people waste time and money on bad decisions — I knew I wanted to change that.',
-  sp2:'<strong>Marsi</strong> — "Is this product worth selling?". Instead of hours of research — a concrete answer.',
-  sp3:'<strong>Marsiqo Studio</strong> — "What should I say in the video?". Instead of a blank page — ready scripts.',
-  sp4:'<strong>Marsiqo Scout</strong> — "How much and when to buy?". Buying plan with BUY / WAIT / AVOID verdict.',
-  v1n:'Helping',v1d:'I build tools that truly solve problems',
-  v2n:'Courage',v2d:'I build from scratch and never stand still',
-  v3n:'Scale',v3d:'I want to help as many people as possible',
-  l1:'Terms of Service',l2:'Privacy Policy',l3:'Cookies'
-},
-de:{
-  navHome:'Start',navProd:'Produkte',navMiss:'Mission',navFound:'Gründer',
-  badge:'Marsiqo Group · KI für E-Commerce',
-  heroTitle:'KI-Tools<br>für <span class="grad">E-Commerce</span>',
-  heroSub:'Marsiqo Group entwickelt intelligente Tools für Online-Business — <strong>analysiere Produkte, plane Marketing und kaufe klüger.</strong>',
-  hc1:'Gib ein Produkt ein — erhalte Potenzial, Risiko und Marge in Sekunden.',
-  hc2:'Beschreibe dein Ziel — erhalte Marketing-Ideen und einen Wochenplan.',
-  hc3:'Kaufplan: wie viel, wann und wo kaufen. BUY / WAIT / AVOID.',
-  hb1:'Marsi öffnen →',hb2:'Studio öffnen →',hb3:'Scout öffnen →',
-  quote:'Der beste Weg, die Zukunft vorherzusagen, ist, sie zu gestalten.',
-  prodLbl:'Unsere Produkte',prodTitle:'Drei Tools.<br><em>Ein Ökosystem.</em>',
-  prodSub:'Jedes Produkt löst ein anderes Problem — zusammen bilden sie ein komplettes System.',
-  mtag:'● Live',mplbl:'Limit',mpsub:'Reset jede Stunde',
-  mdesc:'KI-Agent der Produkte in Sekunden analysiert. Potenzial, Risiko, Marge und konkrete Empfehlung.',
-  mf1:'Verkaufspotenzialanalyse',mf2:'Marktrisikobewertung',mf3:'Margenanalyse',
-  mf4:'Konkrete Empfehlung',mf5:'Analyseverlauf',mf6:'16 Sprachen',mopen:'Marsi öffnen →',
-  stag:'● Live',splbl:'Limit',spsub:'Reset alle 2 Stunden',
-  sdesc:'Kreativer Assistent. Beschreibe ein Marketingproblem — erhalte Content-Ideen und einen Wochenplan.',
-  sf1:'Konkrete Content-Ideen',sf2:'Wöchentlicher Social-Media-Plan',sf3:'Marketing-Strategien',
-  sf4:'Für jede Branche',sf5:'3 Sitzungen alle 2h · kostenlos',sf6:'16 Sprachen',sopen:'Studio öffnen →',
-  sctag:'● Live',scplbl:'Limit',scpsub:'Reset alle 24 Stunden',
-  scdesc:'KI-Kaufagent. BUY / WAIT / AVOID, Kaufplan, Wettbewerbsanalyse und Lieferanten in 16 Währungen.',
-  scf1:'BUY / WAIT / AVOID Urteil',scf2:'Sicherer Kaufplan mit Menge',scf3:'Reale Nettomarge',
-  scf4:'Wettbewerbsanalyse',scf5:'Lieferanten in 16 Währungen',scf6:'16 Sprachen · kostenlos',scopen:'Scout öffnen →',
-  misslbl:'Unsere Mission',missbig:'"Wir bauen Tools, die kleinen Verkäufern <em>den Vorteil großer Spieler</em> geben."',
-  missintro:'Wir glauben, dass KI nicht nur für Konzerne sein sollte. Jeder Verkäufer verdient Zugang zu Tools die ihm helfen.',
-  mc1t:'Unser Ziel',mc1d:'Demokratisierung der KI — jeder hat Zugang zu Tools die früher nur für große Unternehmen waren.',
-  mc2t:'Die Idee',mc2d:'Statt zu warten — hat Marcel es selbst gebaut.',
-  mc3t:'Globale Vision',mc3d:'Wir starten in Polen. 16 Sprachen. Ziel: Verkäufern weltweit helfen.',
-  futT:'Wo wir in <em>ein paar Jahren</em> sein wollen',
-  tl1t:'Geburt der Idee',tl1d:'Die Vision entsteht. Eine Person, eine Idee.',
-  tl2t:'Drei Produkte live',tl2d:'Marsi, Studio und Scout verfügbar. Erstes Feedback.',
-  tl3t:'Wachstum',tl3d:'Erste Einnahmen. Expansion.',
-  tl4t:'Skalierung',tl4d:'Viertes Produkt. Tausende Nutzer. KI-Marke in Europa.',
-  tl5t:'Globaler Spieler',tl5d:'Marsiqo Group weltweit bekannt.',
-  flbl:'Gründer',frole:'Gründer & CEO · Marsiqo Group',ftag:'🇵🇱 Polen · 26 Jahre · Aufbau von Grund auf',
-  fquote:'"Ich wollte immer helfen. Marsiqo Group ist mein Weg, so vielen Menschen wie möglich zu helfen."',
-  stitle:'Warum ich das baue',
-  sp1:'Ich wollte immer anderen helfen.',
-  sp2:'<strong>Marsi</strong> — "Ist dieses Produkt wert zu verkaufen?"',
-  sp3:'<strong>Studio</strong> — "Was soll ich im Video sagen?"',
-  sp4:'<strong>Scout</strong> — "Wie viel und wann kaufen?" BUY / WAIT / AVOID.',
-  v1n:'Helfen',v1d:'Ich baue Tools die wirklich Probleme lösen',
-  v2n:'Mut',v2d:'Ich baue von Grund auf und lerne dabei',
-  v3n:'Maßstab',v3d:'Ich möchte so vielen Menschen wie möglich helfen',
-  l1:'AGB',l2:'Datenschutz',l3:'Cookies'
-}
-};
+        window.onload = () => {
+            setTimeout(() => {
+                document.getElementById('intro-overlay').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('intro-overlay').style.display = 'none';
+                    document.getElementById('navbar').style.opacity = '1';
+                }, 800);
+            }, 2000);
+        };
 
-var LANG='pl';
-
-var IDS=['badge','hc1','hc2','hc3','hb1','hb2','hb3','quote',
-  'prodLbl','prodSub','mtag','mplbl','mpsub','mdesc','mf1','mf2','mf3','mf4','mf5','mf6','mopen',
-  'stag','splbl','spsub','sdesc','sf1','sf2','sf3','sf4','sf5','sf6','sopen',
-  'sctag','scplbl','scpsub','scdesc','scf1','scf2','scf3','scf4','scf5','scf6','scopen',
-  'misslbl','missintro','mc1t','mc1d','mc2t','mc2d','mc3t','mc3d',
-  'tl1t','tl1d','tl2t','tl2d','tl3t','tl3d','tl4t','tl4d','tl5t','tl5d',
-  'flbl','frole','ftag','fquote','stitle','sp1','sp2','sp3','sp4',
-  'v1n','v1d','v2n','v2d','v3n','v3d','l1','l2','l3'];
-
-function setLang(lang){
-  LANG=lang;
-  var t=T[lang];
-  IDS.forEach(function(id){
-    var el=document.getElementById('t-'+id);
-    if(el&&t[id]!==undefined)el.innerHTML=t[id];
-  });
-  var ht=document.getElementById('t-heroTitle');if(ht)ht.innerHTML=t.heroTitle;
-  var hs=document.getElementById('t-heroSub');if(hs)hs.innerHTML=t.heroSub;
-  var pt=document.getElementById('t-prodTitle');if(pt)pt.innerHTML=t.prodTitle;
-  var mb=document.getElementById('t-missbig');if(mb)mb.innerHTML=t.missbig;
-  var ft=document.getElementById('t-futT');if(ft)ft.innerHTML=t.futT;
-  var navs=[['nl-home','navHome'],['nl-products','navProd'],['nl-mission','navMiss'],['nl-founder','navFound'],
-    ['ml-home','navHome'],['ml-products','navProd'],['ml-mission','navMiss'],['ml-founder','navFound']];
-  navs.forEach(function(n){var el=document.getElementById(n[0]);if(el)el.textContent=t[n[1]];});
-  document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('active');});
-  var map={pl:'PL',en:'EN',de:'DE'};
-  document.querySelectorAll('.lang-btn').forEach(function(b){if(b.textContent.includes(map[lang]))b.classList.add('active');});
-  localStorage.setItem('msq_lang',lang);
-}
-
-function showPage(name){
-  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
-  document.querySelectorAll('.nav-link').forEach(function(l){l.classList.remove('active');});
-  var pg=document.getElementById('page-'+name);if(pg)pg.classList.add('active');
-  var map={home:'nl-home',products:'nl-products',mission:'nl-mission',founder:'nl-founder'};
-  var el=document.getElementById(map[name]);if(el)el.classList.add('active');
-  window.scrollTo(0,0);
-  setTimeout(revealAll,100);
-}
-
-function revealAll(){
-  document.querySelectorAll('.reveal').forEach(function(el){
-    var r=el.getBoundingClientRect();
-    if(r.top<window.innerHeight-40)el.classList.add('visible');
-  });
-}
-
-window.addEventListener('scroll',revealAll);
-setTimeout(revealAll,300);
-document.addEventListener('DOMContentLoaded',function(){
-  var s=localStorage.getItem('msq_lang');
-  if(s&&T[s])setLang(s);
-  else setLang('pl');
-});
-</script>
+        function showPage(id) {
+            const current = document.querySelector('section.active');
+            if (current.id === id) return;
+            current.style.opacity = '0';
+            setTimeout(() => {
+                current.classList.remove('active');
+                document.getElementById(id).classList.add('active');
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                const link = document.getElementById('nl-' + id);
+                if (link) link.classList.add('active');
+            }, 400);
+        }
+    </script>
 </body>
 </html>
