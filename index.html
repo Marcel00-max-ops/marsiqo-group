@@ -25,11 +25,11 @@
             color: var(--text); 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             overflow-x: hidden;
-            overflow-y: auto; /* Poprawka scrolla na telefonie */
+            overflow-y: auto;
             min-height: 100vh;
         }
 
-        /* --- ANIMOWANE TŁO CANDY PASTEL --- */
+        /* --- ANIMOWANE TŁO --- */
         .bg-pastels {
             position: fixed;
             inset: -50%;
@@ -51,7 +51,7 @@
             100% { transform: rotate(15deg) scale(1.1); }
         }
 
-        /* --- MINIMALISTYCZNE INTRO --- */
+        /* --- INTRO --- */
         #intro-overlay {
             position: fixed; inset: 0; background: #fff;
             display: flex; align-items: center; justify-content: center;
@@ -92,10 +92,10 @@
         .lang-btn.active { background: #fff; color: #000; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
         /* --- SPA SEKCJE --- */
-        main { width: 100%; min-height: 100vh; position: relative; padding-top: 75px; }
+        main { width: 100%; min-height: 100vh; position: relative; padding-top: 85px; }
         
         section { 
-            position: relative; /* Zmienione z absolute dla lepszego scrolla */
+            position: relative; 
             display: none; 
             flex-direction: column; 
             align-items: center; 
@@ -113,36 +113,35 @@
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* --- TREŚĆ --- */
-        h1 { 
-            font-size: clamp(38px, 9vw, 85px); font-weight: 800; letter-spacing: -0.05em; line-height: 0.95; margin-bottom: 25px; 
-            color: #000;
-        }
-        .hero-p { font-size: 22px; color: var(--muted); max-width: 750px; margin-bottom: 45px; font-weight: 500; line-height: 1.3; }
+        h1 { font-size: clamp(34px, 8vw, 85px); font-weight: 800; letter-spacing: -0.05em; line-height: 0.95; margin-bottom: 25px; color: #000; }
+        .hero-p { font-size: 20px; color: var(--muted); max-width: 750px; margin-bottom: 45px; font-weight: 500; line-height: 1.3; }
 
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; width: 100%; }
-        
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; }
         .card {
-            background: rgba(255, 255, 255, 0.75); border: 1px solid rgba(255,255,255,0.5); border-radius: 35px; padding: 40px; text-align: left;
+            background: rgba(255, 255, 255, 0.75); border: 1px solid rgba(255,255,255,0.5); border-radius: 30px; padding: 35px; text-align: left;
             transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1); cursor: pointer;
         }
-        .card:hover { 
-            transform: translateY(-10px); background: #fff;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06); 
-        }
-        .card h3 { font-size: 32px; margin-bottom: 12px; font-weight: 800; letter-spacing: -1px; }
+        .card:hover { transform: translateY(-8px); background: #fff; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05); }
+        .card h3 { font-size: 28px; margin-bottom: 10px; font-weight: 800; letter-spacing: -1px; }
         
         .btn-main {
             background: #000; color: #fff; padding: 18px 40px; border-radius: 100px; font-weight: 800; 
-            text-decoration: none; display: inline-block; margin-bottom: 55px; transition: 0.4s;
+            text-decoration: none; display: inline-block; margin-bottom: 50px; transition: 0.4s;
         }
         .btn-main:hover { transform: scale(1.05); background: #ec4899; }
 
+        /* --- RESPONSYWNOŚĆ (POPRAWKA MOBILE) --- */
         @media (max-width: 768px) {
+            .nav-content { padding: 0 15px; }
+            .logo { font-size: 18px; }
+            .nav-links { display: flex !important; gap: 10px; } /* Wymuszenie wyświetlania na mobile */
+            .nav-link { font-size: 10px; font-weight: 800; }
+            .lang-control { display: none; } /* Ukrywamy EN/PL na bardzo małych ekranach dla miejsca */
+            
+            h1 { font-size: 38px; }
+            .hero-p { font-size: 17px; }
             .grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-            h1 { font-size: 42px; }
-            section { padding: 40px 20px; }
+            section { padding: 30px 15px; }
         }
     </style>
 </head>
@@ -150,7 +149,8 @@
     <div class="bg-pastels"></div>
 
     <div id="intro-overlay">
-        <div class="intro-logo">MARSIQO GROUP</div> </div>
+        <div class="intro-logo">MARSIQO GROUP</div>
+    </div>
 
     <nav id="navbar">
         <div class="nav-content">
@@ -175,11 +175,11 @@
             <a href="#" onclick="showPage('products')" class="btn-main" id="t-btn">Odkryj System</a>
             
             <div class="grid">
-                <div class="card" style="border-top: 6px solid var(--c-purple);" onclick="window.open('https://marsiqo-studio.vercel.app')">
+                <div class="card" style="border-top: 5px solid var(--c-purple);" onclick="window.open('https://marsiqo-studio.vercel.app')">
                     <h3 id="t-c1-h">Studio_</h3>
                     <p id="t-c1-p">Twój kreatywny mózg AI. Od strategii po wiralowy content w kilka sekund.</p>
                 </div>
-                <div class="card" style="border-top: 6px solid var(--c-blue);" onclick="window.open('https://marsiqo-scout.vercel.app')">
+                <div class="card" style="border-top: 5px solid var(--c-blue);" onclick="window.open('https://marsiqo-scout.vercel.app')">
                     <h3 id="t-c2-h">Scout_</h3>
                     <p id="t-c2-p">Analityka bez błędu. Precyzyjne dane, które mówią kiedy i co kupić.</p>
                 </div>
@@ -189,11 +189,11 @@
         <section id="products">
             <h1 id="t-p-h">System Operacyjny.</h1>
             <div class="grid">
-                <div class="card" style="border-left: 6px solid var(--c-pink);">
+                <div class="card" style="border-left: 5px solid var(--c-pink);">
                     <h3 id="t-p-c1-h">Marsiqo Studio</h3>
                     <p id="t-p-c1-p">Pełna automatyzacja obecności w social media i kreacji reklamowej.</p>
                 </div>
-                <div class="card" style="border-left: 6px solid var(--c-yellow);">
+                <div class="card" style="border-left: 5px solid var(--c-yellow);">
                     <h3 id="t-p-c2-h">Marsiqo Scout</h3>
                     <p id="t-p-c2-p">System optymalizacji marży i zarządzania stockiem nowej ery.</p>
                 </div>
@@ -218,26 +218,20 @@
         const translations = {
             pl: {
                 nl_home: "Start", nl_products: "System", nl_mission: "Wizja", nl_founder: "Founder",
-                h1: "Inteligencja operacyjna.<br>Dla e-commerce.", 
-                p: "Budujemy autonomiczne systemy przyszłości, które skalują sprzedaż i chronią Twój biznes.",
-                btn: "Odkryj System", 
-                c1h: "Studio_", c1p: "Twój kreatywny mózg AI. Od strategii po wiralowy content w kilka sekund.",
+                h1: "Inteligencja operacyjna.<br>Dla e-commerce.", p: "Budujemy autonomiczne systemy przyszłości, które skalują sprzedaż i chronią Twój biznes.",
+                btn: "Odkryj System", c1h: "Studio_", c1p: "Twój kreatywny mózg AI. Od strategii po wiralowy content w kilka sekund.",
                 c2h: "Scout_", c2p: "Analityka bez błędu. Precyzyjne dane, które mówią kiedy i co kupić.",
-                ph: "System Operacyjny.", 
-                pc1h: "Marsiqo Studio", pc1p: "Pełna automatyzacja obecności w social media i kreacji reklamowej.",
+                ph: "System Operacyjny.", pc1h: "Marsiqo Studio", pc1p: "Pełna automatyzacja obecności w social media i kreacji reklamowej.",
                 pc2h: "Marsiqo Scout", pc2p: "System optymalizacji marży i zarządzania stockiem nowej ery.",
                 mh: "Misja Marsiqo.", mp: "Wierzymy, że AI to fundament, który daje średnim sprzedawcom przewagę korporacyjną.",
                 fh: "The Founder.", fname: "Marcel", fdesc: "Inicjator Marsiqo Group. Łączę technologię z realnymi potrzebami rynku e-commerce."
             },
             en: {
                 nl_home: "Home", nl_products: "System", nl_mission: "Vision", nl_founder: "Founder",
-                h1: "Operating Intelligence.<br>For e-commerce.", 
-                p: "We build autonomous systems of the future that scale sales and protect your business.",
-                btn: "Explore System", 
-                c1h: "Studio_", c1p: "Your AI creative brain. From strategy to viral content in seconds.",
+                h1: "Operating Intelligence.<br>For e-commerce.", p: "We build autonomous systems of the future that scale sales and protect your business.",
+                btn: "Explore System", c1h: "Studio_", c1p: "Your AI creative brain. From strategy to viral content in seconds.",
                 c2h: "Scout_", c2p: "Flawless analytics. Precise data that tells you when and what to buy.",
-                ph: "Operating System.", 
-                pc1h: "Marsiqo Studio", pc1p: "Full social media presence and ad creation automation.",
+                ph: "Operating System.", pc1h: "Marsiqo Studio", pc1p: "Full social media presence and ad creation automation.",
                 pc2h: "Marsiqo Scout", pc2p: "New era margin and stock management optimization system.",
                 mh: "Marsiqo Mission.", mp: "We believe AI is a foundation that gives medium sellers a corporate advantage.",
                 fh: "The Founder.", fname: "Marcel", fdesc: "Founder of Marsiqo Group. Bridging technology with real e-commerce market needs."
@@ -285,21 +279,17 @@
         function showPage(id) {
             const current = document.querySelector('section.active');
             if (current.id === id) return;
-            
             current.style.opacity = '0';
             setTimeout(() => {
                 current.classList.remove('active');
                 current.style.display = 'none';
-
                 const target = document.getElementById(id);
                 target.style.display = 'flex';
-                window.scrollTo(0,0); // Reset scrolla przy zmianie strony
-                
+                window.scrollTo(0,0);
                 setTimeout(() => {
                     target.classList.add('active');
                     target.style.opacity = '1';
                 }, 50);
-                
                 document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
                 const link = document.getElementById('nl-' + id);
                 if (link) link.classList.add('active');
