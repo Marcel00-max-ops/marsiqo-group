@@ -28,23 +28,38 @@
             min-height: 100vh;
         }
 
-        /* --- ANIMOWANE TŁO --- */
+        /* --- TŁO INTERAKTYWNE --- */
         .bg-pastels {
-            position: fixed; inset: -50%; z-index: -1;
-            background-image: 
-                radial-gradient(circle at 20% 30%, var(--c-blue) 0%, transparent 40%),
-                radial-gradient(circle at 80% 20%, var(--c-purple) 0%, transparent 40%),
-                radial-gradient(circle at 40% 70%, var(--c-pink) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, var(--c-mint) 0%, transparent 30%);
-            filter: blur(80px); opacity: 0.6;
-            animation: bgRotate 25s infinite alternate ease-in-out;
-        }
-        @keyframes bgRotate {
-            0% { transform: rotate(0deg) scale(1); }
-            100% { transform: rotate(10deg) scale(1.1); }
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: #fff;
+            overflow: hidden;
+            perspective: 1000px;
         }
 
-        /* --- INTRO (TWOJE NOWE LOGO) --- */
+        .blob-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            filter: blur(80px);
+            opacity: 0.65;
+            transition: transform 0.15s ease-out;
+            will-change: transform;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            mix-blend-mode: multiply;
+        }
+
+        .blob-1 { width: 60vw; height: 60vw; background: var(--c-blue); top: -10%; left: -10%; }
+        .blob-2 { width: 50vw; height: 50vw; background: var(--c-purple); top: 10%; right: -5%; }
+        .blob-3 { width: 45vw; height: 45vw; background: var(--c-pink); bottom: -5%; left: 10%; }
+        .blob-4 { width: 40vw; height: 40vw; background: var(--c-mint); bottom: 15%; right: 15%; }
+
+        /* --- INTRO --- */
         #intro-overlay {
             position: fixed; inset: 0; background: #fff;
             display: flex; align-items: center; justify-content: center;
@@ -79,7 +94,7 @@
         .lang-btn { font-size: 10px; font-weight: 800; padding: 5px 12px; border-radius: 8px; border: none; cursor: pointer; background: transparent; color: #888; transition: 0.3s; }
         .lang-btn.active { background: #fff; color: #000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 
-        /* --- GŁÓWNA ZAWARTOŚĆ --- */
+        /* --- CONTENT --- */
         main { padding-top: 85px; }
         section { 
             display: none; flex-direction: column; align-items: center; justify-content: center;
@@ -95,6 +110,7 @@
         .card {
             background: rgba(255, 255, 255, 0.7); border: 1px solid rgba(0,0,0,0.06); border-radius: 28px; padding: 35px; text-align: left;
             transition: 0.4s cubic-bezier(0.2, 1, 0.3, 1); cursor: pointer;
+            backdrop-filter: blur(10px);
         }
         .card:hover { transform: translateY(-8px); background: #fff; border-color: rgba(0,0,0,0.15); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
         .card h3 { font-size: 26px; margin-bottom: 10px; font-weight: 800; letter-spacing: -1px; }
@@ -102,22 +118,25 @@
         .btn-main { background: #000; color: #fff; padding: 18px 45px; border-radius: 100px; font-weight: 800; text-decoration: none; transition: 0.3s; margin-bottom: 50px; }
         .btn-main:hover { background: #333; transform: scale(1.03); }
 
-        /* --- RESPONSYWNOŚĆ MOBILE --- */
         @media (max-width: 768px) {
             .nav-content { padding: 0 12px; }
             .logo { font-size: 16px; }
             .nav-links { gap: 10px; }
             .nav-link { font-size: 9px; }
-            .lang-control { scale: 0.85; }
             h1 { font-size: 38px; }
-            .hero-p { font-size: 17px; }
-            .grid { grid-template-columns: 1fr; gap: 20px; }
-            section { padding: 40px 15px; }
+            .grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="bg-pastels"></div>
+    <div class="bg-pastels">
+        <div class="blob-container" id="blobContainer">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <div class="blob blob-4"></div>
+        </div>
+    </div>
 
     <div id="intro-overlay">
         <div class="intro-logo">MARSIQO GROUP.</div>
@@ -148,7 +167,7 @@
             <div class="grid">
                 <div class="card" style="border-top: 6px solid var(--c-purple);" onclick="window.open('https://marsiqo-studio.vercel.app')">
                     <h3 id="t-c1-h">Studio_</h3>
-                    <p id="t-c1-p">Twój kreatywny mózg AI. Od strategii po wiralowy content w kilka sekund.</p>
+                    <p id="t-c1-p">Asystent kreatywny AI. Opisz problem marketingowy — otrzymasz gotowe pomysły na content i plan tygodnia.</p>
                 </div>
                 <div class="card" style="border-top: 6px solid var(--c-blue);" onclick="window.open('https://marsiqo-scout.vercel.app')">
                     <h3 id="t-c2-h">Scout_</h3>
@@ -160,13 +179,13 @@
         <section id="products">
             <h1 id="t-p-h">System Operacyjny.</h1>
             <div class="grid">
-                <div class="card" style="border-left: 6px solid var(--c-pink);" onclick="window.open('https://marsiqo-studio.vercel.app')">
-                    <h3 id="t-p-c1-h">Marsiqo Studio</h3>
-                    <p id="t-p-c1-p">Pełna automatyzacja obecności w social media i kreacji reklamowej.</p>
+                <div class="card" style="border-left: 6px solid var(--c-purple);" onclick="window.open('https://marsiqo-studio.vercel.app')">
+                    <h3 id="t-p-c1-h">Studio_</h3>
+                    <p id="t-p-c1-p">Asystent kreatywny AI. Opisz problem marketingowy — otrzymasz gotowe pomysły na content i plan tygodnia.</p>
                 </div>
-                <div class="card" style="border-left: 6px solid var(--c-yellow);" onclick="window.open('https://marsiqo-scout.vercel.app')">
-                    <h3 id="t-p-c2-h">Marsiqo Scout</h3>
-                    <p id="t-p-c2-p">System optymalizacji marży i zarządzania stockiem nowej ery.</p>
+                <div class="card" style="border-left: 6px solid var(--c-blue);" onclick="window.open('https://marsiqo-scout.vercel.app')">
+                    <h3 id="t-p-c2-h">Scout_</h3>
+                    <p id="t-p-c2-p">Analityka bez błędu. Precyzyjne dane, które mówią kiedy i co kupić.</p>
                 </div>
             </div>
         </section>
@@ -178,7 +197,7 @@
 
         <section id="founder">
             <h1 id="t-f-h">The Founder.</h1>
-            <div class="card" style="max-width: 500px; text-align: center; border: 1px solid #000;">
+            <div class="card" style="max-width: 500px; text-align: center; border: 1px solid #000; margin: 0 auto;">
                 <h3 id="t-f-name">Marcel</h3>
                 <p id="t-f-desc">Inicjator Marsiqo Group. Łączę technologię z realnymi potrzebami rynku e-commerce.</p>
             </div>
@@ -190,20 +209,24 @@
             pl: {
                 nl_home: "Start", nl_products: "System", nl_mission: "Wizja", nl_founder: "Founder",
                 h1: "Inteligencja operacyjna.<br>Dla e-commerce.", p: "Budujemy autonomiczne systemy przyszłości, które skalują sprzedaż i chronią Twój biznes.",
-                btn: "Odkryj System", c1h: "Studio_", c1p: "Twój kreatywny mózg AI. Od strategii po wiralowy content w kilka sekund.",
+                btn: "Odkryj System", 
+                c1h: "Studio_", c1p: "Asystent kreatywny AI. Opisz problem marketingowy — otrzymasz gotowe pomysły na content i plan tygodnia.",
                 c2h: "Scout_", c2p: "Analityka bez błędu. Precyzyjne dane, które mówią kiedy i co kupić.",
-                ph: "System Operacyjny.", pc1h: "Marsiqo Studio", pc1p: "Pełna automatyzacja obecności w social media i kreacji reklamowej.",
-                pc2h: "Marsiqo Scout", pc2p: "System optymalizacji marży i zarządzania stockiem nowej ery.",
+                ph: "System Operacyjny.", 
+                pc1h: "Studio_", pc1p: "Asystent kreatywny AI. Opisz problem marketingowy — otrzymasz gotowe pomysły na content i plan tygodnia.",
+                pc2h: "Scout_", pc2p: "Analityka bez błędu. Precyzyjne dane, które mówią kiedy i co kupić.",
                 mh: "Misja Marsiqo.", mp: "Wierzymy, że AI to fundament, który daje średnim sprzedawcom przewagę korporacyjną.",
                 fh: "The Founder.", fname: "Marcel", fdesc: "Inicjator Marsiqo Group. Łączę technologię z realnymi potrzebami rynku e-commerce."
             },
             en: {
                 nl_home: "Home", nl_products: "System", nl_mission: "Vision", nl_founder: "Founder",
                 h1: "Operational Intelligence.<br>For e-commerce.", p: "We build autonomous systems of the future that scale sales and protect your business.",
-                btn: "Explore System", c1h: "Studio_", c1p: "Your AI creative brain. From strategy to viral content in seconds.",
+                btn: "Explore System", 
+                c1h: "Studio_", c1p: "AI Creative Assistant. Describe a marketing problem — get content ideas and a weekly plan.",
                 c2h: "Scout_", c2p: "Flawless analytics. Precise data that tells you when and what to buy.",
-                ph: "Operating System.", pc1h: "Marsiqo Studio", pc1p: "Full social media presence and ad creation automation.",
-                pc2h: "Marsiqo Scout", pc2p: "New era margin and stock management optimization system.",
+                ph: "Operating System.", 
+                pc1h: "Studio_", pc1p: "AI Creative Assistant. Describe a marketing problem — get content ideas and a weekly plan.",
+                pc2h: "Scout_", pc2p: "Flawless analytics. Precise data that tells you when and what to buy.",
                 mh: "Marsiqo Mission.", mp: "We believe AI is a foundation that gives medium sellers a corporate advantage.",
                 fh: "The Founder.", fname: "Marcel", fdesc: "Founder of Marsiqo Group. Bridging technology with real e-commerce market needs."
             }
@@ -266,6 +289,15 @@
                 if (link) link.classList.add('active');
             }, 400);
         }
+
+        const blobContainer = document.getElementById('blobContainer');
+        document.addEventListener('mousemove', (e) => {
+            const normalizedX = (e.clientX / window.innerWidth) - 0.5;
+            const normalizedY = (e.clientY / window.innerHeight) - 0.5;
+            const moveX = normalizedX * 40;
+            const moveY = normalizedY * 40;
+            blobContainer.style.transform = `translate(${moveX}px, ${moveY}px) rotateX(${-moveY * 0.1}deg) rotateY(${moveX * 0.1}deg)`;
+        });
     </script>
 </body>
 </html>
